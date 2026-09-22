@@ -1,0 +1,329 @@
+# # User / Account Requirements
+
+#
+
+# - A user can create an account.
+
+# - A user can log into an existing account.
+
+# - A user can log out.
+
+# - A user account has a unique username.
+
+# - A user account stores an email address.
+
+# - Passwords must be securely stored rather than saved as plain text.
+
+# - The system prevents duplicate usernames.
+
+# - The system prevents duplicate email accounts.
+
+# - A user can view their profile.
+
+# - A user's profile shows the reviews they have submitted.
+
+# - A user can edit basic profile information.
+
+# - A user can delete their account.
+
+#
+
+# # Restaurant Requirements
+
+#
+
+# - The system displays a list of restaurants.
+
+# - Each restaurant has a name.
+
+# - Each restaurant has an address or location.
+
+# - Each restaurant has a dedicated restaurant page.
+
+# - A restaurant page displays its average fry rating.
+
+# - A restaurant page displays all reviews for that restaurant's fries.
+
+# - A restaurant can have a description.
+
+# - A restaurant can display a picture or logo.
+
+# - Users can search for restaurants by name.
+
+# - Users can browse all restaurants.
+
+# - Users can add a restaurant that does not currently exist.
+
+# - The system prevents obvious duplicate restaurant entries.
+
+# - Restaurants can be sorted alphabetically.
+
+#
+
+# # Fry Information Requirements
+
+#
+
+# - Each restaurant can have at least one type of fries listed.
+
+# - A fry listing contains the name or type of fries.
+
+# - A fry listing can contain a description.
+
+# - A fry listing can display an image.
+
+# - Each fry listing displays its average rating.
+
+# - The application displays the number of ratings submitted for a fry.
+
+# - Users can view all reviews associated with a specific fry.
+
+# - Fries can be identified by style, such as shoestring, steak, waffle, curly, or crinkle-cut.
+
+# - Fries can be marked as seasoned or unseasoned.
+
+# - Fries can have an optional price listed.
+
+#
+
+# # Rating Requirements
+
+#
+
+# - A logged-in user can rate fries.
+
+# - Ratings use a 1–5 star scale.
+
+# - A user cannot submit a rating below 1 star.
+
+# - A user cannot submit a rating above 5 stars.
+
+# - The system calculates the average rating for fries.
+
+# - The average rating automatically updates after a new rating is submitted.
+
+# - Ratings display to one decimal place.
+
+# - A user can change their rating.
+
+# - A user can remove their rating.
+
+# - A user can only submit one rating per fry item, though they may edit it later.
+
+#
+
+# # Review Requirements
+
+#
+
+# - A logged-in user can write a review.
+
+# - A review contains a star rating.
+
+# - A review contains written text.
+
+# - A review displays the reviewer's username.
+
+# - A review displays the date it was submitted.
+
+# - Reviews are displayed on the restaurant page.
+
+# - Reviews are displayed newest-first by default.
+
+# - A user can edit their own review.
+
+# - A user can delete their own review.
+
+# - Users cannot edit another user's review.
+
+# - Users cannot delete another user's review.
+
+# - Reviews have a maximum character limit.
+
+# - Empty reviews cannot be submitted if written comments are required.
+
+# - The system asks the user for confirmation before deleting a review.
+
+#
+
+# # Fry-Specific Rating Requirements
+
+#
+
+# - A reviewer can rate fry crispiness.
+
+# - A reviewer can rate fry seasoning.
+
+# - A reviewer can rate fry texture.
+
+# - A reviewer can rate fry freshness.
+
+# - A reviewer can rate portion size.
+
+# - A reviewer can rate value for the price.
+
+# - A reviewer can rate dipping-sauce selection.
+
+# - The system displays an average crispiness score.
+
+# - The system displays an average seasoning score.
+
+# - The system displays an overall fry score.
+
+# - A review can indicate whether the fries were eaten dine-in, takeout, or delivery.
+
+#
+
+# # Search and Filtering Requirements
+
+#
+
+# - Users can search for a restaurant by name.
+
+# - Search results update based on the user's search query.
+
+# - Users can filter restaurants by minimum fry rating.
+
+# - Users can sort restaurants by highest fry rating.
+
+# - Users can sort restaurants by lowest fry rating.
+
+# - Users can sort restaurants alphabetically.
+
+# - Users can filter fries by fry style.
+
+# - Users can search for a specific type of fry.
+
+# - The system displays a message when no search results are found.
+
+# - Users can clear filters and return to the full restaurant list.
+
+#
+
+# # Homepage Requirements
+
+#
+
+# - The application has a homepage.
+
+# - The homepage displays the application's name and branding.
+
+# - The homepage contains a restaurant search bar.
+
+# - The homepage displays several recently reviewed restaurants.
+
+# - The homepage displays highly rated fries.
+
+# - The homepage provides navigation to the restaurant list.
+
+# - The homepage provides login and registration options for logged-out users.
+
+# - The homepage provides account and profile options for logged-in users.
+
+#
+
+# # Navigation and User Interface Requirements
+
+#
+
+# - Every page contains consistent navigation.
+
+# - Users can return to the homepage from the navigation bar.
+
+# - Users can access restaurant search from the navigation bar.
+
+# - Users can access their profile from the navigation bar.
+
+# - Buttons clearly indicate their intended action.
+
+# - Forms identify required fields.
+
+# - The application provides confirmation after successfully submitting a review.
+
+# - The application provides an error message when a form cannot be submitted.
+
+# - The application has a consistent visual design.
+
+# - Restaurant ratings are visually represented with stars.
+
+# - Pages remain readable on both desktop and mobile screens.
+
+# - Users can navigate the major features without using the browser back button.
+
+#
+
+# # Data and Database Requirements
+
+#
+
+# - User information is stored in a database.
+
+# - Restaurant information is stored in a database.
+
+# - Fry information is stored in a database.
+
+# - Review information is stored in a database.
+
+# - Ratings are associated with the user who submitted them.
+
+# - Ratings are associated with the correct restaurant or fry item.
+
+# - Reviews remain available after restarting the application.
+
+# - Deleting a review removes it from the database.
+
+# - Updating a review updates the existing database entry rather than creating a duplicate.
+
+# - Restaurant average ratings are calculated using stored review data.
+
+#
+
+# # Validation and Error Handling Requirements
+
+#
+
+# - Required fields cannot be submitted empty.
+
+# - Invalid login credentials produce an appropriate error message.
+
+# - Invalid email formats are rejected during registration.
+
+# - Ratings outside the allowed range are rejected.
+
+# - The application handles nonexistent restaurant URLs gracefully.
+
+# - The application displays a 404 or error page for invalid pages.
+
+# - Users must be logged in before submitting reviews.
+
+# - Users must be logged in before editing reviews.
+
+# - Users can only modify content they created.
+
+# - Database errors do not expose sensitive technical information to users.
+
+#
+
+# # Nonfunctional Requirements
+
+#
+
+# - Normal pages should load within a reasonable amount of time.
+
+# - User passwords must not be stored as plain text.
+
+# - The application should support modern desktop web browsers.
+
+# - The user interface should be understandable without special training.
+
+# - Text should have sufficient contrast against its background.
+
+# - Forms should clearly communicate errors to users.
+
+# - The application should maintain consistent formatting across pages.
+
+# - The database should maintain relationships between users, restaurants, fries, and reviews.
+
+# - The application should prevent unauthorized users from accessing protected operations.
+
+# - The application should continue functioning correctly when multiple reviews exist for the same restaurant.
