@@ -198,7 +198,9 @@
 
 # - Users can clear filters and return to the full restaurant list.
 
-#
+# - Users can search for restaraunts within a certain radius of their location
+
+# - Users can search for fries within a price range
 
 # # Homepage Requirements
 
