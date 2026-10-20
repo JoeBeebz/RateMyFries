@@ -21,6 +21,14 @@ def test_public_registration_cannot_elevate(client, app):
     assert b'Admin inbox' not in client.get('/profile').data
 
 
+def test_csrf_signed_tokens_reject_forgery_and_other_clients(client, app):
+    signed = token(client)
+    assert client.post('/register', data={'csrf': signed + 'forged'}).status_code == 400
+    assert app.test_client().post('/register', data={'csrf': signed}).status_code == 400
+    assert register(client).status_code == 302
+    assert client.post('/profile', data={'csrf': signed, 'username': 'hacked', 'email': 'bad@example.com'}).status_code == 400
+
+
 def test_submission_review_privacy_and_idempotency(app, client):
     register(client)
     business = {'name': 'Local Diner', 'address': '123 Business Road', 'description': '<script>draft</script>'}

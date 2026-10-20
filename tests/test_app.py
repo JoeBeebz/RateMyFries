@@ -17,9 +17,8 @@ def client(app):
 
 
 def token(client):
-    client.get('/login')
-    with client.session_transaction() as session:
-        return session['csrf']
+    response = client.get('/login')
+    return re.search(rb'name="csrf-token" content="([^"]+)"', response.data)[1].decode()
 
 
 def post(client, path, data=None, **kwargs):
