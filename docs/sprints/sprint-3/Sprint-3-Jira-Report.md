@@ -80,7 +80,7 @@ The observed path is To Do -> In Progress for all 12, then In Review for eight. 
 
 ## Validation Evidence
 
-47 isolated integration/regression tests passed against the submitted branch; JavaScript syntax validation passed. Browser inspection verified the unified search on desktop and a 390px viewport with no horizontal overflow, plus the missing-key/manual-entry fallback. See [implementation mapping](../../../IMPLEMENTATION.md) for per-story checks and live-service limits.
+48 isolated integration/regression tests passed against the final submitted application, including signed-CSRF forgery/cross-client/session-rotation checks; JavaScript syntax validation passed. Browser inspection verified the unified search on desktop and a 390px viewport with no horizontal overflow, plus the missing-key/manual-entry fallback. See [implementation mapping](../../../IMPLEMENTATION.md) for per-story checks and live-service limits.
 
 ## Jira Evidence Links (No Screenshots)
 
@@ -88,3 +88,6 @@ The observed path is To Do -> In Progress for all 12, then In Review for eight. 
 - [Project backlog](https://ratemyfries.atlassian.net/jira/software/projects/FRY/boards/1/backlog).
 - [Board routed to Sprint 3](https://ratemyfries.atlassian.net/secure/GHGoToBoard.jspa?sprintId=3).
 - [Sprint 3 scope only: issue navigator](https://ratemyfries.atlassian.net/issues/?jql=project%20%3D%20FRY%20AND%20sprint%20%3D%203%20ORDER%20BY%20key%20ASC).
+
+
+Final static-analysis evidence: [PDF folder](static-analysis/) contains the actual SonarQube dashboard/API export and converted Trivy summary. SonarQube reports 0 bugs, 0 vulnerabilities, 0 code smells, 0 security hotspots and a passing quality gate; Trivy reports 0 CRITICAL/HIGH/MEDIUM/LOW dependency vulnerabilities. The original CSRF/form findings were fixed and rescanned, without suppressions. These results do not remove the required PR approval/merge or missing Google live acceptance checks.
