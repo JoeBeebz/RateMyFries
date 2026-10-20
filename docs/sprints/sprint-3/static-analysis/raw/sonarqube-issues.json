@@ -1,0 +1,458 @@
+{
+  "total": 7,
+  "p": 1,
+  "ps": 500,
+  "paging": {
+    "pageIndex": 1,
+    "pageSize": 500,
+    "total": 7
+  },
+  "effortTotal": 55,
+  "issues": [
+    {
+      "key": "728d7616-85ef-4d76-a795-acca3675a6a0",
+      "rule": "python:S4502",
+      "severity": "CRITICAL",
+      "component": "RateMyFries-Sprint3:app.py",
+      "project": "RateMyFries-Sprint3",
+      "hash": "ef9404ed6ebb412a509a122abf93298d",
+      "textRange": {
+        "startLine": 142,
+        "endLine": 142,
+        "startOffset": 10,
+        "endOffset": 56
+      },
+      "flows": [],
+      "resolution": "FIXED",
+      "status": "CLOSED",
+      "message": "Make sure disabling CSRF protection is safe here.",
+      "effort": "5min",
+      "debt": "5min",
+      "author": "",
+      "tags": [
+        "cwe",
+        "django",
+        "flask",
+        "former-hotspot"
+      ],
+      "creationDate": "2026-10-20T07:15:29+0000",
+      "updateDate": "2026-10-20T07:21:07+0000",
+      "closeDate": "2026-10-20T07:21:07+0000",
+      "type": "VULNERABILITY",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "CONVENTIONAL",
+      "cleanCodeAttributeCategory": "CONSISTENT",
+      "impacts": [
+        {
+          "softwareQuality": "SECURITY",
+          "severity": "HIGH"
+        }
+      ],
+      "issueStatus": "FIXED",
+      "prioritizedRule": false,
+      "fromSonarQubeUpdate": false,
+      "internalTags": [],
+      "linkedTicketStatus": "NOT_LINKED"
+    },
+    {
+      "key": "fcc3d43e-d2c8-497d-a91a-7dc5e3e98828",
+      "rule": "python:S8786",
+      "severity": "MAJOR",
+      "component": "RateMyFries-Sprint3:app.py",
+      "project": "RateMyFries-Sprint3",
+      "hash": "dc012e445c313eeaaca32a3805c3ca0e",
+      "textRange": {
+        "startLine": 96,
+        "endLine": 96,
+        "startOffset": 26,
+        "endOffset": 50
+      },
+      "flows": [],
+      "resolution": "FIXED",
+      "status": "CLOSED",
+      "message": "Simplify this regular expression to reduce its runtime, as it has super-linear performance due to backtracking.",
+      "effort": "20min",
+      "debt": "20min",
+      "author": "",
+      "tags": [
+        "regex",
+        "performance"
+      ],
+      "creationDate": "2026-10-20T07:15:29+0000",
+      "updateDate": "2026-10-20T07:21:07+0000",
+      "closeDate": "2026-10-20T07:21:07+0000",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "EFFICIENT",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "RELIABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "FIXED",
+      "prioritizedRule": false,
+      "fromSonarQubeUpdate": false,
+      "internalTags": [],
+      "linkedTicketStatus": "NOT_LINKED"
+    },
+    {
+      "key": "d4e24fa6-daa9-4aa7-8459-cb7c026113c4",
+      "rule": "python:S8495",
+      "severity": "MAJOR",
+      "component": "RateMyFries-Sprint3:sprint.py",
+      "project": "RateMyFries-Sprint3",
+      "hash": "cd2840e859906924f3df230aa92e14fa",
+      "textRange": {
+        "startLine": 113,
+        "endLine": 113,
+        "startOffset": 16,
+        "endOffset": 24
+      },
+      "flows": [
+        {
+          "locations": [
+            {
+              "component": "RateMyFries-Sprint3:sprint.py",
+              "textRange": {
+                "startLine": 116,
+                "endLine": 116,
+                "startOffset": 20,
+                "endOffset": 79
+              },
+              "msg": "Returns a 3-tuple.",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "RateMyFries-Sprint3:sprint.py",
+              "textRange": {
+                "startLine": 119,
+                "endLine": 119,
+                "startOffset": 20,
+                "endOffset": 138
+              },
+              "msg": "Returns a 3-tuple.",
+              "msgFormattings": []
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "component": "RateMyFries-Sprint3:sprint.py",
+              "textRange": {
+                "startLine": 120,
+                "endLine": 120,
+                "startOffset": 16,
+                "endOffset": 49
+              },
+              "msg": "Returns a 1-tuple.",
+              "msgFormattings": []
+            }
+          ]
+        }
+      ],
+      "resolution": "FIXED",
+      "status": "CLOSED",
+      "message": "Refactor this function to always return tuples of the same length.",
+      "effort": "10min",
+      "debt": "10min",
+      "author": "",
+      "tags": [
+        "type-system",
+        "api-design",
+        "pitfall"
+      ],
+      "creationDate": "2026-10-20T07:15:29+0000",
+      "updateDate": "2026-10-20T07:21:07+0000",
+      "closeDate": "2026-10-20T07:21:07+0000",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "CLEAR",
+      "cleanCodeAttributeCategory": "INTENTIONAL",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "HIGH"
+        },
+        {
+          "softwareQuality": "RELIABILITY",
+          "severity": "HIGH"
+        }
+      ],
+      "issueStatus": "FIXED",
+      "prioritizedRule": false,
+      "fromSonarQubeUpdate": false,
+      "internalTags": [],
+      "linkedTicketStatus": "NOT_LINKED"
+    },
+    {
+      "key": "7d41bff9-ae45-4168-b7ad-8c9981ecd3be",
+      "rule": "Web:S6840",
+      "severity": "MAJOR",
+      "component": "RateMyFries-Sprint3:templates/account.html",
+      "project": "RateMyFries-Sprint3",
+      "hash": "9747518b93b26e152124407a80f78bf9",
+      "textRange": {
+        "startLine": 1,
+        "endLine": 1,
+        "startOffset": 915,
+        "endOffset": 1163
+      },
+      "flows": [],
+      "resolution": "FIXED",
+      "status": "CLOSED",
+      "message": "DOM elements should use the \"autocomplete\" attribute correctly.",
+      "effort": "5min",
+      "debt": "5min",
+      "author": "",
+      "tags": [
+        "accessibility"
+      ],
+      "creationDate": "2026-10-20T07:15:29+0000",
+      "updateDate": "2026-10-20T07:21:07+0000",
+      "closeDate": "2026-10-20T07:21:07+0000",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "CONVENTIONAL",
+      "cleanCodeAttributeCategory": "CONSISTENT",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "LOW"
+        },
+        {
+          "softwareQuality": "RELIABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "FIXED",
+      "prioritizedRule": false,
+      "fromSonarQubeUpdate": false,
+      "internalTags": [],
+      "linkedTicketStatus": "NOT_LINKED"
+    },
+    {
+      "key": "aa82837d-b879-4b9b-8404-4e1c2eae377a",
+      "rule": "Web:S6840",
+      "severity": "MAJOR",
+      "component": "RateMyFries-Sprint3:templates/business_form.html",
+      "project": "RateMyFries-Sprint3",
+      "hash": "3f0f39926bbd8ee8b7dc64af00c0a384",
+      "textRange": {
+        "startLine": 5,
+        "endLine": 5,
+        "startOffset": 34,
+        "endOffset": 169
+      },
+      "flows": [],
+      "resolution": "FIXED",
+      "status": "CLOSED",
+      "message": "DOM elements should use the \"autocomplete\" attribute correctly.",
+      "effort": "5min",
+      "debt": "5min",
+      "author": "",
+      "tags": [
+        "accessibility"
+      ],
+      "creationDate": "2026-10-20T07:15:29+0000",
+      "updateDate": "2026-10-20T07:21:07+0000",
+      "closeDate": "2026-10-20T07:21:07+0000",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "CONVENTIONAL",
+      "cleanCodeAttributeCategory": "CONSISTENT",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "LOW"
+        },
+        {
+          "softwareQuality": "RELIABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "FIXED",
+      "prioritizedRule": false,
+      "fromSonarQubeUpdate": false,
+      "internalTags": [],
+      "linkedTicketStatus": "NOT_LINKED"
+    },
+    {
+      "key": "40c0434a-a9ce-46f8-931f-98ce35e1f3b2",
+      "rule": "Web:S6840",
+      "severity": "MAJOR",
+      "component": "RateMyFries-Sprint3:templates/profile.html",
+      "project": "RateMyFries-Sprint3",
+      "hash": "f2fb76ea10b1ed86c687217c4f09e64d",
+      "textRange": {
+        "startLine": 1,
+        "endLine": 1,
+        "startOffset": 758,
+        "endOffset": 894
+      },
+      "flows": [],
+      "resolution": "FIXED",
+      "status": "CLOSED",
+      "message": "DOM elements should use the \"autocomplete\" attribute correctly.",
+      "effort": "5min",
+      "debt": "5min",
+      "author": "",
+      "tags": [
+        "accessibility"
+      ],
+      "creationDate": "2026-10-20T07:15:29+0000",
+      "updateDate": "2026-10-20T07:21:07+0000",
+      "closeDate": "2026-10-20T07:21:07+0000",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "CONVENTIONAL",
+      "cleanCodeAttributeCategory": "CONSISTENT",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "LOW"
+        },
+        {
+          "softwareQuality": "RELIABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "FIXED",
+      "prioritizedRule": false,
+      "fromSonarQubeUpdate": false,
+      "internalTags": [],
+      "linkedTicketStatus": "NOT_LINKED"
+    },
+    {
+      "key": "679ad7b1-b3b5-4e4b-bd01-220345380e22",
+      "rule": "Web:S6840",
+      "severity": "MAJOR",
+      "component": "RateMyFries-Sprint3:templates/search.html",
+      "project": "RateMyFries-Sprint3",
+      "hash": "403e3935e5f551a9432d37bfea94a82e",
+      "textRange": {
+        "startLine": 13,
+        "endLine": 13,
+        "startOffset": 64,
+        "endOffset": 184
+      },
+      "flows": [],
+      "resolution": "FIXED",
+      "status": "CLOSED",
+      "message": "DOM elements should use the \"autocomplete\" attribute correctly.",
+      "effort": "5min",
+      "debt": "5min",
+      "author": "",
+      "tags": [
+        "accessibility"
+      ],
+      "creationDate": "2026-10-20T07:15:29+0000",
+      "updateDate": "2026-10-20T07:21:07+0000",
+      "closeDate": "2026-10-20T07:21:07+0000",
+      "type": "CODE_SMELL",
+      "scope": "MAIN",
+      "quickFixAvailable": false,
+      "messageFormattings": [],
+      "codeVariants": [],
+      "cleanCodeAttribute": "CONVENTIONAL",
+      "cleanCodeAttributeCategory": "CONSISTENT",
+      "impacts": [
+        {
+          "softwareQuality": "MAINTAINABILITY",
+          "severity": "LOW"
+        },
+        {
+          "softwareQuality": "RELIABILITY",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issueStatus": "FIXED",
+      "prioritizedRule": false,
+      "fromSonarQubeUpdate": false,
+      "internalTags": [],
+      "linkedTicketStatus": "NOT_LINKED"
+    }
+  ],
+  "components": [
+    {
+      "key": "RateMyFries-Sprint3:app.py",
+      "enabled": true,
+      "qualifier": "FIL",
+      "name": "app.py",
+      "longName": "app.py",
+      "path": "app.py"
+    },
+    {
+      "key": "RateMyFries-Sprint3:sprint.py",
+      "enabled": true,
+      "qualifier": "FIL",
+      "name": "sprint.py",
+      "longName": "sprint.py",
+      "path": "sprint.py"
+    },
+    {
+      "key": "RateMyFries-Sprint3:templates/business_form.html",
+      "enabled": true,
+      "qualifier": "FIL",
+      "name": "business_form.html",
+      "longName": "templates/business_form.html",
+      "path": "templates/business_form.html"
+    },
+    {
+      "key": "RateMyFries-Sprint3:templates/search.html",
+      "enabled": true,
+      "qualifier": "FIL",
+      "name": "search.html",
+      "longName": "templates/search.html",
+      "path": "templates/search.html"
+    },
+    {
+      "key": "RateMyFries-Sprint3:templates/profile.html",
+      "enabled": true,
+      "qualifier": "FIL",
+      "name": "profile.html",
+      "longName": "templates/profile.html",
+      "path": "templates/profile.html"
+    },
+    {
+      "key": "RateMyFries-Sprint3",
+      "enabled": true,
+      "qualifier": "TRK",
+      "name": "Rate My Fries - Sprint 3",
+      "longName": "Rate My Fries - Sprint 3"
+    },
+    {
+      "key": "RateMyFries-Sprint3:templates/account.html",
+      "enabled": true,
+      "qualifier": "FIL",
+      "name": "account.html",
+      "longName": "templates/account.html",
+      "path": "templates/account.html"
+    }
+  ],
+  "facets": []
+}
