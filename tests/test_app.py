@@ -30,10 +30,21 @@ def register(client, name='alice', email=None):
     return post(client, '/register', {'username': name, 'email': email or name+'@example.com', 'password': 'correct horse battery'})
 
 
+def make_admin(client):
+    with client.application.app_context():
+        db().execute("UPDATE users SET role='admin' WHERE id=(SELECT user_id FROM sessions ORDER BY rowid DESC LIMIT 1)")
+        db().commit()
+
+
 def listing(client, name='Golden Diner', address='123 Main Street', **extra):
+    make_admin(client)
     response = post(client, '/restaurants/new', {'name': name, 'address': address, **extra})
     assert response.status_code == 302
     rid = int(re.search(r'/restaurants/(\d+)', response.location)[1])
+    if extra.get('latitude'):
+        with client.application.app_context():
+            db().execute('UPDATE restaurants SET latitude=?,longitude=? WHERE id=?', (float(extra['latitude']),float(extra['longitude']),rid))
+            db().commit()
     response = post(client, f'/restaurants/{rid}/fries/new', {'name': 'Waffle fries', 'style': 'waffle', 'seasoned': '1', 'price': '4.99'})
     assert response.status_code == 302
     return rid, int(response.location.rsplit('/', 1)[1])
@@ -112,9 +123,10 @@ def test_restaurants_details_duplicates_and_fries(app, client):
     assert post(client,f'/restaurants/{rid}/fries/new',{'name':'Plain','style':'straight-cut','seasoned':'0'}).status_code==302
 
 
-@pytest.mark.parametrize('change',[{'image_url':'javascript:alert(1)'},{'image_url':'https://user:pass@example.com/a.png'}, {'latitude':'nan','longitude':'0'}, {'latitude':'40'}, {'name':' '}])
+@pytest.mark.parametrize('change',[{'image_url':'javascript:alert(1)'},{'image_url':'https://user:pass@example.com/a.png'}, {'address':'x'*241}, {'name':' '}])
 def test_invalid_restaurant_data(client,change):
     register(client)
+    make_admin(client)
     assert post(client,'/restaurants/new',{'name':'Test','address':'Here',**change}).status_code==400
 
 
@@ -204,21 +216,21 @@ def test_search_sort_filters_distance_price(client):
     rate(client,fid,rating='5')
     _,second=listing(client,'Alpha Cafe','999 Test Road',latitude='30',longitude='-80')
     rate(client,second,rating='2')
-    data=client.get('/restaurants').data
+    data=client.get('/search').data
     assert data.index(b'Alpha Cafe')<data.index(b'Zebra Diner')
-    data=client.get('/restaurants?sort=highest').data
+    data=client.get('/search?sort=highest').data
     assert data.index(b'Zebra Diner')<data.index(b'Alpha Cafe')
-    data=client.get('/restaurants?sort=lowest').data
+    data=client.get('/search?sort=lowest').data
     assert data.index(b'Alpha Cafe')<data.index(b'Zebra Diner')
-    assert b'Alpha Cafe' not in client.get('/restaurants?min_rating=4').data
-    assert b'Zebra Diner' in client.get('/restaurants?q=zebra').data
-    assert b'No restaurants found' in client.get('/restaurants?q=zzzz').data
-    assert b'Alpha Cafe' not in client.get('/restaurants?lat=40&lon=-90&radius=10').data
-    assert b'Waffle fries' in client.get('/fries?style=waffle&min_price=4&max_price=5').data
-    assert b'No fries found' in client.get('/fries?max_price=3').data
-    assert b'No fries found' in client.get('/fries?style=curly').data
-    assert client.get('/fries?min_price=10&max_price=1').status_code==400
-    assert client.get('/restaurants?lat=nan&lon=0&radius=5').status_code==400
+    assert b'Alpha Cafe' not in client.get('/search?min_rating=4').data
+    assert b'Zebra Diner' in client.get('/search?q=zebra').data
+    assert b'No restaurants found' in client.get('/search?q=zzzz').data
+    assert b'Alpha Cafe' not in post(client,'/search',{'lat':'40','lon':'-90','radius':'10'}).data
+    assert b'Waffle fries' in client.get('/search?style=waffle&min_price=4&max_price=5').data
+    assert b'No fries found' in client.get('/search?max_price=3').data
+    assert b'No fries found' in client.get('/search?style=curly').data
+    assert client.get('/search?min_price=10&max_price=1').status_code==400
+    assert post(client,'/search',{'lat':'nan','lon':'0','radius':'5'}).status_code==400
     assert distance(40,-90,40,-90)==0
 
 
@@ -240,6 +252,9 @@ def test_account_deletion_policy(app,client):
     rid,fid=listing(client)
     rate(client,fid)
     assert post(client,'/account/delete',{'confirm':'yes','password':'wrong'}).status_code==400
+    with app.app_context():
+        db().execute("UPDATE users SET role='user'")
+        db().commit()
     assert post(client,'/account/delete',{'confirm':'yes','password':'correct horse battery'}).status_code==302
     with app.app_context():
         assert one('SELECT COUNT(*) n FROM users')['n']==0
@@ -281,7 +296,7 @@ def test_escaping_errors_headers_and_routes(app,client):
     with app.app_context():
         db().execute('ALTER TABLE restaurants RENAME TO unavailable')
         db().commit()
-    response=client.get('/restaurants')
+    response=client.get('/search')
     assert response.status_code==503
     assert b'OperationalError' not in response.data and b'SELECT' not in response.data
 
