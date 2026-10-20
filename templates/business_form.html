@@ -1,0 +1,8 @@
+{% extends 'base.html' %}{% block title %}Submit a business{% endblock %}{% block content %}
+<section class="form-page"><p class="eyebrow">SHARE A GOOD FIND</p><h1>Put your business on the fry map.</h1><p>An administrator will review your request before it appears in the directory.</p>
+<form method="post" class="panel stack"><input type="hidden" name="csrf" value="{{ csrf_token() }}">
+<label>Business name (required)<input name="name" required maxlength="120" value="{{ request.form.get('name','') }}"></label>
+<label>Business address (required)<input name="address" required maxlength="240" data-address autocomplete="street-address" value="{{ request.form.get('address','') }}"></label>
+<label>Description (optional)<textarea name="description" maxlength="2000" rows="5">{{ request.form.get('description','') }}</textarea></label>
+<button>Submit for review</button><a href="{{ url_for('my_requests') }}">My business requests</a></form></section>
+{% endblock %}
