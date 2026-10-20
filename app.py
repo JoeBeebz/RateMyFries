@@ -15,6 +15,8 @@ from urllib.parse import urlsplit
 import click
 from flask import Flask, abort, flash, g, redirect, render_template, request, session, url_for
 from werkzeug.security import check_password_hash, generate_password_hash
+from locations import GooglePlaces, LocationUnavailable
+from migrations import migrate
 
 STYLES = ('shoestring', 'steak', 'waffle', 'curly', 'crinkle-cut', 'straight-cut', 'other')
 QUALITIES = {'crispiness': 'Crispiness', 'seasoning': 'Seasoning', 'texture': 'Texture',
@@ -58,6 +60,16 @@ def login_required(view):
         if g.user is None:
             flash('Please log in to continue.', 'error')
             return redirect(url_for('login'))
+        return view(*args, **kwargs)
+    return wrapped
+
+
+def admin_required(view):
+    @functools.wraps(view)
+    @login_required
+    def wrapped(*args, **kwargs):
+        if g.user['role'] != 'admin':
+            abort(403)
         return view(*args, **kwargs)
     return wrapped
 
@@ -142,7 +154,8 @@ def create_app(config=None):
     app.config.from_mapping(SECRET_KEY=secret, DATABASE=str(Path(app.instance_path)/'fries.sqlite3'),
                             SESSION_COOKIE_HTTPONLY=True, SESSION_COOKIE_SAMESITE='Lax',
                             SESSION_COOKIE_SECURE=os.environ.get('COOKIE_SECURE') == '1',
-                            MAX_CONTENT_LENGTH=64*1024)
+                            MAX_CONTENT_LENGTH=64*1024,
+                            GOOGLE_PLACES_API_KEY=os.environ.get('GOOGLE_PLACES_API_KEY', ''))
     if config:
         app.config.update(config)
 
@@ -154,7 +167,10 @@ def create_app(config=None):
 
     with app.app_context():
         db().executescript((Path(__file__).parent/'schema.sql').read_text())
+        migrate(db())
         db().commit()
+
+    app.extensions['places'] = GooglePlaces(app.config['GOOGLE_PLACES_API_KEY'])
 
     def csrf_token():
         if 'csrf' not in session:
@@ -171,6 +187,14 @@ def create_app(config=None):
         if request.method == 'POST':
             if not session.get('csrf') or not secrets.compare_digest(request.form.get('csrf', ''), session['csrf']):
                 abort(400, description='Your form expired. Reload the page and try again.')
+        if request.endpoint in ('search', 'suggest_addresses'):
+            key = hashlib.sha256((request.remote_addr or 'local').encode()).hexdigest()
+            now = int(time.time())
+            db().execute('DELETE FROM location_limits WHERE expires<=?', (now,))
+            db().execute('INSERT INTO location_limits VALUES(?,1,?) ON CONFLICT(key) DO UPDATE SET count=count+1', (key, now+60))
+            db().commit()
+            if one('SELECT count FROM location_limits WHERE key=?', (key,))['count'] > 60:
+                abort(429)
 
     @app.after_request
     def headers(response):
@@ -197,11 +221,11 @@ def create_app(config=None):
         app.logger.error('Database operation failed (%s)', type(error).__name__)
         return render_template('error.html', code=503, message='We could not save or load this information. Please try again.'), 503
 
-    for code in (400, 403, 404, 405, 413, 429, 500):
+    for code in (400, 403, 404, 405, 409, 413, 429, 500):
         def handler(error, status=code):
             messages = {400: 'The request could not be accepted. Reload the page and try again.',
                         403: 'You do not have permission to change this content.', 404: 'This page or restaurant could not be found.',
-                        405: 'That action is not available.', 413: 'That submission is too large.',
+                        409: 'This request has already been reviewed. Reload the inbox.', 405: 'That action is not available.', 413: 'That submission is too large.',
                         429: 'Too many attempts. Please try again in 15 minutes.', 500: 'Something went wrong. Please try again.'}
             return render_template('error.html', code=status, message=messages[status]), status
         app.register_error_handler(code, handler)
@@ -287,8 +311,9 @@ def create_app(config=None):
         if request.method == 'POST':
             try:
                 username, email = account_values()
-                db().execute('UPDATE users SET username=?,username_key=?,email=?,email_key=? WHERE id=?',
-                             (username, normalize(username), email, normalize(email), g.user['id']))
+                address = text_value('address', 240)
+                db().execute('UPDATE users SET username=?,username_key=?,email=?,email_key=?,address=? WHERE id=?',
+                             (username, normalize(username), email, normalize(email), address, g.user['id']))
                 db().commit()
                 flash('Profile saved.', 'success')
                 return redirect(url_for('profile'))
@@ -306,6 +331,8 @@ def create_app(config=None):
         if request.method == 'POST':
             if request.form.get('confirm') != 'yes' or not check_password_hash(g.user['password_hash'], request.form.get('password', '')[:129]):
                 error = 'Enter your current password and confirm deletion.'
+            elif g.user['role'] == 'admin' and one("SELECT COUNT(*) n FROM users WHERE role='admin'")['n'] == 1:
+                error = 'Ask another administrator to take over before deleting the last administrator account.'
             else:
                 db().execute('DELETE FROM users WHERE id=?', (g.user['id'],))
                 db().commit()
@@ -324,35 +351,15 @@ def create_app(config=None):
     def home():
         recent = rows(restaurant_sql+'WHERE v.body IS NOT NULL GROUP BY r.id ORDER BY latest DESC LIMIT 6')
         top = rows(fry_sql+'GROUP BY f.id HAVING COUNT(v.id)>0 ORDER BY average DESC,rating_count DESC,f.name LIMIT 6')
-        return render_template('home.html', recent=recent, top=top)
+        return render_template('home.html', recent=[app.extensions['resolve_restaurant'](r) for r in recent], top=top)
 
     @app.get('/restaurants')
     def restaurants():
-        error = None
-        results = []
-        query = request.args.get('q', '').strip()[:100]
-        order = request.args.get('sort', 'name')
-        sort = {'name': 'r.name COLLATE NOCASE', 'highest': 'average IS NULL,average DESC,r.name',
-                'lowest': 'average IS NULL,average ASC,r.name'}.get(order, 'r.name COLLATE NOCASE')
-        try:
-            minimum = numeric(request.args.get('min_rating') or 0, 'Minimum rating', 0, 5)
-            where = 'WHERE instr(lower(r.name),lower(?))>0 '
-            params = [query]
-            coord = [request.args.get(x, '') for x in ('lat', 'lon', 'radius')]
-            if any(coord):
-                lat = numeric(coord[0], 'Latitude', -90, 90)
-                lon = numeric(coord[1], 'Longitude', -180, 180)
-                radius = numeric(coord[2], 'Radius in miles', 0, 10000)
-                where += 'AND distance(?,?,r.latitude,r.longitude)<=? '
-                params += [lat, lon, radius]
-            results = rows(restaurant_sql+where+'GROUP BY r.id HAVING (?=0 OR AVG(v.rating)>=?) ORDER BY '+sort,
-                           params+[minimum, minimum])
-        except InvalidForm as exc:
-            error = str(exc)
-        return render_template('restaurants.html', restaurants=results, error=error), 400 if error else 200
+        return redirect(url_for('search', **request.args.to_dict()), code=302)
 
     def restaurant_or_404(restaurant_id):
-        return one(restaurant_sql+'WHERE r.id=? GROUP BY r.id', (restaurant_id,)) or abort(404)
+        record = one(restaurant_sql+'WHERE r.id=? GROUP BY r.id', (restaurant_id,)) or abort(404)
+        return app.extensions['resolve_restaurant'](record)
 
     @app.get('/restaurants/<int:restaurant_id>')
     def restaurant(restaurant_id):
@@ -362,7 +369,7 @@ def create_app(config=None):
                                reviews=review_list('f.restaurant_id=? AND v.body IS NOT NULL', (restaurant_id,)))
 
     @app.route('/restaurants/new', methods=['GET', 'POST'])
-    @login_required
+    @admin_required
     def add_restaurant():
         error = None
         duplicate = None
@@ -372,9 +379,7 @@ def create_app(config=None):
                 address = text_value('address', 240, True)
                 description = text_value('description', 2000)
                 image = image_value()
-                lat, lon = request.form.get('latitude', ''), request.form.get('longitude', '')
-                latitude = numeric(lat, 'Latitude', -90, 90) if lat or lon else None
-                longitude = numeric(lon, 'Longitude', -180, 180) if lat or lon else None
+                latitude = longitude = None
                 duplicate = one('SELECT id,name FROM restaurants WHERE name_key=? AND address_key=?', (normalize(name), normalize(address)))
                 if duplicate:
                     raise InvalidForm('This restaurant is already listed. Open the existing restaurant below.')
@@ -391,11 +396,9 @@ def create_app(config=None):
         return render_template('listing_form.html', mode='restaurant', error=error, duplicate=duplicate), 400 if error else 200
 
     @app.route('/restaurants/<int:restaurant_id>/fries/new', methods=['GET', 'POST'])
-    @login_required
+    @admin_required
     def add_fry(restaurant_id):
         item = restaurant_or_404(restaurant_id)
-        if item['owner_id'] != g.user['id']:
-            abort(403)
         error = None
         if request.method == 'POST':
             try:
@@ -416,23 +419,7 @@ def create_app(config=None):
 
     @app.get('/fries')
     def find_fries():
-        error = None
-        results = []
-        try:
-            query = request.args.get('q', '').strip()[:100]
-            style = request.args.get('style', '')
-            if style and style not in STYLES:
-                raise InvalidForm('Choose a supported fry style.')
-            low, high = price(request.args.get('min_price', '')), price(request.args.get('max_price', ''))
-            if low is not None and high is not None and low > high:
-                raise InvalidForm('Minimum price cannot exceed maximum price.')
-            results = rows(fry_sql+'WHERE (instr(lower(f.name),lower(?))>0 OR instr(f.style,lower(?))>0) '
-                           'AND (?=\'\' OR f.style=?) AND (? IS NULL OR f.price_cents>=?) '
-                           'AND (? IS NULL OR f.price_cents<=?) GROUP BY f.id ORDER BY f.name COLLATE NOCASE',
-                           (query,query,style,style,low,low,high,high))
-        except InvalidForm as exc:
-            error = str(exc)
-        return render_template('fries.html', fries=results, error=error), 400 if error else 200
+        return redirect(url_for('search', **request.args.to_dict()), code=302)
 
     def fry_or_404(fry_id):
         return one(fry_sql+'WHERE f.id=? GROUP BY f.id', (fry_id,)) or abort(404)
@@ -504,6 +491,13 @@ def create_app(config=None):
                 db().execute('INSERT INTO fries(restaurant_id,name,description,style,seasoned,price_cents) VALUES(?,?,?,?,1,?)',
                              (cursor.lastrowid,fry_name,'Demo listing — add your own real restaurants to begin.',style,cost))
         click.echo('Fictional demo listings added. No reviews or ratings were fabricated.')
+
+    from sprint import install
+    install(app, restaurant_sql, fry_sql)
+
+    @app.errorhandler(LocationUnavailable)
+    def location_error(error):
+        return render_template('error.html', code=503, message=str(error)), 503
 
     return app
 

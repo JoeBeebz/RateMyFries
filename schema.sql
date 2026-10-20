@@ -1,7 +1,8 @@
 PRAGMA foreign_keys = ON;
 CREATE TABLE IF NOT EXISTS users (
  id INTEGER PRIMARY KEY, username TEXT NOT NULL, username_key TEXT NOT NULL UNIQUE,
- email TEXT NOT NULL, email_key TEXT NOT NULL UNIQUE, password_hash TEXT NOT NULL
+ email TEXT NOT NULL, email_key TEXT NOT NULL UNIQUE, password_hash TEXT NOT NULL,
+ role TEXT NOT NULL DEFAULT 'user' CHECK(role IN ('user','admin')), address TEXT NOT NULL DEFAULT ''
 );
 CREATE TABLE IF NOT EXISTS sessions (
  token TEXT PRIMARY KEY, user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
@@ -35,3 +36,19 @@ CREATE TABLE IF NOT EXISTS reviews (
 );
 CREATE INDEX IF NOT EXISTS reviews_fry ON reviews(fry_id);
 CREATE INDEX IF NOT EXISTS fries_restaurant ON fries(restaurant_id);
+
+CREATE TABLE IF NOT EXISTS business_requests (
+ id INTEGER PRIMARY KEY, user_id INTEGER REFERENCES users(id) ON DELETE SET NULL,
+ name TEXT NOT NULL, address TEXT NOT NULL, name_key TEXT NOT NULL, address_key TEXT NOT NULL,
+ description TEXT NOT NULL DEFAULT '', status TEXT NOT NULL DEFAULT 'pending' CHECK(status IN ('pending','approved','rejected')),
+ review_note TEXT NOT NULL DEFAULT '', reviewed_by INTEGER REFERENCES users(id) ON DELETE SET NULL,
+ restaurant_id INTEGER REFERENCES restaurants(id) ON DELETE SET NULL,
+ created_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%d %H:%M:%f','now')), reviewed_at TEXT
+);
+CREATE UNIQUE INDEX IF NOT EXISTS pending_business ON business_requests(name_key,address_key) WHERE status='pending';
+CREATE TABLE IF NOT EXISTS admin_audit (
+ id INTEGER PRIMARY KEY, actor_id INTEGER REFERENCES users(id) ON DELETE SET NULL,
+ target_id INTEGER REFERENCES users(id) ON DELETE SET NULL, action TEXT NOT NULL,
+ created_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%d %H:%M:%f','now'))
+);
+CREATE TABLE IF NOT EXISTS location_limits (key TEXT PRIMARY KEY, count INTEGER NOT NULL, expires INTEGER NOT NULL);
