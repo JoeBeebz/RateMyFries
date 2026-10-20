@@ -1,0 +1,21 @@
+{
+  "id": "dad740d7-24b1-4e2b-8805-6c22a6e4a259",
+  "type": "REPORT",
+  "componentId": "5b88b6a8-6a98-425d-949e-2917efd8a49e",
+  "componentKey": "RateMyFries-Sprint3",
+  "componentName": "Rate My Fries - Sprint 3",
+  "componentQualifier": "TRK",
+  "analysisId": "01e1ec33-8bdb-4b3d-ba3e-ac9d459f50ba",
+  "status": "SUCCESS",
+  "submittedAt": "2026-10-20T07:16:03+0000",
+  "submitterLogin": "admin",
+  "startedAt": "2026-10-20T07:16:04+0000",
+  "executedAt": "2026-10-20T07:16:06+0000",
+  "executionTimeMs": 1846,
+  "hasScannerContext": true,
+  "warningCount": 1,
+  "warnings": [
+    "The following error(s) occurred while trying to import coverage report:\nInvalid directory path in 'source' element: C:/Users/sethd/Documents/Codex/2026-10-20/alright-time-for-another-sprint-for-9/work/RateMyFries"
+  ],
+  "infoMessages": []
+}

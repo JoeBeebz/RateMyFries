@@ -1,0 +1,30 @@
+{
+  "revision": "5cadb4f93589077f09b38a53884bce9c7d0a3c31",
+  "scan_executed": "local Windows Docker Desktop",
+  "scope": [
+    "app.py",
+    "sprint.py",
+    "locations.py",
+    "migrations.py",
+    "schema.sql",
+    "static",
+    "templates",
+    "tests",
+    "requirements.txt",
+    "requirements-dev.txt"
+  ],
+  "excluded": [
+    "Git history",
+    "virtual environments",
+    "instance database/signing key",
+    "sprint reports",
+    "demo media",
+    "IDE files"
+  ],
+  "timestamp_utc": "2026-10-20T07:17:09Z",
+  "sonarqube_version": "26.10.0.133078",
+  "sonarqube_edition": "Community Build",
+  "sonar_scanner_image": "sonarsource/sonar-scanner-cli@sha256:a3f4215076706c95a17a68c19322ee916e40a3acd081a8c1a1e839e0194afa57",
+  "sonarqube_image": "sonarqube@sha256:0b3408443fb6a311253de27941b10977c9b977fd53be2265947bfe14161308b8",
+  "trivy_image": "aquasec/trivy@sha256:2416d1f74045b57274df1a340eee6b510cacd73c66a6ccb8da092b117eb7d222"
+}
