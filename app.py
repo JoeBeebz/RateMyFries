@@ -15,6 +15,7 @@ from urllib.parse import urlsplit
 import click
 from flask import Flask, abort, flash, g, redirect, render_template, request, session, url_for
 from werkzeug.security import check_password_hash, generate_password_hash
+from flask_wtf.csrf import CSRFProtect, generate_csrf
 from locations import GooglePlaces, LocationUnavailable
 from migrations import migrate
 
@@ -93,7 +94,9 @@ def account_values():
     email = text_value('email', 254, True)
     if not re.fullmatch(r'[A-Za-z0-9_]{3,30}', username):
         raise InvalidForm('Username must be 3–30 letters, numbers, or underscores.')
-    if not re.fullmatch(r'[^\s@]+@[^\s@]+\.[^\s@]+', email):
+    local, separator, domain = email.partition('@')
+    if (not separator or not local or '@' in domain or '.' not in domain
+            or any(not part for part in domain.split('.')) or any(char.isspace() for char in email)):
         raise InvalidForm('Email must be a valid email address.')
     return username, email
 
@@ -155,9 +158,11 @@ def create_app(config=None):
                             SESSION_COOKIE_HTTPONLY=True, SESSION_COOKIE_SAMESITE='Lax',
                             SESSION_COOKIE_SECURE=os.environ.get('COOKIE_SECURE') == '1',
                             MAX_CONTENT_LENGTH=64*1024,
-                            GOOGLE_PLACES_API_KEY=os.environ.get('GOOGLE_PLACES_API_KEY', ''))
+                            GOOGLE_PLACES_API_KEY=os.environ.get('GOOGLE_PLACES_API_KEY', ''),
+                            WTF_CSRF_FIELD_NAME='csrf')
     if config:
         app.config.update(config)
+    CSRFProtect(app)
 
     @app.teardown_appcontext
     def close_db(error=None):
@@ -172,11 +177,6 @@ def create_app(config=None):
 
     app.extensions['places'] = GooglePlaces(app.config['GOOGLE_PLACES_API_KEY'])
 
-    def csrf_token():
-        if 'csrf' not in session:
-            session['csrf'] = secrets.token_urlsafe(32)
-        return session['csrf']
-
     @app.before_request
     def load_identity_and_protect_forms():
         g.user = None
@@ -184,9 +184,6 @@ def create_app(config=None):
         if token:
             g.user = one('SELECT u.* FROM users u JOIN sessions s ON u.id=s.user_id WHERE s.token=? AND s.expires>?',
                          (hashlib.sha256(token.encode()).hexdigest(), int(time.time())))
-        if request.method == 'POST':
-            if not session.get('csrf') or not secrets.compare_digest(request.form.get('csrf', ''), session['csrf']):
-                abort(400, description='Your form expired. Reload the page and try again.')
         if request.endpoint in ('search', 'suggest_addresses'):
             key = hashlib.sha256((request.remote_addr or 'local').encode()).hexdigest()
             now = int(time.time())
@@ -208,7 +205,7 @@ def create_app(config=None):
 
     @app.context_processor
     def context():
-        return dict(csrf_token=csrf_token, user=g.user, styles=STYLES, qualities=QUALITIES, contexts=CONTEXTS)
+        return dict(csrf_token=generate_csrf, user=g.get('user'), styles=STYLES, qualities=QUALITIES, contexts=CONTEXTS)
 
     @app.template_filter('stars')
     def stars(value):

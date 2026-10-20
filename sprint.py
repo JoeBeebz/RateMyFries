@@ -117,7 +117,7 @@ def install(app, restaurant_sql, fry_sql):
                 average = item['average']
                 if filters['sort'] in ('highest', 'lowest'):
                     return (average is None, (-(average or 0) if filters['sort'] == 'highest' else average or 0), normalize(item['name']))
-                return (normalize(item['name']),)
+                return (False, 0, normalize(item['name']))
 
             restaurants.sort(key=sort_key)
             fries.sort(key=sort_key)

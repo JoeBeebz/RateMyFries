@@ -21,4 +21,6 @@ The operator bootstrap is the sole first-admin initialization exception. No real
 
 Google Places is used for discovering third-party businesses rather than the Business Profile API for managing owned listings. Google details are retrieved live to avoid persisting restricted content. The real Kenosha import was not run successfully without a key; mocked test businesses are not published as real businesses.
 
-Automated validation: 47 passing integration/regression tests, JavaScript syntax validation, and patch whitespace check. Static analysis evidence is produced after the Jira and GitHub reporting steps. Browser acceptance checks and any remaining review constraints are recorded in the sprint reports.
+Automated validation: 48 passing integration/regression tests, JavaScript syntax validation, and patch whitespace check. Static analysis evidence is produced after the Jira and GitHub reporting steps. Browser acceptance checks and any remaining review constraints are recorded in the sprint reports.
+
+Static-analysis remediation adds Flask-WTF signed/expiring CSRF middleware, rejects tampered/cross-client/pre-login tokens, simplifies email validation, and corrects form autocomplete attributes.
