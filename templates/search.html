@@ -1,0 +1,22 @@
+{% extends 'base.html' %}{% from 'macros.html' import restaurant_card,fry_card with context %}
+{% block title %}Find fries & restaurants{% endblock %}
+{% block content %}
+<div class="page-heading"><p class="eyebrow">YOUR NEXT GOOD BITE</p><h1>One search. All the crunch.</h1><p>Find a restaurant or your favorite fry, then narrow it down to somewhere nearby.</p>
+{% if user and user.role=='admin' %}<a class="button" href="{{ url_for('add_restaurant') }}">+ Add a restaurant</a>{% else %}<a class="button" href="{{ url_for('submit_business') }}">Submit your business</a>{% endif %}</div>
+<form class="filters" method="post" id="discovery-search"><input type="hidden" name="csrf" value="{{ csrf_token() }}">
+<label>Restaurant, fry name, or style<input name="q" value="{{ filters.q }}" placeholder="Diner, waffle, shoestring…" maxlength="100"></label>
+<label>Style<select name="style"><option value="">All styles</option>{% for style in styles %}<option value="{{ style }}" {% if filters.style==style %}selected{% endif %}>{{ style }}</option>{% endfor %}</select></label>
+<label>Min price ($)<input name="min_price" type="number" min="0" max="10000" step="0.01" value="{{ filters.min_price }}"></label>
+<label>Max price ($)<input name="max_price" type="number" min="0" max="10000" step="0.01" value="{{ filters.max_price }}"></label>
+<label>Minimum rating<select name="min_rating">{% for n in range(6) %}<option value="{{ n }}" {% if filters.min_rating==n|string %}selected{% endif %}>{{ 'Any rating' if n==0 else n|string+' stars' }}</option>{% endfor %}</select></label>
+<label>Sort by<select name="sort">{% for key,label in [('name','A–Z'),('highest','Highest rated'),('lowest','Lowest rated'),('nearest','Nearest')] %}<option value="{{ key }}" {% if filters.sort==key %}selected{% endif %}>{{ label }}</option>{% endfor %}</select></label>
+<div class="full location-search"><label>Near address (optional)<input name="address" data-address maxlength="240" autocomplete="off" placeholder="Start typing an address…"></label>
+<label>Radius (miles)<input name="radius" type="number" min="0.1" max="100" step="any" value="{{ filters.radius }}" placeholder="10"></label>
+<input type="hidden" name="lat"><input type="hidden" name="lon">
+<button type="button" id="use-location" class="quiet">Use my current location</button>
+{% if user and user.address %}<label class="check"><input type="checkbox" name="use_saved" value="1" {% if used_saved %}checked{% endif %}>Use my private profile address</label>{% endif %}
+<p id="location-status" role="status" class="muted full">Address and device location searches stay out of the page URL. Your search location is not saved.</p></div>
+<button>Find fries</button><a href="{{ url_for('search') }}">Clear filters</a></form>
+<section class="section"><h2>Restaurants <span class="muted">({{ restaurants|length }})</span></h2><div class="grid">{% for item in restaurants %}<div>{{ restaurant_card(item) }}{% if item.miles is not none %}<p>{{ '%.1f'|format(item.miles) }} miles away</p>{% endif %}{% if item.google_place_id %}<p class="google-attribution" translate="no">Google Maps</p>{% for attribution in item.attributions %}<p>{{ attribution }}</p>{% endfor %}{% endif %}</div>{% else %}<div class="empty full"><h3>No restaurants found.</h3><p>Try another name or clear your filters.</p></div>{% endfor %}</div></section>
+<section class="section"><h2>Fry options <span class="muted">({{ fries|length }})</span></h2><div class="grid">{% for item in fries %}{{ fry_card(item) }}{% else %}<div class="empty full"><h3>No fries found.</h3><p>Try another style or price range. Restaurants may still be listed before their menus are added.</p></div>{% endfor %}</div></section>
+{% endblock %}

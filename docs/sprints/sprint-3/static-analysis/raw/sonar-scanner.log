@@ -1,0 +1,127 @@
+07:20:59.851 WARN  Property 'sonar.working.directory' with value '/tmp/.scannerwork' is overridden with value '/usr/src/.scannerwork'
+07:20:59.855 INFO  Scanner configuration file: /opt/sonar-scanner/conf/sonar-scanner.properties
+07:20:59.856 INFO  Project root configuration file: NONE
+07:20:59.870 INFO  SonarScanner CLI 8.1.0.6389
+07:20:59.876 INFO  Linux 6.18.54.1-microsoft-standard-WSL2 amd64
+07:21:00.688 INFO  Communicating with SonarQube Community Build 26.10.0.133078
+07:21:00.689 INFO  JRE provisioning: os[linux], arch[x86_64]
+07:21:05.203 INFO  Starting SonarScanner Engine...
+07:21:05.203 INFO  Java 21.0.12.1 Eclipse Adoptium (64-bit)
+07:21:06.082 INFO  Load global settings
+07:21:06.164 INFO  Load global settings (done) | time=81ms
+07:21:06.166 INFO  Server id: 147B411E-AaFYKctar2BYmHetT5Ql
+07:21:06.173 INFO  Loading required plugins
+07:21:06.173 INFO  Load plugins index
+07:21:06.186 INFO  Load plugins index (done) | time=13ms
+07:21:06.187 INFO  Load/download plugins
+07:21:07.488 INFO  Load/download plugins (done) | time=1301ms
+07:21:07.710 INFO  Load project settings for component key: 'RateMyFries-Sprint3'
+07:21:07.726 INFO  Load project settings for component key: 'RateMyFries-Sprint3' (done) | time=16ms
+07:21:07.737 INFO  Process project properties
+07:21:07.754 INFO  Process project properties (done) | time=16ms
+07:21:07.767 INFO  Project key: RateMyFries-Sprint3
+07:21:07.767 INFO  Base dir: /usr/src
+07:21:07.767 INFO  Working dir: /usr/src/.scannerwork
+07:21:07.808 INFO  Load quality profiles
+07:21:07.909 INFO  Load quality profiles (done) | time=100ms
+07:21:07.931 INFO  Load active rules
+07:21:08.053 INFO  Load active rules (done) | time=122ms
+07:21:08.058 INFO  Load analysis cache
+07:21:08.076 INFO  Load analysis cache | time=17ms
+07:21:08.146 INFO  Preprocessing files...
+07:21:08.257 INFO  4 languages detected in 24 preprocessed files (done) | time=110ms
+07:21:08.258 INFO  Loading plugins for detected languages
+07:21:08.259 INFO  Load/download plugins
+07:21:14.308 INFO  Load/download plugins (done) | time=6049ms
+07:21:14.419 INFO  Load project repositories
+07:21:14.494 INFO  Load project repositories (done) | time=75ms
+07:21:14.511 INFO  Indexing files...
+07:21:14.511 INFO  Project configuration:
+07:21:14.572 INFO  24 files indexed (done) | time=60ms
+07:21:14.572 INFO  Quality profile for css: Sonar way core
+07:21:14.572 INFO  Quality profile for js: Sonar way core
+07:21:14.573 INFO  Quality profile for py: Sonar way core
+07:21:14.573 INFO  Quality profile for web: Sonar way core
+07:21:14.573 INFO  ------------- Run sensors on module RateMyFries-Sprint3
+07:21:14.600 INFO  Load metrics repository
+07:21:14.617 INFO  Load metrics repository (done) | time=17ms
+07:21:14.951 INFO  Reflections took 40 ms to scan 1 urls, producing 30 keys and 303 values
+07:21:15.022 INFO  Sensor IaC YAML File Type Classification Sensor [iac]
+07:21:15.024 INFO  Sensor IaC YAML File Type Classification Sensor [iac] (done) | time=2ms
+07:21:15.024 INFO  Sensor IaC hadolint report Sensor [iac]
+07:21:15.024 INFO  Sensor IaC hadolint report Sensor [iac] (done) | time=0ms
+07:21:15.025 INFO  Sensor Java Config Sensor [iac]
+07:21:15.025 INFO  There are no files to be analyzed for the Java language
+07:21:15.025 INFO  Sensor Java Config Sensor [iac] (done) | time=0ms
+07:21:15.025 INFO  Sensor IaC Docker Sensor [iac]
+07:21:15.028 INFO  There are no files to be analyzed for the Docker language
+07:21:15.028 INFO  Sensor IaC Docker Sensor [iac] (done) | time=3ms
+07:21:15.028 INFO  Sensor Python Sensor [python]
+07:21:15.324 INFO  Starting global symbols computation
+07:21:15.325 INFO  6 source files to be analyzed
+07:21:15.604 INFO  6/6 source files have been analyzed
+07:21:15.605 INFO  Finished step global symbols computation in 279ms
+07:21:15.630 INFO  Starting rules execution
+07:21:15.630 INFO  6 source files to be analyzed
+07:21:16.259 INFO  6/6 source files have been analyzed
+07:21:16.259 INFO  Finished step rules execution in 628ms
+07:21:16.259 INFO  The Python analyzer was able to leverage cached data from previous analyses for 0 out of 6 files. These files were not parsed.
+07:21:16.261 INFO  Sensor Python Sensor [python] (done) | time=1232ms
+07:21:16.261 INFO  Sensor Cobertura Sensor for Python coverage [python]
+07:21:16.351 INFO  Python test coverage
+07:21:16.352 INFO  Parsing report '/usr/src/coverage.xml'
+07:21:16.378 WARN  Invalid directory path in 'source' element: C:/Users/sethd/Documents/Codex/2026-10-20/alright-time-for-another-sprint-for-9/work/RateMyFries
+07:21:16.419 INFO  Sensor Cobertura Sensor for Python coverage [python] (done) | time=158ms
+07:21:16.420 INFO  Sensor PythonXUnitSensor [python]
+07:21:16.515 INFO  Sensor PythonXUnitSensor [python] (done) | time=95ms
+07:21:16.516 INFO  Sensor Python Dependency Sensor [python]
+07:21:16.517 INFO  Sensor Python Dependency Sensor [python] (done) | time=2ms
+07:21:16.518 INFO  Sensor HTML [web]
+07:21:16.898 INFO  Sensor HTML [web] (done) | time=380ms
+07:21:16.899 INFO  Sensor TextAndSecretsSensor [text]
+07:21:16.908 INFO  Available processors: 24
+07:21:16.908 INFO  Using 24 threads for analysis.
+07:21:17.073 INFO  Start fetching files for the text and secrets analysis
+07:21:17.086 INFO  Using Git CLI to retrieve dirty files
+07:21:17.089 WARN  Retrieving only language associated files, make sure to run the analysis inside a git repository to make use of inclusions specified via "sonar.text.inclusions"
+07:21:17.089 INFO  Starting the text and secrets analysis
+07:21:17.090 INFO  23 source files to be analyzed for the text and secrets analysis
+07:21:17.137 INFO  23/23 source files have been analyzed for the text and secrets analysis
+07:21:17.140 INFO  Sensor TextAndSecretsSensor [text] (done) | time=241ms
+07:21:17.142 INFO  ------------- Run sensors on project
+07:21:17.251 INFO  Sensor JavaScript/TypeScript/CSS analysis [javascript]
+07:21:28.284 INFO  Detected os: Linux arch: amd64 alpine: false. Platform: LINUX_X64
+07:21:28.285 INFO  Deploy location /opt/sonar-scanner/.sonar/js/node-runtime, tagetRuntime: /opt/sonar-scanner/.sonar/js/node-runtime/node,  version: /opt/sonar-scanner/.sonar/js/node-runtime/version.txt
+07:21:29.906 INFO  Using embedded Node.js runtime.
+07:21:29.906 INFO  Using Node.js executable: '/opt/sonar-scanner/.sonar/js/node-runtime/node'.
+07:21:32.261 INFO  Memory configuration: OS (15540 MB), Node.js (4288 MB).
+07:21:32.275 INFO  gRPC analyze-project server listening on 127.0.0.1:44415
+07:21:32.371 INFO  Plugin version: [14.0.0.46108]
+07:21:34.595 INFO  Found 0 tsconfig.json file(s): []
+07:21:35.558 INFO  16 source files to be analyzed
+07:21:35.558 INFO  Analyzing 1 file(s) using default options [lib: lib.esnext.d.ts, lib.dom.d.ts]
+07:21:35.559 INFO  16/16 source files have been analyzed
+07:21:35.567 INFO  Hit the cache for 0 out of 16
+07:21:35.567 INFO  Miss the cache for 16 out of 16: ANALYSIS_MODE_INELIGIBLE [16/16]
+07:21:35.567 INFO  Sensor JavaScript/TypeScript/CSS analysis [javascript] (done) | time=18316ms
+07:21:35.568 INFO  Sensor IaC Project Sensor [iac]
+07:21:35.569 INFO  Sensor IaC Project Sensor [iac] (done) | time=1ms
+07:21:35.569 INFO  Sensor Zero Coverage Sensor
+07:21:35.580 INFO  Sensor Zero Coverage Sensor (done) | time=10ms
+07:21:35.580 INFO  ------------- Gather SCA dependencies on project
+07:21:35.585 INFO  Dependency analysis skipped
+07:21:35.587 INFO  SCM Publisher is disabled
+07:21:35.591 INFO  CPD Executor 13 files had no CPD blocks
+07:21:35.591 INFO  CPD Executor Calculating CPD for 7 files
+07:21:35.610 INFO  CPD Executor CPD calculation finished (done) | time=18ms
+07:21:35.613 INFO  SCM revision ID 'b93baae14b9fefb54077c02bad7f740cb358902b'
+07:21:36.006 INFO  Analysis report generated in 250ms, dir size=427.4 kB
+07:21:40.827 INFO  Analysis report compressed in 4816ms, zip size=167.5 kB
+07:21:40.865 INFO  Analysis report uploaded in 37ms
+07:21:40.868 INFO  ANALYSIS SUCCESSFUL, you can find the results at: http://host.docker.internal:9000/dashboard?id=RateMyFries-Sprint3
+07:21:40.868 INFO  Note that you will be able to access the updated dashboard once the server has processed the submitted analysis report
+07:21:40.869 INFO  More about the report processing at http://host.docker.internal:9000/api/ce/task?id=71ec925c-4b0f-48c3-b2ec-cea6aed4420d
+07:21:42.621 INFO  Analysis total time: 37.384 s
+07:21:42.638 INFO  SonarScanner Engine completed successfully
+07:21:42.686 INFO  EXECUTION SUCCESS
+07:21:42.687 INFO  Total time: 42.833s

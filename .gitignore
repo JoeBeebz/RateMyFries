@@ -6,3 +6,7 @@ __pycache__/
 *.pyc
 .env
 *.sqlite*
+
+.coverage
+coverage.xml
+.scannerwork/

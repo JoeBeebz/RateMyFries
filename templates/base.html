@@ -1,13 +1,13 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>{% block title %}Rate My Fries{% endblock %} · Rate My Fries</title>
+<meta name="csrf-token" content="{{ csrf_token() }}"><title>{% block title %}Rate My Fries{% endblock %} · Rate My Fries</title>
 <link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}"><script src="{{ url_for('static',filename='app.js') }}" defer></script></head>
 <body><a class="skip" href="#main">Skip to content</a>
 <header><nav aria-label="Main navigation"><a class="brand" href="{{ url_for('home') }}"><span class="brand-icon" aria-hidden="true">▥</span>rate my fries<span class="brand-dot">.</span></a>
-<div class="nav-links"><a href="{{ url_for('restaurants') }}">Restaurants</a><a href="{{ url_for('find_fries') }}">Find fries</a>
-{% if user %}<a href="{{ url_for('profile') }}">My profile</a><form method="post" action="{{ url_for('logout') }}"><input type="hidden" name="csrf" value="{{ csrf_token() }}"><button class="quiet" type="submit">Log out</button></form>
+<div class="nav-links"><a href="{{ url_for('search') }}">Find fries &amp; restaurants</a>
+{% if user %}{% if user.role=='admin' %}<a href="{{ url_for('admin_inbox') }}">Admin inbox</a><a href="{{ url_for('admin_accounts') }}">Admin accounts</a>{% else %}<a href="{{ url_for('submit_business') }}">Submit a business</a>{% endif %}<a href="{{ url_for('profile') }}">My profile</a><form method="post" action="{{ url_for('logout') }}"><input type="hidden" name="csrf" value="{{ csrf_token() }}"><button class="quiet" type="submit">Log out</button></form>
 {% else %}<a href="{{ url_for('login') }}">Log in</a><a class="button small" href="{{ url_for('register') }}">Join the fry club</a>{% endif %}</div></nav></header>
 <main id="main">{% for category,message in get_flashed_messages(with_categories=true) %}<div class="notice {{ category }}" role="status">{{ message }}</div>{% endfor %}
 {% if error %}<div class="notice error" id="form-errors" role="alert"><strong>Check your information</strong><br>{{ error }}</div>{% endif %}
 {% block content %}{% endblock %}</main>
-<footer><a class="brand" href="{{ url_for('home') }}">rate my fries.</a><span>Good fries deserve good company.</span><span>Made for the love of the crunch.</span></footer></body></html>
+<footer><a class="brand" href="{{ url_for('home') }}">rate my fries.</a><span>Good fries deserve good company.</span><span>Made for the love of the crunch.</span><a href="{{ url_for('policies') }}">Privacy &amp; location terms</a></footer></body></html>

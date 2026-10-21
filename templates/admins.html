@@ -1,0 +1,4 @@
+{% extends 'base.html' %}{% block title %}Admin accounts{% endblock %}{% block content %}
+<section class="form-page"><p class="eyebrow">ADMINISTRATOR</p><h1>Admin accounts.</h1><p>Ask the person to register a regular account, then authorize them here. Administrators can publish businesses, review requests, and authorize other administrators.</p>
+<form method="post" class="panel stack"><input type="hidden" name="csrf" value="{{ csrf_token() }}"><label>Registered username (required)<input name="username" required maxlength="30"></label><button>Make administrator</button></form><h2>Current administrators</h2><ul>{% for person in admins %}<li>{{ person.username }}</li>{% endfor %}</ul></section>
+{% endblock %}
