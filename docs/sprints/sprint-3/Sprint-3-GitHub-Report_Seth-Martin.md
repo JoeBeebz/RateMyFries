@@ -1,16 +1,24 @@
-# Sprint 3 GitHub Report - Seth Martin
+# Sprint 3 GitHub Report — Seth Martin
 
-- **Repository:** [JoeBeebz/RateMyFries](https://github.com/JoeBeebz/RateMyFries)
-- **Student / GitHub author:** Seth Martin / `SethMart1`
-- **Sprint:** FRY Sprint 3, scheduled October 20-November 3, 2026
-- **Snapshot date:** October 20, 2026, including the commit containing this final report refresh.
-- **Report type:** In-progress sprint snapshot. The sprint is active and required review/merge remains unfinished.
+- **Repository URL:** https://github.com/JoeBeebz/RateMyFries
+- **Student:** Seth Martin
+- **GitHub username:** `SethMart1`
+- **Sprint:** FRY Sprint 3 — October 20–November 3, 2026
+- **Reporting cutoff:** main revision [`ed9d4e75fa9614ef2b9ff5bbf8726756a06991a6`](https://github.com/JoeBeebz/RateMyFries/commit/ed9d4e75fa9614ef2b9ff5bbf8726756a06991a6), October 20, 2026, 10:05:16 p.m. CDT
+- **Time zone:** America/Chicago (CDT, UTC−05:00). GitHub's UTC timestamps are also provided for merges.
 
 ## PRs Merged During the Sprint
 
-**No PRs were merged during this reporting period.** The merged-only list is empty, so there are no merged PR titles, authors, reviewers or merge dates to list.
+Only PRs verified as merged within the sprint window are included below. Both were authored by `SethMart1`, approved by `JoeBeebz`, and merged into `main` by `JoeBeebz`.
 
-Verified query:
+| PR title | PR link | Author | Reviewers | Merge date (CDT) | Merge timestamp (UTC) |
+| --- | --- | --- | --- | --- | --- |
+| Sprint 3: unified discovery and moderated business listings | [#4](https://github.com/JoeBeebz/RateMyFries/pull/4) | SethMart1 | JoeBeebz — Approved | October 20, 2026, 7:13:44 p.m. | 2026-10-21 00:13:44 UTC |
+| Sprint 3 demo video | [#5](https://github.com/JoeBeebz/RateMyFries/pull/5) | SethMart1 | JoeBeebz — Approved | October 20, 2026, 10:05:16 p.m. | 2026-10-21 03:05:16 UTC |
+
+PR #4 delivered the unified restaurant/fry search, address and Google Places integration code, account roles, private profile addresses, business submission and admin review workflows, updated requirements, organized Sprint 2 artifacts, and Sprint 3 reports/static-analysis evidence. PR #5 added the Sprint 3 demo recording. Merge status does not establish successful live Google API acceptance testing; that requires configured credentials and billing.
+
+Verified merged-only query:
 
 ```text
 repo:JoeBeebz/RateMyFries is:pr is:merged author:SethMart1 merged:2026-10-20..2026-11-03
@@ -18,34 +26,38 @@ repo:JoeBeebz/RateMyFries is:pr is:merged author:SethMart1 merged:2026-10-20..20
 
 [Run the merged-only search](https://github.com/JoeBeebz/RateMyFries/pulls?q=is%3Apr+is%3Amerged+author%3ASethMart1+merged%3A2026-10-20..2026-11-03).
 
-Open PRs, closed-but-unmerged PRs and direct pushes to main are not counted as merged delivery. The implementation submission is awaiting the repository's required approving review; it is excluded from the merged-only list and Jira Done totals.
-
 ## Commit Activity
 
 | Metric | Value |
 | --- | --- |
-| Total authored sprint commits in this submitted snapshot | **21** |
-| Commits included in merged sprint PRs | **0** |
-| Direct pushes to main during this work | **0** |
-| Date of first commit | October 20, 2026 (01:59:54 CDT) |
-| Date of last commit | October 20, 2026 (this report-refresh commit) |
-| Date range | **October 20, 2026 - October 20, 2026** |
-| Author | SethMart1 |
+| Total work commits authored by Seth Martin and included in merged sprint PRs | **22** |
+| Work commits in PR #4 | 21 |
+| Work commits in PR #5 | 1 |
+| Merge commits authored by JoeBeebz | 2 |
+| Total new commits on main, including merge commits | **24** |
+| Direct pushes to main counted toward delivery | **0** |
+| First work commit | October 20, 2026, 1:59:54 a.m. CDT — [`644f748`](https://github.com/JoeBeebz/RateMyFries/commit/644f748ceea31a4c56e38d364654c2b840ad192c) |
+| Last work commit | October 20, 2026, 9:56:07 p.m. CDT — [`d4a29e5`](https://github.com/JoeBeebz/RateMyFries/commit/d4a29e53813e28d44f6573276c21c285d775a3c2) |
+| Work commit date range | **October 20, 2026–October 20, 2026** |
+| Last commit including merges | October 20, 2026, 10:05:16 p.m. CDT — [`ed9d4e7`](https://github.com/JoeBeebz/RateMyFries/commit/ed9d4e75fa9614ef2b9ff5bbf8726756a06991a6) |
 
-The 21 commits are on `feature/sprint-3-discovery-and-business-moderation`, after pre-sprint main revision `8c94203f8925febc66ce18f8ddb0fbcc1bdae245`. The first 12 implement/test/document the stories and relocate Sprint 2 artifacts, two submit the Jira/GitHub reports in that order, three address scan findings and expand regression coverage, three submit the PDFs/raw evidence, and one refreshes both sprint reports after validation. These are actual GitHub commits, not local-only commits. Commit activity is not accepted merged delivery.
+The count covers commits after the pre-sprint main revision `8c94203f8925febc66ce18f8ddb0fbcc1bdae245` through the reporting cutoff above. The 22 work commits use the Git author names `SethMart1` and `Seth Martin`, associated with the same `SethMart1` GitHub account. The two merge commits are reported separately to avoid presenting them as additional student work commits. Open PRs, closed-but-unmerged PRs, local-only commits, and this replacement report's subsequent submission commit are excluded.
 
-Evidence: [branch commit history](https://github.com/JoeBeebz/RateMyFries/commits/feature/sprint-3-discovery-and-business-moderation/). The 20 commits preceding this report refresh end at [`301ce9353a2fee023506ae23e646fc7dacb4dfeb`](https://github.com/JoeBeebz/RateMyFries/commit/301ce9353a2fee023506ae23e646fc7dacb4dfeb).
+## Evidence and Reproduction
 
-Reproduce the snapshot from the feature branch (PowerShell):
+- [PR #4 commits](https://github.com/JoeBeebz/RateMyFries/pull/4/commits) — 21 commits; merge commit [`ed776f4`](https://github.com/JoeBeebz/RateMyFries/commit/ed776f40783ebdacdc4c2c9651f5374c282b3f8f).
+- [PR #5 commits](https://github.com/JoeBeebz/RateMyFries/pull/5/commits) — 1 commit; merge commit [`ed9d4e7`](https://github.com/JoeBeebz/RateMyFries/commit/ed9d4e75fa9614ef2b9ff5bbf8726756a06991a6).
+- [Exact reporting comparison](https://github.com/JoeBeebz/RateMyFries/compare/8c94203f8925febc66ce18f8ddb0fbcc1bdae245...ed9d4e75fa9614ef2b9ff5bbf8726756a06991a6).
+
+Reproduce the fixed snapshot after fetching the repository (PowerShell):
 
 ```powershell
-$reportCommit = git log -1 --format=%H -- docs/sprints/sprint-3/Sprint-3-GitHub-Report_Seth-Martin.md
-git rev-list --count "8c94203f8925febc66ce18f8ddb0fbcc1bdae245..$reportCommit"
-git log --reverse --format="%H %cI %an" "8c94203f8925febc66ce18f8ddb0fbcc1bdae245..$reportCommit"
+$reportBase = '8c94203f8925febc66ce18f8ddb0fbcc1bdae245'
+$reportCutoff = 'ed9d4e75fa9614ef2b9ff5bbf8726756a06991a6'
+git rev-list --count --no-merges "$reportBase..$reportCutoff" # 22 work commits
+git rev-list --count --merges "$reportBase..$reportCutoff"    # 2 merge commits
+git rev-list --count "$reportBase..$reportCutoff"             # 24 total commits
+git log --reverse --format='%H %aI %an %s' "$reportBase..$reportCutoff"
 ```
 
-## Validation and Submission Status
-
-The final application passed **48** isolated integration/regression tests and JavaScript syntax validation. Desktop/mobile search layout and missing-key fallback were inspected in browser. Final SonarQube findings are zero across required categories with a passing quality gate; Trivy CRITICAL/HIGH/MEDIUM/LOW dependency vulnerability counts are zero. [Scan PDFs and raw evidence](static-analysis/) identify the exact scanned code revision; later commits only add report/evidence files.
-
-Google credential-dependent live checks remain unfinished. Details and Jira mapping are in [IMPLEMENTATION.md](../../../IMPLEMENTATION.md). No repository review requirement was bypassed, no PR was closed unmerged to simulate delivery, and no unmerged work is represented as merged. Refresh this report after approval/merge or sprint closure for a completed-sprint submission.
+This report replaces the earlier pre-merge Sprint 3 GitHub report. It records verified merged activity through a fixed cutoff while Sprint 3 is still scheduled to continue; later activity requires a new snapshot.
