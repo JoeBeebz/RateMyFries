@@ -23,3 +23,5 @@
 .catalogue-options li:hover, .catalogue-options li[aria-selected=true] { background:#f6e8b9; }
 .catalogue-status { font-size:.78rem; font-weight:400; color:var(--muted); margin:6px 0 0; }
 .catalogue-status:empty { display:none; }
+
+@media(max-width:620px) { .search-bar > .catalogue-field { flex-basis:100%; } .search-bar > button { width:100%; } }
