@@ -80,6 +80,13 @@ claimed.
 
 ## Location acceptance and merge status
 
+Validation on this quality branch: **49 Python tests**, **8 JavaScript tests**,
+syntax/compile and whitespace checks pass. An isolated local combination with
+pending PR #9 additionally passed **62 Python tests and 12 JavaScript tests**,
+including exact catalogue search and six-option prefix suggestions. The
+concurrency regression test requires overlapping calls and verifies fresh
+lookups on repeat searches; it does not assert an artificial mocked latency.
+
 Seth explicitly authorized a real device-location request on the private
 `localhost` preview. The browser/device did not return a position and the
 address fallback appeared. A successful real GPS result was not claimed.
