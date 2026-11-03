@@ -11,3 +11,15 @@
 .suggestion-status { font-size:.8rem; font-weight:400; }
 .google-attribution { font:400 14px sans-serif; color:#1f1f1f; white-space:nowrap; }
 .nav-links { flex-wrap:wrap; }
+
+.catalogue-field { position:relative; min-width:0; }
+.search-bar > .catalogue-field { flex:1; min-width:150px; }
+.search-bar .catalogue-field input { width:100%; }
+.filters > .catalogue-field { flex:2 1 18rem; }
+.catalogue-options { position:absolute; z-index:20; top:100%; left:0; right:0; max-height:22rem; overflow:auto; margin:4px 0 0; padding:4px; list-style:none; border:1px solid var(--line); border-radius:8px; background:var(--white); box-shadow:0 8px 22px #25251f26; }
+.catalogue-options li { display:flex; justify-content:space-between; gap:12px; padding:12px; cursor:pointer; border-radius:4px; font-size:.9rem; font-weight:500; }
+.catalogue-options li span { overflow-wrap:anywhere; }
+.catalogue-options li small { font-size:.72rem; font-weight:400; }
+.catalogue-options li:hover, .catalogue-options li[aria-selected=true] { background:#f6e8b9; }
+.catalogue-status { font-size:.78rem; font-weight:400; color:var(--muted); margin:6px 0 0; }
+.catalogue-status:empty { display:none; }

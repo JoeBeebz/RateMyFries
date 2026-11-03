@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="csrf-token" content="{{ csrf_token() }}"><title>{% block title %}Rate My Fries{% endblock %} · Rate My Fries</title>
-<link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}"><script src="{{ url_for('static',filename='app.js') }}" defer></script></head>
+<link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}"><script src="{{ url_for('static',filename='app.js') }}" defer></script><script src="{{ url_for('static',filename='catalogue-search.js') }}" defer></script></head>
 <body><a class="skip" href="#main">Skip to content</a>
 <header><nav aria-label="Main navigation"><a class="brand" href="{{ url_for('home') }}"><span class="brand-icon" aria-hidden="true">▥</span>rate my fries<span class="brand-dot">.</span></a>
 <div class="nav-links"><a href="{{ url_for('search') }}">Find fries &amp; restaurants</a>
