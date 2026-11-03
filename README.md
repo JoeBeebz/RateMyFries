@@ -45,9 +45,12 @@ Without a key, ordinary browsing, accounts, admin workflows, manual business/add
 .venv\Scripts\python -m pip install -r requirements-dev.txt
 .venv\Scripts\python -m pytest -q
 node --check static/app.js
+node --test tests/address-suggestions.test.cjs
 ```
 
 Tests use isolated temporary databases. They cover role escalation attempts, CSRF, owner-only profile data, request review/duplicate decisions, migrations, combined search and mocked Google success/failure responses. Live Google behavior is a separate credential-dependent acceptance check.
+
+The JavaScript regression checks exercise autocomplete initialization, keyboard selection, independent/rotated session tokens, and device-location fallback both with and without `crypto.randomUUID`. LAN HTTP address suggestions use cryptographically random tokens through `crypto.getRandomValues`. Device geolocation still requires HTTPS (or a browser-trusted localhost origin); enter an address when it is unavailable.
 
 ## Deployment
 
