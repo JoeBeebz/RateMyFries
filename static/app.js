@@ -4,7 +4,7 @@ document.querySelectorAll('form').forEach(form => {
     if (!form.checkValidity()) return;
     const button = event.submitter;
     if (button) {
-      button.textContent = form.method.toLowerCase() === 'post' ? 'Savingâ€¦' : 'Finding friesâ€¦';
+      button.textContent = form.method.toLowerCase() === 'post' ? 'Saving…' : 'Finding fries…';
       button.setAttribute('aria-busy', 'true');
     }
   });
@@ -67,7 +67,7 @@ document.querySelectorAll('[data-address]').forEach((input, inputNumber) => {
     if (input.value.trim().length < 3) return;
     timer = setTimeout(async () => {
       controller = new AbortController();
-      status.textContent = 'Finding addressesâ€¦';
+      status.textContent = 'Finding addresses…';
       try {
         const body = new URLSearchParams({input: input.value.trim(), token: sessionToken, csrf});
         const response = await fetch('/api/address-suggestions', {method: 'POST', body, signal: controller.signal});
