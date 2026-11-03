@@ -35,6 +35,17 @@ Enable **Places API (New)** in a billing-enabled Google Cloud project. Configure
 
 The import discovers restaurants serving fries in Kenosha, Wisconsin and requires at least three results. It persists only Google place IDs, retrieves business details live, and shows Google Maps/provider attribution. It creates no fabricated fry menus, prices, reviews or ratings. Google Business Profile APIs manage owned businesses; Places API is the appropriate discovery API for other businesses.
 
+### Curated restaurant menus and photos (FRY-57)
+
+`data/kenosha-catalogue.json` separately records 14 independently researched local/nearby restaurants, 37 published fry options, restaurant photos and 20 matching product photos. Every listing records its menu/location/photo sources and verification date. Chain photos are identified as brand imagery. The existing Tr3s Hermanos listing and user-created placeholder remain untouched because reliable menu/photo material was not verified for them. See [content sourcing and operator notes](docs/catalogue.md).
+
+The standalone content utility uses the existing database fields, with no application/schema deployment or Google photo caching. Preview first; applying requires a consistent backup. It fills blank restaurant metadata and inserts missing fry names, retaining existing accounts, reviews, IDs and edited content. An owned/ambiguous listing conflict rolls back the entire import.
+
+```powershell
+python tools/import_catalogue.py --database instance/fries.sqlite3
+python tools/import_catalogue.py --database instance/fries.sqlite3 --apply --backup-dir PATH_OUTSIDE_WEB_ROOT
+```
+
 With a configured key, search/profile/business address fields suggest addresses after three characters. The unified search accepts an address or an explicitly requested device location; an optional saved profile address is used only when selected. Addresses/coordinates are submitted in POST bodies, never inserted into search URLs or saved as search history. User-entered profile/business addresses are stored for their stated purpose. Google lookup results are not persisted. Review the linked location/privacy terms before public deployment.
 
 Without a key, ordinary browsing, accounts, admin workflows, manual business/address entry and reviews work. Suggestions and address distance searches display a useful unavailable message. Actual Google-sourced Kenosha import and live Google acceptance checks remain blocked until configuration exists. Device radius search can use listings with existing coordinates; manually entered listings without coordinates require live address lookup.
