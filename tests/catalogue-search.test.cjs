@@ -83,9 +83,41 @@ test('unavailable suggestions can retry and names are inserted as text', async (
   const p = page(async () => ++count === 1 ? {ok: false} : {
     ok: true, json: async () => ({choices: [{name, kind: 'Fries'}]}),
   });
-  await p.type('img');
+  await p.type('<img');
   assert.match(p.input.status.textContent, /unavailable/);
-  await p.type('img');
+  await p.type('<img');
   assert.equal(p.input.list.children[0].firstChild.textContent, name);
   assert.equal(p.input.list.children[0].firstChild.innerHTML, undefined);
+});
+
+test('prefix suggestions narrow generically and cap the combined list at six options', async () => {
+  const choices = [
+    {name: 'Wingstop', kind: 'Restaurant'},
+    {name: 'Waterfront Warehouse', kind: 'Restaurant'},
+    {name: "Wendy's", kind: 'Restaurant'},
+    {name: 'Waffle Fries', kind: 'Fries'},
+    {name: 'Waffle Potato Fries', kind: 'Fries'},
+    {name: 'waffle', kind: 'Style'},
+    {name: 'West Cafe', kind: 'Restaurant'},
+    {name: 'White Truffle Fries', kind: 'Fries'},
+    {name: 'Buffalo Wings', kind: 'Fries'},
+    {name: "AJ's Waffle Fries", kind: 'Fries'},
+  ];
+  const p = page(async () => ({ok: true, json: async () => ({choices})}));
+  const names = () => p.input.list.children.map(option => option.firstChild.textContent);
+  await p.type('W');
+  assert.deepEqual(names(), ['waffle', 'Waffle Fries', 'Waffle Potato Fries',
+    'Waterfront Warehouse', "Wendy's", 'West Cafe']);
+  assert.equal(p.input.list.children.length, 6);
+  await p.type('Wa');
+  assert.deepEqual(names(), ['waffle', 'Waffle Fries', 'Waffle Potato Fries', 'Waterfront Warehouse']);
+  await p.type('Waf');
+  assert.deepEqual(names(), ['waffle', 'Waffle Fries', 'Waffle Potato Fries']);
+  await p.type('Wend');
+  assert.deepEqual(names(), ["Wendy's"]);
+  await p.type('Wing');
+  assert.deepEqual(names(), ['Wingstop']);
+  await p.type('wng');
+  assert.deepEqual(names(), []);
+  assert.equal(p.calls.length, 1);
 });

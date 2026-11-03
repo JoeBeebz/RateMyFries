@@ -18,7 +18,7 @@ Public registration always creates a regular user. Users can review fries, edit 
 
 ## Catalogue search
 
-Homepage and directory search suggest only existing restaurant names, fry names and styles used by listed fries. Select with a click or Arrow Up/Down and Enter, then submit the search. Full typed names also work, ignoring capitalization and extra spaces. `Wingstop` includes that restaurant's fries; `wngstop` and unselected partial names return no results. Blank search browses everything. Existing price, rating, style and nearby filters still apply. Suggestions load public names once per page and filter locally, separately from Google address suggestions.
+Homepage and directory search suggest up to six existing restaurant names, fry names and styles in total. Suggestions start with the typed text and narrow as more letters are entered. Select with a click or Arrow Up/Down and Enter, then submit the search. Full typed names also work, ignoring capitalization and extra spaces. `Wingstop` includes that restaurant's fries; `wngstop` and unselected partial names return no results. Blank search browses everything. Existing price, rating, style and nearby filters still apply. Suggestions load public names once per page and filter locally, separately from Google address suggestions.
 
 Run the search interaction checks with `node --test tests/catalogue-search.test.cjs` alongside the Python suite.
 

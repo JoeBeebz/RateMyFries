@@ -57,9 +57,9 @@
       try {
         const choices = await load();
         if (current !== version) return;
-        const matches = choices.filter(choice => normalize(choice.name).includes(query))
-          .sort((a, b) => Number(!normalize(a.name).startsWith(query)) - Number(!normalize(b.name).startsWith(query)))
-          .slice(0, 8);
+        const matches = choices.filter(choice => normalize(choice.name).startsWith(query))
+          .sort((a, b) => normalize(a.name).localeCompare(normalize(b.name)))
+          .slice(0, 6);
         list.replaceChildren();
         matches.forEach((choice, index) => {
           const option = document.createElement('li');
