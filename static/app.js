@@ -4,7 +4,7 @@ document.querySelectorAll('form').forEach(form => {
     if (!form.checkValidity()) return;
     const button = event.submitter;
     if (button) {
-      button.textContent = form.method.toLowerCase() === 'post' ? 'Saving…' : 'Finding fries…';
+      button.textContent = form.id === 'discovery-search' || form.method.toLowerCase() === 'get' ? 'Finding fries…' : 'Saving…';
       button.setAttribute('aria-busy', 'true');
     }
   });

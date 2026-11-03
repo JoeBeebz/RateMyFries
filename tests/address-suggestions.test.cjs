@@ -24,7 +24,7 @@ function element() {
   };
 }
 
-function load({secure = false, secureContext = true, geolocation} = {}) {
+function load({secure = false, secureContext = true, geolocation, forms = []} = {}) {
   const inputs = [element(), element()];
   inputs[0].labels = [{textContent: 'Near address (optional)'}];
   inputs[1].labels = [{textContent: 'Business address'}];
@@ -38,7 +38,7 @@ function load({secure = false, secureContext = true, geolocation} = {}) {
     window: {isSecureContext: secureContext},
     navigator: {geolocation},
     document: {
-      querySelectorAll(selector) { return selector === '[data-address]' ? inputs : []; },
+      querySelectorAll(selector) { return selector === '[data-address]' ? inputs : selector === 'form' ? forms : []; },
       querySelector(selector) {
         if (selector === '#discovery-search') return search;
         if (selector === '#location-status') return status;
@@ -138,4 +138,18 @@ test('late GPS response cannot overwrite a newly selected address', async () => 
   assert.equal(page.inputs[0].value, '123 Main Street');
   assert.equal(page.search.elements.lat.value, '');
   assert.equal(page.locationButton.attributes['aria-busy'], undefined);
+});
+
+
+test('POST discovery search announces finding fries while account forms announce saving', () => {
+  const searchForm = element(), profileForm = element();
+  Object.assign(searchForm, {id: 'discovery-search', method: 'post', checkValidity: () => true});
+  Object.assign(profileForm, {id: 'profile', method: 'post', checkValidity: () => true});
+  load({forms: [searchForm, profileForm]});
+  const searchButton = element(), saveButton = element();
+  searchForm.listeners.submit({submitter: searchButton});
+  profileForm.listeners.submit({submitter: saveButton});
+  assert.equal(searchButton.textContent, 'Finding fries\u2026');
+  assert.equal(saveButton.textContent, 'Saving\u2026');
+  assert.equal(searchButton.attributes['aria-busy'], 'true');
 });

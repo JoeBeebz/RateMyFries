@@ -66,3 +66,5 @@ Waitress binds to loopback. For public hosting, use HTTPS, a managed `SECRET_KEY
 ## Team workflow
 
 Check Jira before implementation. Reuse the matching story, or create it before changing code; include the Jira key in the feature branch, commits and PR. Develop on that branch, run tests, and open a PR into `main`. Have a teammate review and approve the PR before merging. Jira stories with implemented, tested code stay **In Review** until the PR is approved/merged and the acceptance check is complete. Do not bypass repository review requirements.
+
+Quality acceptance evidence for FRY-40/44/46 is in [the November 3 report](docs/quality/acceptance-2026-11-03.md). Run `python tools/check_contrast.py` for the shared-palette check. Prepare isolated responsive fixtures with `python tools/prepare_layout_check.py --output NEW_DIRECTORY`, serve that directory on loopback, and inspect 390px/1280px layouts in the browser. The fixture database is temporary and is not served.
