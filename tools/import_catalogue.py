@@ -63,15 +63,23 @@ def load_manifest(path):
 
 def restaurant_description(item, checked):
     return (f"{item['description']} Menu checked {checked}; availability may change. "
-            f"Menu: {item['menu_source']} Location: {item['location_source']} "
-            f"Photo credit: {item['name']} — {item['photo_kind']} Source: {item['photo_source']}")
+            f"Menu source: {source_label(item['menu_source'])} "
+            f"Location source: {source_label(item['location_source'])} "
+            f"Photo credit: {item['name']} — {item['photo_kind']} Source: {source_label(item['photo_source'])}")
+
+
+def source_label(url):
+    # Existing descriptions are plain text. Long ordering URLs force the mobile
+    # grid beyond the viewport; retain full URLs in the manifest, show the host.
+    return urlsplit(url).hostname
 
 
 def product_description(item, restaurant, checked):
     text = (f"{item['description']} Menu checked {checked}; availability may change. "
-            f"Menu: {restaurant['menu_source']}")
+            f"Menu source: {source_label(restaurant['menu_source'])}")
     if item['image_url']:
-        text += f" Photo credit: {restaurant['name']} (official menu image). Source: {item['photo_source']}"
+        text += (f" Photo credit: {restaurant['name']} (official menu image). "
+                 f"Source: {source_label(item['photo_source'])}")
     return text
 
 
