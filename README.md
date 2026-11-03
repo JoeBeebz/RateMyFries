@@ -65,4 +65,4 @@ Waitress binds to loopback. For public hosting, use HTTPS, a managed `SECRET_KEY
 
 ## Team workflow
 
-Develop on a feature branch, run tests, and open a PR into `main`. Have a teammate review and approve the PR before merging. Jira stories with implemented, tested code stay **In Review** until the PR is approved/merged and the acceptance check is complete. Do not bypass repository review requirements.
+Check Jira before implementation. Reuse the matching story, or create it before changing code; include the Jira key in the feature branch, commits and PR. Develop on that branch, run tests, and open a PR into `main`. Have a teammate review and approve the PR before merging. Jira stories with implemented, tested code stay **In Review** until the PR is approved/merged and the acceptance check is complete. Do not bypass repository review requirements.

@@ -23,6 +23,8 @@ function addressSessionToken() {
 }
 
 document.querySelectorAll('[data-address]').forEach((input, inputNumber) => {
+  const label = input.labels?.[0]?.textContent.trim();
+  if (label) input.setAttribute('aria-label', label);
   const wrapper = document.createElement('div');
   wrapper.className = 'address-suggestions';
   const list = document.createElement('ul');

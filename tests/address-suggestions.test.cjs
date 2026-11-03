@@ -26,6 +26,8 @@ function element() {
 
 function load({secure = false, geolocation} = {}) {
   const inputs = [element(), element()];
+  inputs[0].labels = [{textContent: 'Near address (optional)'}];
+  inputs[1].labels = [{textContent: 'Business address'}];
   const locationButton = element(), status = element();
   const search = {elements: {address: inputs[0], lat: element(), lon: element(), radius: element()}};
   const timers = new Map(), requests = [];
@@ -73,6 +75,7 @@ for (const secure of [false, true]) {
     const firstToken = page.requests[0].body.get('token');
     assert.match(firstToken, uuid);
     assert.equal(input.attributes['aria-expanded'], 'true');
+    assert.equal(input.attributes['aria-label'], 'Near address (optional)');
     assert.equal(input.wrapper.children[1].textContent, '1 suggestions. Use arrow keys and Enter. Addresses by Google Maps.');
     const key = name => input.listeners.keydown({key: name, preventDefault() {}});
     key('ArrowDown');
