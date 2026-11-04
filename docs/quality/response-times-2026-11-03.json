@@ -1,0 +1,46 @@
+{
+  "/": {
+    "milliseconds": [
+      9,
+      60,
+      62,
+      63,
+      61
+    ],
+    "max_ms": 63,
+    "median_ms": 61
+  },
+  "/search": {
+    "milliseconds": [
+      402,
+      1288,
+      386,
+      406,
+      401
+    ],
+    "max_ms": 1288,
+    "median_ms": 402
+  },
+  "/restaurants/10": {
+    "milliseconds": [
+      129,
+      121,
+      299,
+      136,
+      257
+    ],
+    "max_ms": 299,
+    "median_ms": 136
+  },
+  "/fries/23": {
+    "milliseconds": [
+      62,
+      56,
+      61,
+      63,
+      63
+    ],
+    "max_ms": 63,
+    "median_ms": 62
+  }
+}

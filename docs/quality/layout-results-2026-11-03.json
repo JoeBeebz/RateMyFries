@@ -1,0 +1,240 @@
+[
+  {
+    "name": "register",
+    "width": 390,
+    "available": 375,
+    "scrollWidth": 375,
+    "overflowing": []
+  },
+  {
+    "name": "login",
+    "width": 390,
+    "available": 375,
+    "scrollWidth": 375,
+    "overflowing": []
+  },
+  {
+    "name": "fry",
+    "width": 390,
+    "available": 375,
+    "scrollWidth": 375,
+    "overflowing": []
+  },
+  {
+    "name": "register",
+    "width": 1280,
+    "available": 1265,
+    "scrollWidth": 1265,
+    "overflowing": []
+  },
+  {
+    "name": "login",
+    "width": 1280,
+    "available": 1265,
+    "scrollWidth": 1265,
+    "overflowing": []
+  },
+  {
+    "name": "privacy",
+    "width": 390,
+    "available": 375,
+    "scrollWidth": 375,
+    "overflowing": []
+  },
+  {
+    "name": "fry",
+    "width": 1280,
+    "available": 1265,
+    "scrollWidth": 1265,
+    "overflowing": []
+  },
+  {
+    "name": "privacy",
+    "width": 1280,
+    "available": 1265,
+    "scrollWidth": 1265,
+    "overflowing": []
+  },
+  {
+    "name": "search",
+    "width": 390,
+    "available": 375,
+    "scrollWidth": 375,
+    "overflowing": []
+  },
+  {
+    "name": "home",
+    "width": 390,
+    "available": 375,
+    "scrollWidth": 375,
+    "overflowing": []
+  },
+  {
+    "name": "search",
+    "width": 1280,
+    "available": 1265,
+    "scrollWidth": 1265,
+    "overflowing": []
+  },
+  {
+    "name": "home",
+    "width": 1280,
+    "available": 1265,
+    "scrollWidth": 1265,
+    "overflowing": []
+  },
+  {
+    "name": "business",
+    "width": 390,
+    "available": 375,
+    "scrollWidth": 375,
+    "overflowing": []
+  },
+  {
+    "name": "business",
+    "width": 1280,
+    "available": 1265,
+    "scrollWidth": 1265,
+    "overflowing": []
+  },
+  {
+    "name": "add-restaurant",
+    "width": 390,
+    "available": 375,
+    "scrollWidth": 375,
+    "overflowing": []
+  },
+  {
+    "name": "add-restaurant",
+    "width": 1280,
+    "available": 1265,
+    "scrollWidth": 1265,
+    "overflowing": []
+  },
+  {
+    "name": "profile",
+    "width": 390,
+    "available": 375,
+    "scrollWidth": 375,
+    "overflowing": []
+  },
+  {
+    "name": "profile",
+    "width": 1280,
+    "available": 1265,
+    "scrollWidth": 1265,
+    "overflowing": []
+  },
+  {
+    "name": "restaurant",
+    "width": 390,
+    "available": 375,
+    "scrollWidth": 375,
+    "overflowing": []
+  },
+  {
+    "name": "restaurant",
+    "width": 1280,
+    "available": 1265,
+    "scrollWidth": 1265,
+    "overflowing": []
+  },
+  {
+    "name": "admin-accounts",
+    "width": 390,
+    "available": 375,
+    "scrollWidth": 375,
+    "overflowing": []
+  },
+  {
+    "name": "admin-accounts",
+    "width": 1280,
+    "available": 1265,
+    "scrollWidth": 1265,
+    "overflowing": []
+  },
+  {
+    "name": "add-fries",
+    "width": 390,
+    "available": 375,
+    "scrollWidth": 375,
+    "overflowing": []
+  },
+  {
+    "name": "add-fries",
+    "width": 1280,
+    "available": 1265,
+    "scrollWidth": 1265,
+    "overflowing": []
+  },
+  {
+    "name": "delete-account",
+    "width": 390,
+    "available": 375,
+    "scrollWidth": 375,
+    "overflowing": []
+  },
+  {
+    "name": "delete-account",
+    "width": 1280,
+    "available": 1265,
+    "scrollWidth": 1265,
+    "overflowing": []
+  },
+  {
+    "name": "delete-review",
+    "width": 390,
+    "available": 375,
+    "scrollWidth": 375,
+    "overflowing": []
+  },
+  {
+    "name": "delete-review",
+    "width": 1280,
+    "available": 1280,
+    "scrollWidth": 1280,
+    "overflowing": []
+  },
+  {
+    "name": "requests",
+    "width": 390,
+    "available": 375,
+    "scrollWidth": 375,
+    "overflowing": []
+  },
+  {
+    "name": "requests",
+    "width": 1280,
+    "available": 1265,
+    "scrollWidth": 1265,
+    "overflowing": []
+  },
+  {
+    "name": "admin-inbox",
+    "width": 1280,
+    "available": 1265,
+    "scrollWidth": 1265,
+    "overflowing": []
+  },
+  {
+    "name": "admin-inbox",
+    "width": 390,
+    "available": 375,
+    "scrollWidth": 375,
+    "overflowing": []
+  },
+  {
+    "name": "validation",
+    "width": 390,
+    "available": 375,
+    "scrollWidth": 375,
+    "overflowing": []
+  },
+  {
+    "name": "validation",
+    "width": 1280,
+    "available": 1265,
+    "scrollWidth": 1265,
+    "overflowing": []
+  }
+]

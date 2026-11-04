@@ -1,5 +1,21 @@
 # Sprint 3 implementation evidence
 
+## November 3 acceptance update
+
+Google configuration and live address/radius/import acceptance are now complete.
+The original PR #4 was approved by JoeBeebz and merged on October 21. Following a
+fresh 48-test pass, FRY-45, 47, 48, 49, 50, 53, 54 and 55 are Done; FRY-51 and 52
+were already accepted and Done. Pending PR #7 fixes address autocomplete on LAN
+HTTP; PR #8 contains independently researched catalogue data/import tooling; PR
+#9 contains catalogue-only prefix suggestions (six options) and exact search.
+Those PRs still require teammate approval and merge.
+
+FRY-40 / FRY-44 quality changes and FRY-46 location-state improvements are
+recorded in [the November 3 acceptance report](docs/quality/acceptance-2026-11-03.md).
+FRY-46 still needs successful real device/trusted-origin acceptance. Historical
+missing-key statements below describe the initial October 20 implementation,
+not the currently configured class server.
+
 Sprint: FRY Sprint 3 (Jira sprint ID 3), started October 20, 2026. Commitment: 12 Stories / 46 story points, all assigned to Seth Martin (`sethdmartin1000`). No old backlog work is included.
 
 | Jira | Implementation | Validation |

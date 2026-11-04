@@ -24,7 +24,7 @@ function element() {
   };
 }
 
-function load({secure = false, geolocation} = {}) {
+function load({secure = false, secureContext = true, geolocation, forms = []} = {}) {
   const inputs = [element(), element()];
   inputs[0].labels = [{textContent: 'Near address (optional)'}];
   inputs[1].labels = [{textContent: 'Business address'}];
@@ -35,9 +35,10 @@ function load({secure = false, geolocation} = {}) {
   const context = vm.createContext({
     crypto: secure ? webcrypto : {getRandomValues: webcrypto.getRandomValues.bind(webcrypto)},
     Uint8Array, URLSearchParams, AbortController, Event,
+    window: {isSecureContext: secureContext},
     navigator: {geolocation},
     document: {
-      querySelectorAll(selector) { return selector === '[data-address]' ? inputs : []; },
+      querySelectorAll(selector) { return selector === '[data-address]' ? inputs : selector === 'form' ? forms : []; },
       querySelector(selector) {
         if (selector === '#discovery-search') return search;
         if (selector === '#location-status') return status;
@@ -54,7 +55,7 @@ function load({secure = false, geolocation} = {}) {
     },
   });
   vm.runInContext(source, context);
-  return {inputs, locationButton, status, requests, context,
+  return {inputs, locationButton, status, requests, context, search,
     async type(input, text) {
       input.value = text;
       input.listeners.input();
@@ -105,4 +106,50 @@ test('denied location clears coordinates and keeps address fallback usable', asy
   assert.match(page.status.textContent, /Enter an address/);
   await page.type(page.inputs[0], 'Kenosha');
   assert.equal(page.requests.length, 1);
+});
+
+
+test('insecure origin explains fallback without asking for coordinates', () => {
+  let requested = false;
+  const page = load({secureContext: false, geolocation: {getCurrentPosition() { requested = true; }}});
+  page.locationButton.listeners.click();
+  assert.equal(requested, false);
+  assert.match(page.status.textContent, /secure connection/);
+});
+
+test('successful location prepares a private search only after a user click', () => {
+  let calls = 0;
+  const page = load({geolocation: {getCurrentPosition(success) { calls++; success({coords: {latitude: 42.5, longitude: -87.8}}); }}});
+  assert.equal(calls, 0);
+  page.locationButton.listeners.click();
+  assert.equal(calls, 1);
+  assert.equal(page.search.elements.lat.value, 42.5);
+  assert.equal(page.search.elements.radius.value, '10');
+  assert.equal(page.requests.length, 0);
+  assert.match(page.status.textContent, /Select Find fries/);
+});
+
+test('late GPS response cannot overwrite a newly selected address', async () => {
+  let finish;
+  const page = load({geolocation: {getCurrentPosition(success) { finish = success; }}});
+  page.locationButton.listeners.click();
+  await page.type(page.inputs[0], '123 Main Street');
+  finish({coords: {latitude: 42.5, longitude: -87.8}});
+  assert.equal(page.inputs[0].value, '123 Main Street');
+  assert.equal(page.search.elements.lat.value, '');
+  assert.equal(page.locationButton.attributes['aria-busy'], undefined);
+});
+
+
+test('POST discovery search announces finding fries while account forms announce saving', () => {
+  const searchForm = element(), profileForm = element();
+  Object.assign(searchForm, {id: 'discovery-search', method: 'post', checkValidity: () => true});
+  Object.assign(profileForm, {id: 'profile', method: 'post', checkValidity: () => true});
+  load({forms: [searchForm, profileForm]});
+  const searchButton = element(), saveButton = element();
+  searchForm.listeners.submit({submitter: searchButton});
+  profileForm.listeners.submit({submitter: saveButton});
+  assert.equal(searchButton.textContent, 'Finding fries\u2026');
+  assert.equal(saveButton.textContent, 'Saving\u2026');
+  assert.equal(searchButton.attributes['aria-busy'], 'true');
 });

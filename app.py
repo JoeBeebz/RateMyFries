@@ -348,7 +348,7 @@ def create_app(config=None):
     def home():
         recent = rows(restaurant_sql+'WHERE v.body IS NOT NULL GROUP BY r.id ORDER BY latest DESC LIMIT 6')
         top = rows(fry_sql+'GROUP BY f.id HAVING COUNT(v.id)>0 ORDER BY average DESC,rating_count DESC,f.name LIMIT 6')
-        return render_template('home.html', recent=[app.extensions['resolve_restaurant'](r) for r in recent], top=top)
+        return render_template('home.html', recent=app.extensions['resolve_restaurants'](recent), top=top)
 
     @app.get('/restaurants')
     def restaurants():
