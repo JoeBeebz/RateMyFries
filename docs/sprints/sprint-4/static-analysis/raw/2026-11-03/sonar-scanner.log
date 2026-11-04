@@ -1,0 +1,135 @@
+04:30:53.780 INFO  Scanner configuration file: /opt/sonar-scanner/conf/sonar-scanner.properties
+04:30:53.783 INFO  Project root configuration file: NONE
+04:30:53.806 INFO  SonarScanner CLI 8.1.0.6389
+04:30:53.813 INFO  Linux 6.18.54.1-microsoft-standard-WSL2 amd64
+04:30:55.025 INFO  Communicating with SonarQube Community Build 26.10.0.133078
+04:30:55.026 INFO  JRE provisioning: os[linux], arch[x86_64]
+04:31:00.794 INFO  Starting SonarScanner Engine...
+04:31:00.794 INFO  Java 21.0.12.1 Eclipse Adoptium (64-bit)
+04:31:01.928 INFO  Load global settings
+04:31:02.036 INFO  Load global settings (done) | time=106ms
+04:31:02.038 INFO  Server id: 147B411E-AaGkz8olID3mNhHI8p2B
+04:31:02.047 INFO  Loading required plugins
+04:31:02.047 INFO  Load plugins index
+04:31:02.073 INFO  Load plugins index (done) | time=25ms
+04:31:02.073 INFO  Load/download plugins
+04:31:03.317 INFO  Load/download plugins (done) | time=1244ms
+04:31:03.568 INFO  Load project settings for component key: 'RateMyFries-Sprint3-Final-20261103'
+04:31:03.591 INFO  Load project settings for component key: 'RateMyFries-Sprint3-Final-20261103' (done) | time=23ms
+04:31:03.606 INFO  Process project properties
+04:31:03.629 INFO  Process project properties (done) | time=23ms
+04:31:03.640 INFO  Project key: RateMyFries-Sprint3-Final-20261103
+04:31:03.640 INFO  Base dir: /usr/src
+04:31:03.640 INFO  Working dir: /tmp/.scannerwork
+04:31:03.702 INFO  Load quality profiles
+04:31:03.787 INFO  Load quality profiles (done) | time=84ms
+04:31:03.819 INFO  Load active rules
+04:31:04.009 INFO  Load active rules (done) | time=189ms
+04:31:04.016 INFO  Load analysis cache
+04:31:04.032 INFO  Load analysis cache (404) | time=15ms
+04:31:04.112 INFO  Preprocessing files...
+04:31:04.367 INFO  5 languages detected in 48 preprocessed files (done) | time=255ms
+04:31:04.369 INFO  Loading plugins for detected languages
+04:31:04.370 INFO  Load/download plugins
+04:31:10.167 INFO  Load/download plugins (done) | time=5798ms
+04:31:10.322 INFO  Load project repositories
+04:31:10.407 INFO  Load project repositories (done) | time=84ms
+04:31:10.442 INFO  Indexing files...
+04:31:10.442 INFO  Project configuration:
+04:31:10.588 INFO  48 files indexed (done) | time=145ms
+04:31:10.588 INFO  Quality profile for css: Sonar way core
+04:31:10.589 INFO  Quality profile for js: Sonar way core
+04:31:10.589 INFO  Quality profile for json: Sonar way comprehensive
+04:31:10.589 INFO  Quality profile for py: Sonar way core
+04:31:10.589 INFO  Quality profile for web: Sonar way core
+04:31:10.590 INFO  ------------- Run sensors on module RateMyFries-Sprint3-Final-20261103
+04:31:10.621 INFO  Load metrics repository
+04:31:10.649 INFO  Load metrics repository (done) | time=29ms
+04:31:11.071 INFO  Reflections took 49 ms to scan 1 urls, producing 30 keys and 303 values
+04:31:11.158 INFO  Sensor IaC YAML File Type Classification Sensor [iac]
+04:31:11.203 INFO  Sensor IaC YAML File Type Classification Sensor [iac] (done) | time=45ms
+04:31:11.203 INFO  Sensor IaC CloudFormation Sensor [iac]
+04:31:11.210 INFO  1 source file to be analyzed
+04:31:11.350 INFO  1/1 source file has been analyzed
+04:31:11.350 INFO  Sensor IaC CloudFormation Sensor [iac] (done) | time=147ms
+04:31:11.350 INFO  Sensor IaC cfn-lint report Sensor [iac]
+04:31:11.350 INFO  Sensor IaC cfn-lint report Sensor [iac] (done) | time=0ms
+04:31:11.351 INFO  Sensor IaC hadolint report Sensor [iac]
+04:31:11.351 INFO  Sensor IaC hadolint report Sensor [iac] (done) | time=0ms
+04:31:11.351 INFO  Sensor IaC Azure Resource Manager Sensor [iac]
+04:31:11.351 INFO  There are no files to be analyzed for the Azure Resource Manager language
+04:31:11.351 INFO  Sensor IaC Azure Resource Manager Sensor [iac] (done) | time=0ms
+04:31:11.351 INFO  Sensor Java Config Sensor [iac]
+04:31:11.352 INFO  There are no files to be analyzed for the Java language
+04:31:11.352 INFO  Sensor Java Config Sensor [iac] (done) | time=0ms
+04:31:11.352 INFO  Sensor IaC Docker Sensor [iac]
+04:31:11.354 INFO  There are no files to be analyzed for the Docker language
+04:31:11.355 INFO  Sensor IaC Docker Sensor [iac] (done) | time=3ms
+04:31:11.355 INFO  Sensor Python Sensor [python]
+04:31:11.833 INFO  Starting global symbols computation
+04:31:11.835 INFO  15 source files to be analyzed
+04:31:12.298 INFO  15/15 source files have been analyzed
+04:31:12.298 INFO  Finished step global symbols computation in 464ms
+04:31:12.337 INFO  Starting rules execution
+04:31:12.337 INFO  15 source files to be analyzed
+04:31:13.167 INFO  15/15 source files have been analyzed
+04:31:13.167 INFO  Finished step rules execution in 830ms
+04:31:13.167 INFO  The Python analyzer was able to leverage cached data from previous analyses for 0 out of 15 files. These files were not parsed.
+04:31:13.169 INFO  Sensor Python Sensor [python] (done) | time=1814ms
+04:31:13.170 INFO  Sensor Cobertura Sensor for Python coverage [python]
+04:31:13.355 INFO  Python test coverage
+04:31:13.357 INFO  Parsing report '/usr/src/coverage.xml'
+04:31:13.477 INFO  Sensor Cobertura Sensor for Python coverage [python] (done) | time=307ms
+04:31:13.477 INFO  Sensor PythonXUnitSensor [python]
+04:31:13.653 INFO  Sensor PythonXUnitSensor [python] (done) | time=175ms
+04:31:13.653 INFO  Sensor Python Dependency Sensor [python]
+04:31:13.656 INFO  Sensor Python Dependency Sensor [python] (done) | time=3ms
+04:31:13.656 INFO  Sensor HTML [web]
+04:31:14.004 INFO  Sensor HTML [web] (done) | time=347ms
+04:31:14.004 INFO  Sensor TextAndSecretsSensor [text]
+04:31:14.021 INFO  Available processors: 24
+04:31:14.022 INFO  Using 24 threads for analysis.
+04:31:14.305 INFO  Start fetching files for the text and secrets analysis
+04:31:14.322 INFO  Using Git CLI to retrieve dirty files
+04:31:14.327 WARN  Retrieving only language associated files, make sure to run the analysis inside a git repository to make use of inclusions specified via "sonar.text.inclusions"
+04:31:14.328 INFO  Starting the text and secrets analysis
+04:31:14.329 INFO  37 source files to be analyzed for the text and secrets analysis
+04:31:14.456 INFO  37/37 source files have been analyzed for the text and secrets analysis
+04:31:14.461 INFO  Sensor TextAndSecretsSensor [text] (done) | time=456ms
+04:31:14.465 INFO  ------------- Run sensors on project
+04:31:14.633 INFO  Sensor JavaScript/TypeScript/CSS analysis [javascript]
+04:31:15.008 INFO  Detected os: Linux arch: amd64 alpine: false. Platform: LINUX_X64
+04:31:15.008 INFO  Deploy location /opt/sonar-scanner/.sonar/js/node-runtime, tagetRuntime: /opt/sonar-scanner/.sonar/js/node-runtime/node,  version: /opt/sonar-scanner/.sonar/js/node-runtime/version.txt
+04:31:17.203 INFO  Using embedded Node.js runtime.
+04:31:17.203 INFO  Using Node.js executable: '/opt/sonar-scanner/.sonar/js/node-runtime/node'.
+04:31:19.346 INFO  Memory configuration: OS (15540 MB), Node.js (4288 MB).
+04:31:19.369 INFO  gRPC analyze-project server listening on 127.0.0.1:43559
+04:31:19.498 INFO  Plugin version: [14.0.0.46108]
+04:31:21.406 INFO  Found 0 tsconfig.json file(s): []
+04:31:22.718 INFO  19 source files to be analyzed
+04:31:22.719 INFO  Analyzing 4 file(s) using default options [lib: lib.esnext.d.ts, lib.dom.d.ts]
+04:31:22.719 INFO  19/19 source files have been analyzed
+04:31:22.731 INFO  Hit the cache for 0 out of 19
+04:31:22.731 INFO  Miss the cache for 19 out of 19: ANALYSIS_MODE_INELIGIBLE [19/19]
+04:31:22.731 INFO  Sensor JavaScript/TypeScript/CSS analysis [javascript] (done) | time=8098ms
+04:31:22.731 INFO  Sensor IaC Project Sensor [iac]
+04:31:22.733 INFO  Sensor IaC Project Sensor [iac] (done) | time=1ms
+04:31:22.733 INFO  Sensor Zero Coverage Sensor
+04:31:22.738 INFO  Sensor Zero Coverage Sensor (done) | time=4ms
+04:31:22.738 INFO  ------------- Gather SCA dependencies on project
+04:31:22.745 INFO  Dependency analysis skipped
+04:31:22.746 INFO  SCM Publisher is disabled
+04:31:22.752 INFO  CPD Executor 13 files had no CPD blocks
+04:31:22.753 INFO  CPD Executor Calculating CPD for 13 files
+04:31:22.768 INFO  CPD Executor CPD calculation finished (done) | time=15ms
+04:31:22.771 INFO  SCM revision ID '29b4cfd5a586b98a29a9bab4eb49e6a78b66ca749261122e091b82d64724abf4'
+04:31:23.011 INFO  Analysis report generated in 232ms, dir size=611.8 kB
+04:31:23.079 INFO  Analysis report compressed in 67ms, zip size=270.8 kB
+04:31:23.145 INFO  Analysis report uploaded in 66ms
+04:31:23.146 INFO  ANALYSIS SUCCESSFUL, you can find the results at: http://host.docker.internal:9000/dashboard?id=RateMyFries-Sprint3-Final-20261103
+04:31:23.146 INFO  Note that you will be able to access the updated dashboard once the server has processed the submitted analysis report
+04:31:23.147 INFO  More about the report processing at http://host.docker.internal:9000/api/ce/task?id=6ccd6ea7-2db8-4853-b5d2-92906b3b8370
+04:31:23.349 INFO  Analysis total time: 22.514 s
+04:31:23.373 INFO  SonarScanner Engine completed successfully
+04:31:23.437 INFO  EXECUTION SUCCESS
+04:31:23.439 INFO  Total time: 29.661s

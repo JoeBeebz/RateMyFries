@@ -1,0 +1,26 @@
+644f748ceea31a4c56e38d364654c2b840ad192c|2026-10-20T01:59:54-05:00|SethMart1|FRY-45–FRY-56 add discovery, account roles and business review services
+1de02a60c94a2a9954dcb0d62a4e50a04d6791d2|2026-10-20T02:00:54-05:00|SethMart1|FRY-45–FRY-56 add unified search and admin pages
+3b1f134512a840b6ef2b2396e84c045b39d15f34|2026-10-20T02:01:21-05:00|SethMart1|FRY-46 FRY-56 add accessible location controls
+5e2921f52d689d5cc97dc512aec152700c1b771f|2026-10-20T02:01:45-05:00|SethMart1|Verify Sprint 3 permissions, privacy and discovery
+1f759f7a31b257f84b0792fc4bfdb8e208b15c66|2026-10-20T02:02:09-05:00|SethMart1|Document Sprint 3 requirements and setup
+fa3cc3866d42d7b635d84aafa13c9909ef86338c|2026-10-20T02:03:15-05:00|SethMart1|Archive Sprint 2 demo in sprint-specific folder
+48a00f03651cc169be9b275ada03ecab0c7ecd0c|2026-10-20T02:03:30-05:00|SethMart1|Archive Sprint 2 reports in sprint-specific folder
+e2aa9a643a2a0023924969e7d5aa44c981366c38|2026-10-20T02:04:04-05:00|SethMart1|Finish relocating Sprint 2 demo into archive
+94a938e141cf47e574f83f8721afd3a37c4c0d9a|2026-10-20T02:04:13-05:00|SethMart1|Finish relocating Sprint 2 report into archive
+1afeb5947e41e61b36506bfd8559b954b67e90d2|2026-10-20T02:04:15-05:00|SethMart1|Finish relocating Sprint 2 report into archive
+7209a8dc8945b525e3168d7124d3eb9c1cff0924|2026-10-20T02:04:17-05:00|SethMart1|Remove superseded separate search template
+fefbc9b131665c19afe42e7eff5cdcd701a83695|2026-10-20T02:04:19-05:00|SethMart1|Remove superseded separate search template
+5e0fedf387a9fe2b4b95a4e725c2c0ea553fd352|2026-10-20T02:10:47-05:00|SethMart1|Add Sprint 3 Jira commitment and delivery report
+5cadb4f93589077f09b38a53884bce9c7d0a3c31|2026-10-20T02:11:47-05:00|SethMart1|Add Sprint 3 GitHub merged-only activity report
+6171ea650e78d164d1eb6c359824c380283498b2|2026-10-20T02:20:05-05:00|SethMart1|Address automated CSRF and validation findings
+e97e3fa59bc187c0a8804ab3620119dd76925210|2026-10-20T02:20:26-05:00|SethMart1|Correct autocomplete attributes in account and address forms
+b93baae14b9fefb54077c02bad7f740cb358902b|2026-10-20T02:20:49-05:00|SethMart1|Verify signed CSRF tokens across account sessions
+b12c433ee8eac7b167991889482240ec0ea568e7|2026-10-20T02:24:37-05:00|SethMart1|Add tool-generated Sprint 3 static analysis PDFs
+0467be87282707ea23047b918a46e5347d661758|2026-10-20T02:25:01-05:00|SethMart1|Retain final SonarQube and Trivy tool evidence
+301ce9353a2fee023506ae23e646fc7dacb4dfeb|2026-10-20T02:25:25-05:00|SethMart1|Retain initial findings and remediation comparison
+3af1d39af2aef9d160000ee7a512c5263a5d378c|2026-10-20T02:27:22-05:00|SethMart1|Refresh Sprint 3 reports after final validation
+ed776f40783ebdacdc4c2c9651f5374c282b3f8f|2026-10-20T19:13:43-05:00|JoeBeebz|Merge pull request #4 from JoeBeebz/feature/sprint-3-discovery-and-business-moderation
+d4a29e53813e28d44f6573276c21c285d775a3c2|2026-10-20T21:56:07-05:00|Seth Martin|docs: add Sprint 3 demo video
+ed9d4e75fa9614ef2b9ff5bbf8726756a06991a6|2026-10-20T22:05:16-05:00|JoeBeebz|Merge pull request #5 from JoeBeebz/docs/sprint-3-demo-video
+388cf2c71a0abf40822699576c6cb9aa777de9dc|2026-10-20T22:10:23-05:00|SethMart1|docs: replace Sprint 3 GitHub report with verified merged activity
+7ad236428b0f6cc9fce55f5fb2bac43cf2eafaa0|2026-10-20T22:24:01-05:00|JoeBeebz|Merge pull request #6 from JoeBeebz/docs/sprint-3-git-report-refresh

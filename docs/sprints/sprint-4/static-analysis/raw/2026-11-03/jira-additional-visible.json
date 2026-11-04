@@ -1,0 +1,78 @@
+[
+  {
+    "links": [],
+    "text": "\t\nWork\nMore actions for Work\n\t\nAssignee\nAssignee • Sort A to Z\nMore actions for Assignee\n\t\nReporter\nReporter • Sort A to Z\nMore actions for Reporter\n\t\nPriority\nPriority • Sort lowest to highest\nMore actions for Priority\n\t\nStatus\nStatus • Sort in ascending order\nMore actions for Status\n\t\nResolution\nResolution • Sort A to Z\nMore actions for Resolution\n\t\nCreated\nCreated • Sort oldest to newest\nMore actions for Created\n\t\nUpdated\nUpdated • Sort oldest to newest\nMore actions for Updated\n\t\nDue date\nDue date • Sort oldest to newest\nMore actions for Due date\n\t\t\nConfigure columns"
+  },
+  {
+    "links": [
+      {
+        "text": "FRY-3",
+        "url": "https://ratemyfries.atlassian.net/browse/FRY-3"
+      }
+    ],
+    "text": "\t\nFRY-3\nCopy link\nTask 3\n\t\nUnassigned\n\t\nJoe Beben\n\t\nNone\n\t\nDone\n\t\nDone\n\t\nSep 15, 2026, 6:28 PM\n\t\nNov 03, 2026, 3:39 AM\n\t\nNone\n\t\t\nMore actions for FRY-3"
+  },
+  {
+    "links": [
+      {
+        "text": "FRY-5",
+        "url": "https://ratemyfries.atlassian.net/browse/FRY-5"
+      }
+    ],
+    "text": "\t\nFRY-5\nCopy link\nBrainstorm Foundation of Website\n\t\nUnassigned\n\t\nJoe Beben\n\t\nMedium\n\t\nDone\n\t\nDone\n\t\nSep 15, 2026, 6:47 PM\n\t\nNov 03, 2026, 3:41 AM\n\t\nNone\n\t\t\nMore actions for FRY-5"
+  },
+  {
+    "links": [
+      {
+        "text": "FRY-14",
+        "url": "https://ratemyfries.atlassian.net/browse/FRY-14"
+      }
+    ],
+    "text": "\t\nFRY-14\nCopy link\nFRY-3\n\t\nUnassigned\n\t\nMartin, Seth D (marti411)\n\t\nMedium\n\t\nDone\n\t\nDone\n\t\nSep 22, 2026, 4:24 PM\n\t\nNov 03, 2026, 3:40 AM\n\t\nNone\n\t\t\nMore actions for FRY-14"
+  },
+  {
+    "links": [
+      {
+        "text": "FRY-40",
+        "url": "https://ratemyfries.atlassian.net/browse/FRY-40"
+      }
+    ],
+    "text": "\t\nFRY-40\nCopy link\nUse a consistent interface on desktop and mobile\n\t\nsethdmartin1000\n\t\nsethdmartin1000\n\t\nMedium\n\t\nIn Review\n\t\nUnresolved\n\t\nOct 05, 2026, 6:13 PM\n\t\nNov 03, 2026, 3:57 AM\n\t\nNone\n\t\t\nMore actions for FRY-40"
+  },
+  {
+    "links": [
+      {
+        "text": "FRY-44",
+        "url": "https://ratemyfries.atlassian.net/browse/FRY-44"
+      }
+    ],
+    "text": "\t\nFRY-44\nCopy link\nLoad normal pages within an agreed performance target\n\t\nsethdmartin1000\n\t\nsethdmartin1000\n\t\nMedium\n\t\nIn Review\n\t\nUnresolved\n\t\nOct 05, 2026, 6:13 PM\n\t\nNov 03, 2026, 3:57 AM\n\t\nNone\n\t\t\nMore actions for FRY-44"
+  },
+  {
+    "links": [
+      {
+        "text": "FRY-57",
+        "url": "https://ratemyfries.atlassian.net/browse/FRY-57"
+      }
+    ],
+    "text": "\t\nFRY-57\nCopy link\nExpand Kenosha restaurant catalogue with verified fry menus and photos\n\t\nsethdmartin1000\n\t\nsethdmartin1000\n\t\nMedium\n\t\nIn Review\n\t\nUnresolved\n\t\nNov 03, 2026, 2:09 AM\n\t\nNov 03, 2026, 2:36 AM\n\t\nNone\n\t\t\nMore actions for FRY-57"
+  },
+  {
+    "links": [
+      {
+        "text": "FRY-58",
+        "url": "https://ratemyfries.atlassian.net/browse/FRY-58"
+      }
+    ],
+    "text": "\t\nFRY-58\nCopy link\nAutofill catalogue search and return only exact listed matches\n\t\nsethdmartin1000\n\t\nsethdmartin1000\n\t\nMedium\n\t\nIn Review\n\t\nUnresolved\n\t\nNov 03, 2026, 2:48 AM\n\t\nNov 03, 2026, 4:00 AM\n\t\nNone\n\t\t\nMore actions for FRY-58"
+  },
+  {
+    "links": [
+      {
+        "text": "FRY-59",
+        "url": "https://ratemyfries.atlassian.net/browse/FRY-59"
+      }
+    ],
+    "text": "\t\nFRY-59\nCopy link\nMigrate Fry from the personal server to a private EC2 development instance\n\t\nsethdmartin1000\n\t\nsethdmartin1000\n\t\nMedium\n\t\nIn Review\n\t\nUnresolved\n\t\nNov 03, 2026, 9:00 PM\n\t\nNov 03, 2026, 9:50 PM\n\t\nNone\n\t\t\nMore actions for FRY-59"
+  }
+]

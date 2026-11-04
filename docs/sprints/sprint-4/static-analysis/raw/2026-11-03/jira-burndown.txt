@@ -1,0 +1,182 @@
+Sprint
+FRY Sprint 3
+Estimation field
+Story points
+Date - October 20th, 2026 - November 3rd, 2026
+Date - October 20th, 2026 to November 3rd, 2026
+Sprint goal - Unified address-based discovery, Google location integration, administrator roles and moderated business submissions.
+Remaining work
+
+Number of story points left to complete this sprint
+
+Guideline
+
+Ideal burn rate
+
+Report: FRY Sprint 3
+*Work item added after sprint start
+Scope changes log
+View in All work navigator
+Date
+
+Key
+
+Summary
+
+Work type
+
+Epic
+
+Details of scope change
+	Change in estimation
+There have been no scope changes this sprint
+Incomplete work items
+View in All work navigator
+Key
+
+Summary
+
+Work type
+
+Epic
+
+Status
+
+Assignee
+	Story points
+
+FRY-46﻿
+, (opens new window)
+	Find current and nearby locations with Google location services
+Story
+
+In Progress
+
+	5
+
+FRY-56﻿
+, (opens new window)
+	Autocomplete address inputs using Google location services
+Story
+
+In Review
+
+	5
+Completed work items
+View in All work navigator
+Key
+
+Summary
+
+Work type
+
+Epic
+
+Status
+
+Assignee
+	Story points
+
+FRY-45﻿
+, (opens new window)
+	Unify restaurant and fry search in one menu
+Story
+
+Done
+
+	5
+
+FRY-47﻿
+, (opens new window)
+	Support administrator and regular user account roles
+Story
+
+Done
+
+	3
+
+FRY-48﻿
+, (opens new window)
+	Review regular-user business submissions before publishing
+Story
+
+Done
+
+	5
+
+FRY-49﻿
+, (opens new window)
+	Provide a business submission form for regular users
+Story
+
+Done
+
+	3
+
+FRY-50﻿
+, (opens new window)
+	Store a private optional profile address for nearby discovery
+Story
+
+Done
+
+	3
+
+FRY-51﻿
+, (opens new window)
+	Search nearby fries using an address instead of latitude and longitude
+Story
+
+Done
+
+	3
+
+FRY-52﻿
+, (opens new window)
+	Import Kenosha businesses from Google business data
+Story
+
+Done
+
+	3
+
+FRY-53﻿
+, (opens new window)
+	Restrict direct store creation to administrators
+Story
+
+Done
+
+	3
+
+FRY-54﻿
+, (opens new window)
+	Provide an administrator inbox for business requests
+Story
+
+Done
+
+	3
+
+FRY-55﻿
+, (opens new window)
+	Allow only existing administrators to create administrator accounts
+Story
+
+Done
+
+	5
+Work items completed outside of sprint
+Key
+
+Summary
+
+Work type
+
+Epic
+
+Status
+
+Assignee
+	Story points
+No work items have been completed outside of the sprint

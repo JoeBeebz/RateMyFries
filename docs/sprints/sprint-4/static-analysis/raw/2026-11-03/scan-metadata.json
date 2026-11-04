@@ -1,0 +1,199 @@
+{
+  "snapshot_utc": "2026-11-04T04:28:41.804707+00:00",
+  "scope": "analysis-only composite, not a merged Git branch",
+  "deployed_runtime_revision": "d094cd8e52b1dcf413ed1a36209a367abe525262",
+  "catalogue_revision": "bb9673abc28c0a0060d6292facdc77363a69145b",
+  "ec2_revision": "d7b7bf5ed9ffa6c6562f91223609e65a0635c1c9",
+  "source_manifest_sha256": "29b4cfd5a586b98a29a9bab4eb49e6a78b66ca749261122e091b82d64724abf4",
+  "files": {
+    "app.py": {
+      "revision": "d094cd8e52b1dcf413ed1a36209a367abe525262",
+      "sha256": "fd900fd6160ea2e2522c46ac7a47958e3619104dd84cd3ac68c4c649e4c87a67"
+    },
+    "locations.py": {
+      "revision": "d094cd8e52b1dcf413ed1a36209a367abe525262",
+      "sha256": "e832f048176a19e71d88b0ce3fa10f2a43650f606b2e99fd955679aef3d7a38b"
+    },
+    "migrations.py": {
+      "revision": "d094cd8e52b1dcf413ed1a36209a367abe525262",
+      "sha256": "e7c8da892a461c3c51bb567f9bbe7c024e994878637fa1edb91b5329308ef98c"
+    },
+    "requirements-dev.txt": {
+      "revision": "d094cd8e52b1dcf413ed1a36209a367abe525262",
+      "sha256": "91a516e9112ded154b4f25aeab72767a6a541d258f4443d53aa7b38108389404"
+    },
+    "requirements.txt": {
+      "revision": "d094cd8e52b1dcf413ed1a36209a367abe525262",
+      "sha256": "f71fa2ea7611e9f471f2c32394d53b9d6b0723ad807ff60fc6905b6e23d2c64a"
+    },
+    "schema.sql": {
+      "revision": "d094cd8e52b1dcf413ed1a36209a367abe525262",
+      "sha256": "51d6065717b6bc396e2b2a46c95aef6d0dbefd71ee4dd19d90ac8c02efe9b0c3"
+    },
+    "sprint.py": {
+      "revision": "d094cd8e52b1dcf413ed1a36209a367abe525262",
+      "sha256": "100dc896bf5ee16e6d565dad07ab5ef9c1b4ad01d778fcd157de0ca904eda3db"
+    },
+    "static/app.js": {
+      "revision": "d094cd8e52b1dcf413ed1a36209a367abe525262",
+      "sha256": "9eecf047171ec723d14c3ebc75f450e66c749100bdb53f3c761436195f8fdb71"
+    },
+    "static/catalogue-search.js": {
+      "revision": "d094cd8e52b1dcf413ed1a36209a367abe525262",
+      "sha256": "6c9663d10b931d1cacde9493029d60a2a4ac73cbc84df748ee00f7279edc1bf6"
+    },
+    "static/style.css": {
+      "revision": "d094cd8e52b1dcf413ed1a36209a367abe525262",
+      "sha256": "394d057e5eecfdb6a699c87e956e7e048823b3fd2b3fcdd10318a666a3866239"
+    },
+    "templates/account.html": {
+      "revision": "d094cd8e52b1dcf413ed1a36209a367abe525262",
+      "sha256": "bb48bbb3463572ac3745799b6fdffff5eb06d07abf3c4d3e4a5378db9b51eb4a"
+    },
+    "templates/admins.html": {
+      "revision": "d094cd8e52b1dcf413ed1a36209a367abe525262",
+      "sha256": "af60995db4c7876572ae6eab98aef64596f433191e2e5129a6ef668638471797"
+    },
+    "templates/base.html": {
+      "revision": "d094cd8e52b1dcf413ed1a36209a367abe525262",
+      "sha256": "7bd1cc4bfe37eec8f86a06a700267ee0ae9b756113f3bc045fdc094937c73777"
+    },
+    "templates/business_form.html": {
+      "revision": "d094cd8e52b1dcf413ed1a36209a367abe525262",
+      "sha256": "9a34fea1fee440010e56ee53aae5dff1a6d0c79f7b6a231bc4224b22f98ab44f"
+    },
+    "templates/confirm.html": {
+      "revision": "d094cd8e52b1dcf413ed1a36209a367abe525262",
+      "sha256": "f521f6ee810ebba534e26faa0b769b40c0c38b7488ae6e2022f097aa037fded1"
+    },
+    "templates/error.html": {
+      "revision": "d094cd8e52b1dcf413ed1a36209a367abe525262",
+      "sha256": "4ec54a18fe182919a87afe31e8cd224f72cd752778d9a7a74f8619379ad9217e"
+    },
+    "templates/fry.html": {
+      "revision": "d094cd8e52b1dcf413ed1a36209a367abe525262",
+      "sha256": "c0d541c5cc159a2ad7088f10d7eab24f9c8ae4e3d9defea5644ec5e1f0dad82b"
+    },
+    "templates/home.html": {
+      "revision": "d094cd8e52b1dcf413ed1a36209a367abe525262",
+      "sha256": "cdebc67fdab6a6f79ac4fae0430c570b1fb13c5c387bcc4cd5912ec085960b3d"
+    },
+    "templates/listing_form.html": {
+      "revision": "d094cd8e52b1dcf413ed1a36209a367abe525262",
+      "sha256": "a76c3156d0e906e1ccc846c98d68d1fe8c9ec51c8bc5b60334a513c7238e756f"
+    },
+    "templates/macros.html": {
+      "revision": "d094cd8e52b1dcf413ed1a36209a367abe525262",
+      "sha256": "b2025c6453e068a217dc996ce98ec525dd737b4be4386732893b33942a2c8217"
+    },
+    "templates/policies.html": {
+      "revision": "d094cd8e52b1dcf413ed1a36209a367abe525262",
+      "sha256": "78bbe4ca9b0848ebc27779a3c5c577be77a4d4c643017ee1279e7cf305f7d4da"
+    },
+    "templates/profile.html": {
+      "revision": "d094cd8e52b1dcf413ed1a36209a367abe525262",
+      "sha256": "124eb351a631fddd8f22b83cc26e53dde65d3e992682b3c99bb1feff30a39291"
+    },
+    "templates/requests.html": {
+      "revision": "d094cd8e52b1dcf413ed1a36209a367abe525262",
+      "sha256": "4aa3788acae17d8aea19b09cecaae997e5b40f4cf55a205877a501bb6c7ba8b9"
+    },
+    "templates/restaurant.html": {
+      "revision": "d094cd8e52b1dcf413ed1a36209a367abe525262",
+      "sha256": "10e63d69a373aca551e2f42d70a919bf09a7e31b72d55265250beb3713ec2bc0"
+    },
+    "templates/search.html": {
+      "revision": "d094cd8e52b1dcf413ed1a36209a367abe525262",
+      "sha256": "6f18b3e870e06d141ca114f26061285bcd54f5167f5324279f60bdab495d60ab"
+    },
+    "tests/address-suggestions.test.cjs": {
+      "revision": "d094cd8e52b1dcf413ed1a36209a367abe525262",
+      "sha256": "7172d5aa87ee7228c49bb26984464f594a694766a594fa77e48e037b181b67ae"
+    },
+    "tests/catalogue-search.test.cjs": {
+      "revision": "d094cd8e52b1dcf413ed1a36209a367abe525262",
+      "sha256": "ed28ce8e41f4c43630bf0263ac65a8b89e0ca4fc4ec1f8a21718684117971be2"
+    },
+    "tests/test_app.py": {
+      "revision": "d094cd8e52b1dcf413ed1a36209a367abe525262",
+      "sha256": "dffcb7c24386e5ae12d2e8902a8ecdc04cbcd6b7d94bc5eac32760b46ba89ffa"
+    },
+    "tests/test_catalogue_search.py": {
+      "revision": "d094cd8e52b1dcf413ed1a36209a367abe525262",
+      "sha256": "85849dd8e8fd1d35bc46bdb4f3aa49731728547969e81f5814b577562097b55f"
+    },
+    "tests/test_live_lookup_concurrency.py": {
+      "revision": "d094cd8e52b1dcf413ed1a36209a367abe525262",
+      "sha256": "98dcc43ea4eef1d46a01c466196fe89486a54263d525e75c1d2597370d87c20a"
+    },
+    "tests/test_sprint3.py": {
+      "revision": "d094cd8e52b1dcf413ed1a36209a367abe525262",
+      "sha256": "534313d8228e60f4eac5d5a5f339929b302d680542fa0f2984e762666bc5408f"
+    },
+    "tools/check_contrast.py": {
+      "revision": "d094cd8e52b1dcf413ed1a36209a367abe525262",
+      "sha256": "4fac717b1b0d4af811c48e6b69145b8fa8b712613a15e24124c3ff175a19a9f5"
+    },
+    "tools/prepare_layout_check.py": {
+      "revision": "d094cd8e52b1dcf413ed1a36209a367abe525262",
+      "sha256": "f6bb8aa23672a31a5b10d1e7f93f88e7623703b091e1457125dc3b90266afaff"
+    },
+    "data/kenosha-catalogue.json": {
+      "revision": "bb9673abc28c0a0060d6292facdc77363a69145b",
+      "sha256": "aaa942e8a9c6548b89b18b8886bac38040fde47e3c5346317d960b668b31ce9a"
+    },
+    "tests/test_catalogue.py": {
+      "revision": "bb9673abc28c0a0060d6292facdc77363a69145b",
+      "sha256": "79eb58ca171dc198e7856deff8319ddf6e53cf1840665b844ca3ae64d3619050"
+    },
+    "tools/import_catalogue.py": {
+      "revision": "bb9673abc28c0a0060d6292facdc77363a69145b",
+      "sha256": "9cb44db985742868c1b40db17e951d68e760401a3da2b26b80d6073cc0560eff"
+    },
+    "infra/private-ec2-bootstrap.sh": {
+      "revision": "d7b7bf5ed9ffa6c6562f91223609e65a0635c1c9",
+      "sha256": "a344e9b0ad6eba45ce70836f6786b87f9d180b6c96a050203fb54c233fa0115e"
+    },
+    "infra/private-ec2.template.json": {
+      "revision": "d7b7bf5ed9ffa6c6562f91223609e65a0635c1c9",
+      "sha256": "2f9e8bac81c5e4cfc5523a2cb7a17e23462afa458d4a9609978222aea3957efe"
+    },
+    "tests/test_private_ec2.py": {
+      "revision": "d7b7bf5ed9ffa6c6562f91223609e65a0635c1c9",
+      "sha256": "74fcad4da3a5f836fc8b6e4ec5a5fd6297592ac1f7aa0b2a611d5d52d192ba41"
+    },
+    "tools/Connect-Fry.ps1": {
+      "revision": "d7b7bf5ed9ffa6c6562f91223609e65a0635c1c9",
+      "sha256": "b7821aa5917126a2d908fdda60b89dcc9d30c41c70e75ea9416089dab78c25ee"
+    },
+    "tools/install_private_ec2.py": {
+      "revision": "d7b7bf5ed9ffa6c6562f91223609e65a0635c1c9",
+      "sha256": "45e6b729d8a504471b506e4ad04756f688ef0c44c151d9816983376d8f16e8c0"
+    },
+    "tools/render_private_ec2.py": {
+      "revision": "d7b7bf5ed9ffa6c6562f91223609e65a0635c1c9",
+      "sha256": "7f3076840a393f18319b514624a04c5705047e1864b19904abe76d30db45ec6e"
+    }
+  },
+  "excluded": [
+    "Git history",
+    "instance databases",
+    "signing keys",
+    "API configuration",
+    "virtual environments",
+    "prior reports",
+    "demo media",
+    "IDE files"
+  ],
+  "execution": "local Windows Docker Desktop",
+  "validated_python_tests": 72,
+  "validated_javascript_tests": 12,
+  "sonar_versions": {
+    "sonarqube_version": "26.10.0.133078",
+    "sonarqube_edition": "Community Build",
+    "sonarqube_image": "sonarqube@sha256:0b3408443fb6a311253de27941b10977c9b977fd53be2265947bfe14161308b8",
+    "sonar_scanner_image": "sonarsource/sonar-scanner-cli@sha256:a3f4215076706c95a17a68c19322ee916e40a3acd081a8c1a1e839e0194afa57"
+  },
+  "trivy_image": "aquasec/trivy@sha256:2416d1f74045b57274df1a340eee6b510cacd73c66a6ccb8da092b117eb7d222",
+  "scan_completed_utc": "2026-11-04T04:31:28.848597241Z"
+}
