@@ -1,0 +1,504 @@
+{
+  "version": 1,
+  "verified_on": "2026-11-03",
+  "notes": [
+    "Names and addresses independently researched from linked restaurant websites. Only Google place IDs originate from Google.",
+    "Photo URLs remain on restaurant/brand publishing hosts; no Google photo names or photo URLs stored.",
+    "No prices, reviews or ratings imported. Plain fries have seasoned=false; seasoned=true identifies a named seasoning blend or added toppings. Salt alone is treated as plain.",
+    "Tr3s Hermanos is retained without a speculative menu/photo because no accessible reliable menu/photo source was verified. The existing user-created placeholder is untouched."
+  ],
+  "restaurants": [
+    {
+      "slug": "melkats",
+      "name": "MelKat's",
+      "address": "7943 Sheridan Road, Kenosha, WI 53143",
+      "google_place_id": "ChIJEaeNTABfBYgRnYzK-T9adX4",
+      "location_source": "https://melkats.com/order",
+      "menu_source": "https://melkats.com/order",
+      "description": "Kenosha burger and hot dog restaurant with fresh-cut fry sides.",
+      "image_url": "https://d1w7312wesee68.cloudfront.net/HgQFC92ilyTEorJqU541zXl_LCZ2g7WtQfZEv738ps4/resize:fit:360:360/plain/s3://toasttab/menu_service/restaurants/af35e379-1e3f-4306-b9de-0bde7b39bdaf/MenuItem/edadcc39-c2a6-4aba-ad8b-253944fb2583.jpg",
+      "photo_source": "https://melkats.com/order",
+      "photo_kind": "Restaurant menu photograph; shows the smash burger.",
+      "products": [
+        {
+          "name": "Regular Fries",
+          "description": "The regular fry side on the published menu.",
+          "style": "other",
+          "seasoned": false,
+          "image_url": "https://d1w7312wesee68.cloudfront.net/eyFneLb23_Xy9zF6cWIehJ0fhI5xmxEZe1VxSbhGecw/resize:fit:360:360/plain/s3://toasttab/menu_service/restaurants/af35e379-1e3f-4306-b9de-0bde7b39bdaf/MenuItem/ac7b028d-8632-48eb-b7ab-438903f69b37.jpg",
+          "photo_source": "https://melkats.com/order"
+        },
+        {
+          "name": "Large Fries",
+          "description": "The large fry side on the published menu.",
+          "style": "other",
+          "seasoned": false,
+          "image_url": "https://d1w7312wesee68.cloudfront.net/KUUoy-M3Ki175dK7RbhUQ3GtPbJoE-sXlWJj5ogIuhU/resize:fit:360:360/plain/s3://toasttab/menu_service/restaurants/af35e379-1e3f-4306-b9de-0bde7b39bdaf/MenuItem/b2aa3150-926b-4ef2-a9a4-7d8b6ee43ba1.jpg",
+          "photo_source": "https://melkats.com/order"
+        },
+        {
+          "name": "Loaded Fries",
+          "description": "Fresh-cut fries with bacon and nacho cheese.",
+          "style": "other",
+          "seasoned": true,
+          "image_url": "https://d1w7312wesee68.cloudfront.net/DBGZml0ECgSUBOBG5kETaNwl0NQ_rPAeT1qMEC7e-B4/resize:fit:360:360/plain/s3://toasttab/menu_service/restaurants/af35e379-1e3f-4306-b9de-0bde7b39bdaf/MenuItem/097f5680-908e-4468-a1e8-2c5c91a0b5cd.jpg",
+          "photo_source": "https://melkats.com/order"
+        }
+      ]
+    },
+    {
+      "slug": "spot",
+      "name": "The Spot Drive-In",
+      "address": "2117 75th Street, Kenosha, WI 53143",
+      "google_place_id": "ChIJHQAb8bVfBYgRDCFstgTlR6g",
+      "location_source": "https://www.spotdrivein.com/",
+      "menu_source": "https://www.spotdrivein.com/menu/",
+      "description": "A Kenosha drive-in established in 1945.",
+      "image_url": "https://www.spotdrivein.com/wp-content/uploads/2020/05/header-menu.png",
+      "photo_source": "https://www.spotdrivein.com/menu/",
+      "photo_kind": "Official menu banner with food photography; not an exterior photo.",
+      "products": [
+        {
+          "name": "French Fries",
+          "description": "French fries listed on the drive-in menu.",
+          "style": "other",
+          "seasoned": false,
+          "image_url": "",
+          "photo_source": ""
+        }
+      ]
+    },
+    {
+      "slug": "boathouse",
+      "name": "Boat House Pub & Eatery",
+      "address": "4917 7th Avenue, Kenosha, WI 53140",
+      "google_place_id": "ChIJc_n33mBeBYgRP9gI76gophU",
+      "location_source": "https://www.boathousekenosha.com/menus/main-menu/",
+      "menu_source": "https://www.boathousekenosha.com/menus/main-menu/",
+      "description": "Lakeside pub and eatery with waffle and sweet potato fry sides.",
+      "image_url": "https://www.boathousekenosha.com/wp-content/uploads/2024/01/DSC2807-4-jpg.webp",
+      "photo_source": "https://www.boathousekenosha.com/",
+      "photo_kind": "Restaurant food photograph; burger and side presentation.",
+      "products": [
+        {
+          "name": "Waffle Fries",
+          "description": "A waffle-fry side listed with the main-menu side choices.",
+          "style": "waffle",
+          "seasoned": false,
+          "image_url": "",
+          "photo_source": ""
+        },
+        {
+          "name": "Sweet Potato Fries",
+          "description": "Sweet potato fry side from the published menu.",
+          "style": "other",
+          "seasoned": false,
+          "image_url": "",
+          "photo_source": ""
+        }
+      ]
+    },
+    {
+      "slug": "ajs",
+      "name": "AJ's Restaurant Deli & Drinks",
+      "address": "3823 22nd Avenue, Kenosha, WI 53140",
+      "google_place_id": "ChIJ3wOTLRlfBYgRuNmTnhkgdHM",
+      "location_source": "https://www.ajsdelikenosha.com/",
+      "menu_source": "https://www.ajsdelikenosha.com/menu",
+      "description": "Neighborhood deli with seasoned fries and loaded fry baskets.",
+      "image_url": "https://images.squarespace-cdn.com/content/v1/69fb5bdc43d1a37194cd27e5/d45ee4ef-b7bb-4a07-a81f-ca164955f8c1/ajs-restaurant-deli-kenosha-storefront.jpg.jpg",
+      "photo_source": "https://www.ajsdelikenosha.com/",
+      "photo_kind": "Restaurant storefront photograph.",
+      "products": [
+        {
+          "name": "Regular Fries",
+          "description": "A basket of seasoned fries.",
+          "style": "other",
+          "seasoned": true,
+          "image_url": "",
+          "photo_source": ""
+        },
+        {
+          "name": "AJ's Loaded Gyro Fries",
+          "description": "Seasoned fries with gyro meat and a choice of two sauces.",
+          "style": "other",
+          "seasoned": true,
+          "image_url": "",
+          "photo_source": ""
+        },
+        {
+          "name": "AJ's Loaded Chicken Fries",
+          "description": "Seasoned fries with chopped fried chicken tenders and two sauces.",
+          "style": "straight-cut",
+          "seasoned": true,
+          "image_url": "https://images.squarespace-cdn.com/content/v1/69fb5bdc43d1a37194cd27e5/675e0ece-7f3a-4420-b9a9-1b2689b6eb40/ajs-restaurant-deli-kenosha-loaded-chicken-fries.jpg",
+          "photo_source": "https://www.ajsdelikenosha.com/"
+        },
+        {
+          "name": "AJ's Loaded Chopped Burger Fries",
+          "description": "Seasoned fries with chopped burger and two sauces.",
+          "style": "other",
+          "seasoned": true,
+          "image_url": "",
+          "photo_source": ""
+        }
+      ]
+    },
+    {
+      "slug": "culvers",
+      "name": "Culver's",
+      "address": "5220 Green Bay Road, Kenosha, WI 53144",
+      "google_place_id": "ChIJy5i-XOhgBYgRo1UWAJ54EVw",
+      "location_source": "https://www.culvers.com/restaurants/kenosha",
+      "menu_source": "https://www.culvers.com/menu/sides",
+      "description": "Green Bay Road location serving the brand’s crinkle-cut fry sides.",
+      "image_url": "https://cdn.culvers.com/menu/images/item/sides/crinkle-cut-fries.png?q=75&w=436&format=auto",
+      "photo_source": "https://www.culvers.com/menu/sides",
+      "photo_kind": "Official brand menu photograph; not specific to this location.",
+      "products": [
+        {
+          "name": "Crinkle Cut Fries",
+          "description": "The brand’s crinkle-cut potato fries.",
+          "style": "crinkle-cut",
+          "seasoned": false,
+          "image_url": "https://cdn.culvers.com/menu/images/item/sides/crinkle-cut-fries.png?q=75&w=436&format=auto",
+          "photo_source": "https://www.culvers.com/menu/sides"
+        },
+        {
+          "name": "Chili Cheddar Fries",
+          "description": "Crinkle-cut fries with chili and cheddar.",
+          "style": "crinkle-cut",
+          "seasoned": true,
+          "image_url": "https://cdn.culvers.com/menu/images/item/sides/chili-cheddar-fries.png?q=75&w=436&format=auto",
+          "photo_source": "https://www.culvers.com/menu/sides"
+        }
+      ]
+    },
+    {
+      "slug": "five-guys",
+      "name": "Five Guys",
+      "address": "9330 76th Street, Pleasant Prairie, WI 53158",
+      "google_place_id": "ChIJYygFhpthBYgRM1PJtoS5acs",
+      "location_source": "https://restaurants.fiveguys.com/wi/pleasant-prairie",
+      "menu_source": "https://www.fiveguys.com/menu/Fries/",
+      "description": "Pleasant Prairie location offering regular and Cajun-style fries.",
+      "image_url": "https://www.fiveguys.com/wp-content/uploads/2025/06/FG-Web-Regular-Fry-Menu-Item.jpg",
+      "photo_source": "https://www.fiveguys.com/menu/Fries/",
+      "photo_kind": "Official brand menu photograph; not specific to this location.",
+      "products": [
+        {
+          "name": "Five Guys Style Fries",
+          "description": "Hand-cut potato fries cooked in peanut oil and lightly salted.",
+          "style": "straight-cut",
+          "seasoned": false,
+          "image_url": "https://www.fiveguys.com/wp-content/uploads/2025/06/FG-Web-Regular-Fry-Menu-Item.jpg",
+          "photo_source": "https://www.fiveguys.com/menu/Fries/"
+        },
+        {
+          "name": "Cajun Style Fries",
+          "description": "Hand-cut fries cooked in peanut oil with Cajun seasoning.",
+          "style": "straight-cut",
+          "seasoned": true,
+          "image_url": "https://www.fiveguys.com/wp-content/uploads/2025/06/FG-Web-Cajun-Fry-Menu-Item.jpg",
+          "photo_source": "https://www.fiveguys.com/menu/Fries/"
+        }
+      ]
+    },
+    {
+      "slug": "red-robin",
+      "name": "Red Robin Gourmet Burgers and Brews",
+      "address": "6610 Green Bay Road, Suite 100, Kenosha, WI 53142",
+      "google_place_id": "ChIJmYUMn_lgBYgRQOK-IkAkpKs",
+      "location_source": "https://www.redrobin.com/locations/wi/kenosha/kenosha-626",
+      "menu_source": "https://www.redrobin.com/bottomless-fries-and-sides",
+      "description": "Kenosha location with steak fries and other bottomless side options.",
+      "image_url": "https://www.redrobin.com/sites/default/files/styles/full_width_sm/public/2024-01/falling-fries-800.jpg.webp?itok=jXWP5BAP",
+      "photo_source": "https://www.redrobin.com/bottomless-fries-and-sides",
+      "photo_kind": "Official brand fry photograph; not specific to this location.",
+      "products": [
+        {
+          "name": "Steak Fries",
+          "description": "The brand’s thick-cut steak fries.",
+          "style": "steak",
+          "seasoned": false,
+          "image_url": "https://www.redrobin.com/sites/default/files/styles/full_width_sm/public/2024-02/side-steak-fries_1.jpg.webp?itok=mx4xbcJB",
+          "photo_source": "https://www.redrobin.com/bottomless-fries-and-sides"
+        },
+        {
+          "name": "Garlic Parmesan Steak Fries",
+          "description": "Steak fries with garlic and Parmesan.",
+          "style": "steak",
+          "seasoned": true,
+          "image_url": "https://www.redrobin.com/sites/default/files/styles/full_width_sm/public/2024-02/side-garlic-parmesan-fries_0.jpg.webp?itok=ENCMkx5_",
+          "photo_source": "https://www.redrobin.com/bottomless-fries-and-sides"
+        },
+        {
+          "name": "Sweet Potato Fries",
+          "description": "Sweet potato fries from the bottomless sides menu.",
+          "style": "other",
+          "seasoned": false,
+          "image_url": "https://www.redrobin.com/sites/default/files/styles/full_width_sm/public/2024-02/side-sweet-potato-fries_0.jpg.webp?itok=V4FHkFpr",
+          "photo_source": "https://www.redrobin.com/bottomless-fries-and-sides"
+        }
+      ]
+    },
+    {
+      "slug": "wingstop",
+      "name": "Wingstop",
+      "address": "5901 75th Street, Suite 150, Kenosha, WI 53142",
+      "google_place_id": "ChIJVWllAVxgBYgR1qjhGygSsjw",
+      "location_source": "https://locations.wingstop.com/wi/kenosha/wingstop-487-kenosha-wi-53142",
+      "menu_source": "https://www.wingstop.com/menu/sides",
+      "description": "Kenosha Wingstop offering seasoned fries and loaded fry options.",
+      "image_url": "https://cdn.bfldr.com/NDQASMJ1/at/rzv3p36b5p3z25cz8nnxb8h8/SIDES_-_FRIES.png?auto=webp&width=640",
+      "photo_source": "https://www.wingstop.com/menu/sides",
+      "photo_kind": "Official brand menu photograph; not specific to this location.",
+      "products": [
+        {
+          "name": "Seasoned Fries",
+          "description": "Fries tossed with Wingstop’s fry seasoning.",
+          "style": "straight-cut",
+          "seasoned": true,
+          "image_url": "https://cdn.bfldr.com/NDQASMJ1/at/rzv3p36b5p3z25cz8nnxb8h8/SIDES_-_FRIES.png?auto=webp&width=640",
+          "photo_source": "https://www.wingstop.com/menu/sides"
+        },
+        {
+          "name": "Cheese Fries",
+          "description": "Seasoned fries with jalapeño cheese sauce.",
+          "style": "straight-cut",
+          "seasoned": true,
+          "image_url": "https://cdn.bfldr.com/NDQASMJ1/at/4qwvv84x5bbxbfm4p8qprrf5/SIDES_-_CHEESE_FRIES.png?auto=webp&width=640",
+          "photo_source": "https://www.wingstop.com/menu/sides"
+        },
+        {
+          "name": "Louisiana Voodoo Fries",
+          "description": "Cajun-seasoned fries with cheese sauce and ranch.",
+          "style": "straight-cut",
+          "seasoned": true,
+          "image_url": "https://cdn.bfldr.com/NDQASMJ1/at/534n2jhwtv7g3nksr9tct32x/VOODOO_FRIES.png?auto=webp&width=640",
+          "photo_source": "https://www.wingstop.com/menu/sides"
+        },
+        {
+          "name": "Buffalo Ranch Fries",
+          "description": "Seasoned fries with Original Hot sauce and ranch.",
+          "style": "straight-cut",
+          "seasoned": true,
+          "image_url": "https://cdn.bfldr.com/NDQASMJ1/at/gm5fjr8g6bt59s8c9tcwnwng/SIDES_-_BUFFALO_RANCH_FRIES.png?auto=webp&width=640",
+          "photo_source": "https://www.wingstop.com/menu/sides"
+        }
+      ]
+    },
+    {
+      "slug": "1844",
+      "name": "The 1844 Table & Mash",
+      "address": "5706 8th Avenue, Kenosha, WI 53140",
+      "google_place_id": "ChIJDYXaTDZfBYgRhe7PP9sFIts",
+      "location_source": "https://the1844.com/gallery",
+      "menu_source": "https://the1844.com/menu/lunch",
+      "description": "Downtown Kenosha restaurant with poutine on its published lunch menu.",
+      "image_url": "https://the1844.com/uploads/gallery_images/thumb_gallery_4176e8a95a48a50668ce585432fd9b72.jpg",
+      "photo_source": "https://the1844.com/gallery",
+      "photo_kind": "Restaurant dining-room photograph.",
+      "products": [
+        {
+          "name": "Poutine Fries",
+          "description": "Hand-cut fries with cheese, bacon, green onion and brown gravy.",
+          "style": "other",
+          "seasoned": true,
+          "image_url": "",
+          "photo_source": ""
+        }
+      ]
+    },
+    {
+      "slug": "chick-fil-a",
+      "name": "Chick-fil-A",
+      "address": "9114 76th Street, Pleasant Prairie, WI 53158",
+      "google_place_id": "ChIJg_rpLLRhBYgRS6KWXcaDf3c",
+      "location_source": "https://www.chick-fil-a.com/locations/wi/pleasant-prairie-wi",
+      "menu_source": "https://www.chick-fil-a.com/menu/sides/chick-fil-a-waffle-potato-fries",
+      "description": "Pleasant Prairie restaurant offering the brand’s waffle potato fries.",
+      "image_url": "https://www.chick-fil-a.com/wp-content/uploads/sites/2/2025/05/cfa14300winter24_medium_fries_plp_hero_d710x580_jpg_master_jpg.jpg",
+      "photo_source": "https://www.chick-fil-a.com/menu/sides/chick-fil-a-waffle-potato-fries",
+      "photo_kind": "Official brand menu photograph; not specific to this location.",
+      "products": [
+        {
+          "name": "Waffle Potato Fries",
+          "description": "Waffle-cut potatoes cooked in canola oil and finished with sea salt.",
+          "style": "waffle",
+          "seasoned": false,
+          "image_url": "https://www.chick-fil-a.com/wp-content/uploads/sites/2/2025/05/cfa14300winter24_medium_fries_plp_hero_d710x580_jpg_master_jpg.jpg",
+          "photo_source": "https://www.chick-fil-a.com/menu/sides/chick-fil-a-waffle-potato-fries"
+        }
+      ]
+    },
+    {
+      "slug": "captain-mikes",
+      "name": "Captain Mike's",
+      "address": "5118 6th Avenue, Kenosha, WI 53140",
+      "google_place_id": "ChIJn1Lyo2BeBYgR1PIujjTHIB8",
+      "location_source": "https://captainmikespub.com/",
+      "menu_source": "https://captainmikesbeerburgerbar.toast.site/menu/captain-mikes-beer-burger-bar",
+      "description": "Lakefront beer and burger bar with hand-cut, thin and loaded egg fries.",
+      "image_url": "https://captainmikespub.com/wp-content/uploads/2026/09/storefront-1024x484.webp",
+      "photo_source": "https://captainmikespub.com/",
+      "photo_kind": "Restaurant storefront photograph.",
+      "products": [
+        {
+          "name": "Thin Fries",
+          "description": "The menu’s skinny fry side.",
+          "style": "shoestring",
+          "seasoned": false,
+          "image_url": "",
+          "photo_source": ""
+        },
+        {
+          "name": "Hand-Cut Fresh Fries",
+          "description": "Fresh potato fries cut by hand.",
+          "style": "other",
+          "seasoned": false,
+          "image_url": "",
+          "photo_source": ""
+        },
+        {
+          "name": "Clearing Stick Egg Fries",
+          "description": "Fries with cheese sauce, fried egg and bacon; hand-cut or thin fries.",
+          "style": "other",
+          "seasoned": true,
+          "image_url": "",
+          "photo_source": ""
+        }
+      ]
+    },
+    {
+      "slug": "waterfront",
+      "name": "Waterfront Warehouse",
+      "address": "3322 Sheridan Road, Kenosha, WI 53140",
+      "google_place_id": "ChIJp5lz9HheBYgRLCjUjfIssJ8",
+      "location_source": "https://eatatww.com/index.php",
+      "menu_source": "https://eatatww.com/food_menu.php",
+      "description": "Kenosha restaurant with an extensive specialty waffle-fries menu.",
+      "image_url": "https://eatatww.com/data/images/ww_01.jpg",
+      "photo_source": "https://eatatww.com/index.php",
+      "photo_kind": "Restaurant food photograph; a specialty-fries presentation.",
+      "products": [
+        {
+          "name": "Greek Fries",
+          "description": "Waffle fries with tzatziki, feta, olives, herbs and lemon.",
+          "style": "waffle",
+          "seasoned": true,
+          "image_url": "",
+          "photo_source": ""
+        },
+        {
+          "name": "Bandito Fries",
+          "description": "Waffle fries with chorizo, queso, jalapeños, pico de gallo and sour cream.",
+          "style": "waffle",
+          "seasoned": true,
+          "image_url": "",
+          "photo_source": ""
+        },
+        {
+          "name": "Loaded Fries",
+          "description": "Waffle fries with bacon, cheddar, sour cream and chives.",
+          "style": "waffle",
+          "seasoned": true,
+          "image_url": "",
+          "photo_source": ""
+        },
+        {
+          "name": "Truffle Fries",
+          "description": "Waffle fries with truffle oil, Parmesan and parsley.",
+          "style": "waffle",
+          "seasoned": true,
+          "image_url": "",
+          "photo_source": ""
+        }
+      ]
+    },
+    {
+      "slug": "rivals",
+      "name": "Rivals Sports Pub & Grille",
+      "address": "6325 120th Avenue, Kenosha, WI 53142",
+      "google_place_id": "ChIJOc9qusljBYgRlZ4YPzbb-yg",
+      "location_source": "https://www.rivalskenosha.com/",
+      "menu_source": "https://www.rivalskenosha.com/",
+      "description": "Sports pub with classic, waffle and loaded waffle fries.",
+      "image_url": "https://images.squarespace-cdn.com/content/v1/5637aef3e4b03c8b27b6b072/1583938985117-ZINRT12R82YRJ3K4GCO9/DSC_5736.jpg?format=1500w",
+      "photo_source": "https://www.rivalskenosha.com/",
+      "photo_kind": "Restaurant interior photograph.",
+      "products": [
+        {
+          "name": "Classic Cut Fries",
+          "description": "The classic-cut fry side on the published menu.",
+          "style": "straight-cut",
+          "seasoned": false,
+          "image_url": "",
+          "photo_source": ""
+        },
+        {
+          "name": "Waffle Fries",
+          "description": "Waffle-cut side option.",
+          "style": "waffle",
+          "seasoned": false,
+          "image_url": "",
+          "photo_source": ""
+        },
+        {
+          "name": "Monster Waffle Fries",
+          "description": "Waffle fries with queso, cheddar, a choice of meat, lettuce, tomato, onion, olives, jalapeños and sour cream.",
+          "style": "waffle",
+          "seasoned": true,
+          "image_url": "",
+          "photo_source": ""
+        }
+      ]
+    },
+    {
+      "slug": "wendys",
+      "name": "Wendy's",
+      "address": "3811 75th Street, Kenosha, WI 53142",
+      "google_place_id": "ChIJeQLr-tVfBYgRoMd_kKWI5kA",
+      "location_source": "https://locations.wendys.com/united-states/wi/kenosha/3811-75th-st",
+      "menu_source": "https://order.wendys.com/us/en/national/menu/fries-sides",
+      "description": "75th Street location offering fries and loaded fry sides.",
+      "image_url": "https://order.wendys.com/_next/image?url=https%3A%2F%2Fapp.wendys.com%2Funified%2Fassets%2Fmenu%2Fpg-cropped%2F165_small_US_en.png&w=384&q=75",
+      "photo_source": "https://order.wendys.com/us/en/national/menu/fries-sides",
+      "photo_kind": "Official brand menu photograph; not specific to this location.",
+      "products": [
+        {
+          "name": "French Fries",
+          "description": "The brand’s standard French fry side.",
+          "style": "straight-cut",
+          "seasoned": false,
+          "image_url": "https://order.wendys.com/_next/image?url=https%3A%2F%2Fapp.wendys.com%2Funified%2Fassets%2Fmenu%2Fpg-cropped%2F165_small_US_en.png&w=384&q=75",
+          "photo_source": "https://order.wendys.com/us/en/national/menu/fries-sides"
+        },
+        {
+          "name": "Baconator Fries",
+          "description": "Fries topped with bacon and cheese.",
+          "style": "straight-cut",
+          "seasoned": true,
+          "image_url": "https://order.wendys.com/_next/image?url=https%3A%2F%2Fapp.wendys.com%2Funified%2Fassets%2Fmenu%2Fpg-cropped%2F217_small_US_en.png&w=384&q=75",
+          "photo_source": "https://order.wendys.com/us/en/national/menu/fries-sides"
+        },
+        {
+          "name": "Chili Cheese Fries",
+          "description": "Fries topped with chili and cheese.",
+          "style": "straight-cut",
+          "seasoned": true,
+          "image_url": "https://order.wendys.com/_next/image?url=https%3A%2F%2Fapp.wendys.com%2Funified%2Fassets%2Fmenu%2Fpg-cropped%2F455_small_US_en.png&w=384&q=75",
+          "photo_source": "https://order.wendys.com/us/en/national/menu/fries-sides"
+        },
+        {
+          "name": "Cheese Fries",
+          "description": "Fries with cheese topping.",
+          "style": "straight-cut",
+          "seasoned": true,
+          "image_url": "https://order.wendys.com/_next/image?url=https%3A%2F%2Fapp.wendys.com%2Funified%2Fassets%2Fmenu%2Fpg-cropped%2F723_small_US_en.png&w=384&q=75",
+          "photo_source": "https://order.wendys.com/us/en/national/menu/fries-sides"
+        }
+      ]
+    }
+  ]
+}
