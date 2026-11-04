@@ -1,0 +1,20 @@
+✔ autocomplete initializes, selects by keyboard and rotates tokens on LAN HTTP (3.4317ms)
+✔ autocomplete initializes, selects by keyboard and rotates tokens on HTTPS (1.8552ms)
+✔ LAN HTTP still registers location fallback when randomUUID is unavailable (0.6884ms)
+✔ denied location clears coordinates and keeps address fallback usable (0.8175ms)
+✔ insecure origin explains fallback without asking for coordinates (0.8411ms)
+✔ successful location prepares a private search only after a user click (0.6635ms)
+✔ late GPS response cannot overwrite a newly selected address (0.7057ms)
+✔ POST discovery search announces finding fries while account forms announce saving (0.7769ms)
+✔ keyboard and pointer choices fill the name; typo/clear never retain an old selection (3.6467ms)
+✔ Escape/blur ignore late catalogue responses and ArrowUp selects the last choice (1.2388ms)
+✔ unavailable suggestions can retry and names are inserted as text (0.5767ms)
+✔ prefix suggestions narrow generically and cap the combined list at six options (20.7952ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 12
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 94.3087

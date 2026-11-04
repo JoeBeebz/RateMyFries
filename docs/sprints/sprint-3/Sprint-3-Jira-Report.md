@@ -1,93 +1,92 @@
-# Sprint 3 Jira Report
+# Sprint 3 Jira Report - Seth Martin
 
-- **Project:** [Crispy Team (FRY)](https://ratemyfries.atlassian.net/browse/FRY)
-- **Sprint:** FRY Sprint 3, Jira sprint ID 3
-- **Scheduled dates:** October 20-November 3, 2026 (America/Chicago)
-- **Snapshot date:** October 20, 2026; this is an in-progress sprint report, not a claimed completed sprint.
-- **Student:** Seth Martin (`sethdmartin1000` in Jira; `SethMart1` on GitHub)
-- **Implementation:** [PR #4](https://github.com/JoeBeebz/RateMyFries/pull/4)
+**Student:** Seth Martin | **Project:** Rate My Fries (FRY) | **Sprint:** FRY Sprint 3, October 20-November 3, 2026.
 
-## Sprint Commitment vs Delivery
+**Report date:** November 3, 2026. Snapshot verified from live Jira/GitHub; times use America/Chicago. October 20 was CDT (UTC-05:00); November 3 is CST (UTC-06:00).
 
-| Metric | Count |
-| --- | ---: |
-| Issues committed at sprint start | 12 |
-| Issues completed (Done) | 0 |
-| Issues not completed | 12 |
-| Issues added mid-sprint | 0 |
 
-All 12 stories were created, assigned, estimated and added before the sprint was started on October 20. Jira's Sprint 3 burndown reports no scope changes and no completed issues. Eight stories are In Review; four are In Progress with live Google acceptance blockers. Implementation/test completion is not counted as Jira Done.
+## Sprint commitment versus delivery
 
-## Issue Breakdown by Type
+| Metric | Verified value |
+| --- | --- |
+| Original committed issues | 12 |
+| Issues Done | 10 |
+| Issues not Done | 2 |
+| Issues added after sprint start | 0 |
+| Committed story points | 46 |
+| Completed story points | 36 |
+| Point completion | 36/46 = 78.26% |
+| Issue completion | 10/12 = 83.33% |
+| Sprint closure | Still active; Complete sprint control remains available |
+
+The Jira burndown selected FRY Sprint 3 and Story points, displayed the scheduled October 20-November 3 dates, and reported no scope changes. Its completed and incomplete tables agree with the 12-issue navigator query. These are observed Done totals at this snapshot, not a claim that the sprint was formally closed.
+
+## Issue breakdown by type and status
 
 | Type | To Do | In Progress | In Review | Done |
-| --- | ---: | ---: | ---: | ---: |
-| Story | 0 | 4 | 8 | 0 |
+| --- | --- | --- | --- | --- |
+| Story | 0 | 1 | 1 | 10 |
 | Task | 0 | 0 | 0 | 0 |
 | Bug | 0 | 0 | 0 | 0 |
 
-An additional In Review column preserves the actual Jira workflow instead of misclassifying those eight stories as Done or In Progress.
+## Committed stories
 
-| Issue | Story | Points | Exact Jira status |
-| --- | --- | ---: | --- |
-| [FRY-45](https://ratemyfries.atlassian.net/browse/FRY-45) | Unify restaurant and fry search | 5 | In Review |
-| [FRY-46](https://ratemyfries.atlassian.net/browse/FRY-46) | Current and nearby Google location assistance | 5 | In Progress |
-| [FRY-47](https://ratemyfries.atlassian.net/browse/FRY-47) | Admin and user roles | 3 | In Review |
-| [FRY-48](https://ratemyfries.atlassian.net/browse/FRY-48) | Admin review before business publication | 5 | In Review |
-| [FRY-49](https://ratemyfries.atlassian.net/browse/FRY-49) | Regular-user business submission form | 3 | In Review |
-| [FRY-50](https://ratemyfries.atlassian.net/browse/FRY-50) | Private optional profile address | 3 | In Review |
-| [FRY-51](https://ratemyfries.atlassian.net/browse/FRY-51) | Address-based nearby search | 3 | In Progress |
-| [FRY-52](https://ratemyfries.atlassian.net/browse/FRY-52) | Google-sourced Kenosha businesses | 3 | In Progress |
-| [FRY-53](https://ratemyfries.atlassian.net/browse/FRY-53) | Admin-only direct store creation | 3 | In Review |
-| [FRY-54](https://ratemyfries.atlassian.net/browse/FRY-54) | Admin business-request inbox | 3 | In Review |
-| [FRY-55](https://ratemyfries.atlassian.net/browse/FRY-55) | Admin-authorized administrator accounts | 5 | In Review |
-| [FRY-56](https://ratemyfries.atlassian.net/browse/FRY-56) | Google address autocomplete | 5 | In Progress |
+| Issue | Story | Points | Jira status |
+| --- | --- | --- | --- |
+| [FRY-45](https://ratemyfries.atlassian.net/browse/FRY-45) | Unify restaurant and fry search in one menu | 5 | Done |
+| [FRY-46](https://ratemyfries.atlassian.net/browse/FRY-46) | Find current and nearby locations with Google location services | 5 | In Progress |
+| [FRY-47](https://ratemyfries.atlassian.net/browse/FRY-47) | Support administrator and regular user account roles | 3 | Done |
+| [FRY-48](https://ratemyfries.atlassian.net/browse/FRY-48) | Review regular-user business submissions before publishing | 5 | Done |
+| [FRY-49](https://ratemyfries.atlassian.net/browse/FRY-49) | Provide a business submission form for regular users | 3 | Done |
+| [FRY-50](https://ratemyfries.atlassian.net/browse/FRY-50) | Store a private optional profile address for nearby discovery | 3 | Done |
+| [FRY-51](https://ratemyfries.atlassian.net/browse/FRY-51) | Search nearby fries using an address instead of latitude and longitude | 3 | Done |
+| [FRY-52](https://ratemyfries.atlassian.net/browse/FRY-52) | Import Kenosha businesses from Google business data | 3 | Done |
+| [FRY-53](https://ratemyfries.atlassian.net/browse/FRY-53) | Restrict direct store creation to administrators | 3 | Done |
+| [FRY-54](https://ratemyfries.atlassian.net/browse/FRY-54) | Provide an administrator inbox for business requests | 3 | Done |
+| [FRY-55](https://ratemyfries.atlassian.net/browse/FRY-55) | Allow only existing administrators to create administrator accounts | 5 | Done |
+| [FRY-56](https://ratemyfries.atlassian.net/browse/FRY-56) | Autocomplete address inputs using Google location services | 5 | In Review |
 
-## Per-Student Work Allocation
+## Per-student allocation and estimation
 
-| Student | Issues Assigned | Issues Completed |
-| --- | ---: | ---: |
-| Seth Martin | 12 | 0 |
+| Student | Assigned committed issues | Done issues | Done points |
+| --- | --- | --- | --- |
+| Seth Martin | 12 | 10 | 36 |
 
-All 12 assignments are recorded in Jira. PR #4 contains implementation work across all 12 stories; this is not a substitute for accepted/merged delivery.
+The committed 46 points have not changed. Five points remain In Progress and five In Review. Point completion improved from 0/46 in the October 20 snapshot to 36/46; ten issues advanced to Done. No time-spent accuracy or team velocity estimate is invented because reliable actual-effort data and a closed sprint are unavailable. No extra backlog work is added to these totals.
 
-## Estimation & Accuracy
+## Workflow discipline and remaining acceptance
 
-| Metric | Value |
-| --- | ---: |
-| Total story points committed | 46 |
-| Total story points completed | 0 |
-| Completion % | 0% (0 / 46 points) |
+- [x] Jira records the original stories progressing from initial In Progress/In Review to ten Done outcomes; representative issue links and the prior committed report retain the progression evidence.
+- [x] The base implementation PR #4 is merged with teammate approval; account, moderation and search regression checks and live Google address/import acceptance were completed.
+- [ ] All committed acceptance is finished: FRY-46 still needs a successful real device-position result, and FRY-56 still needs the follow-up PR #7 approval/merge.
+- [ ] Sprint closed in Jira: it remains active; this report does not close or roll over issues.
 
-Eight In Review stories represent 30 points. Four Google-dependent In Progress stories represent 16 points. No velocity or final estimation-accuracy claim is made while the sprint is active.
+FRY-46's authorized device-location attempt returned no position. The LAN HTTP origin limitation and late-callback handling were addressed in test code, and the address-entry fallback works. Successful real-device location remains unverified. FRY-56's class HTTP initialization/accessibility fix works in the test deployment but remains unmerged. Do not equate that deployment with approved main delivery.
 
-## Workflow Discipline
+## Additional work outside the original sprint commitment
 
-- [ ] Issues moved through workflow states (To Do -> In Progress -> Done).
-- [ ] Issues closed only after acceptance criteria met.
-- [ ] Sprint completed/closed in Jira.
+| Issue | Work | Current status |
+| --- | --- | --- |
+| [FRY-40](https://ratemyfries.atlassian.net/browse/FRY-40) | Use a consistent interface on desktop and mobile | In Review |
+| [FRY-44](https://ratemyfries.atlassian.net/browse/FRY-44) | Load normal pages within an agreed performance target | In Review |
+| [FRY-57](https://ratemyfries.atlassian.net/browse/FRY-57) | Expand Kenosha restaurant catalogue with verified fry menus and photos | In Review |
+| [FRY-58](https://ratemyfries.atlassian.net/browse/FRY-58) | Autofill catalogue search and return only exact listed matches | In Review |
+| [FRY-59](https://ratemyfries.atlassian.net/browse/FRY-59) | Migrate Fry from the personal server to a private EC2 development instance | In Review |
 
-The observed path is To Do -> In Progress for all 12, then In Review for eight. No issue was closed, so the full Done workflow and closure checklist are not claimed. The sprint remains active because required review/merge and live acceptance work remain.
+FRY-40/44 are older backlog quality items. FRY-57/58/59 are new catalogue, autofill and private-migration stories created before their implementations. None appears in the Sprint 3 scope query, so their points and completion are excluded from sprint delivery. FRY-3, FRY-5 and FRY-14 were closed with the owner's explanation that they were obsolete setup placeholders; those closures are not implementation delivery. The requested unused-EC2 cleanup had no Jira story and is excluded from these metrics.
 
-## Blockers & Scope Changes
+The private migration preserved the personal server and copied the actual deployed application, 16 restaurants and 37 fry listings. It was left stopped after reboot/private-access acceptance. Individual first sign-ins/password choices, PR review and the new infrastructure scan findings remain open for FRY-59. No AWS account names, passwords or sign-in details are included here.
 
-- **Review/merge:** GitHub requires at least one approving review. PR #4 is open and unmerged; it has not been counted as delivered work.
-- **Google configuration:** Seth confirmed no Google Cloud project, API key or billing configuration exists. Code and mocked tests are present, but live autocomplete/geocoding and actual Google-sourced Kenosha import are not verified. No Google businesses, menu prices or ratings were invented.
-- **API choice:** Places API (New) discovers third-party businesses; Google Business Profile APIs manage owned businesses. This implementation clarification is documented in FRY-52 and the repository.
-- **First admin:** One-time trusted-operator bootstrap initializes an existing registered account; later promotions require an existing admin and record an audit entry.
-- **Scope changes:** None after sprint start. Old placeholder/backlog issues and Sprint 2 spillover were not silently added to Sprint 3.
-- **Potential spillover:** If review or Google setup is unavailable by the scheduled end, affected stories must remain unfinished or be moved through Jira's normal sprint-completion flow. No rollover has been claimed.
+## Validation and static review
 
-## Validation Evidence
+An analysis-only combination of the deployed application and pending catalogue/EC2 files passed 72 Python tests and 12 JavaScript checks. This is separate from merged-main acceptance. SonarQube reports 0 bugs, 1 vulnerability, 0 code smells and 0 security hotspots. Trivy reports 0 dependency vulnerabilities, 3 infrastructure misconfigurations and 0 secrets. The four tool findings remain visible; no suppressions, source fixes or live AWS permission/network changes were made for this reporting task. See the separate static-analysis reports for severity, scope and review recommendations.
 
-48 isolated integration/regression tests passed against the final submitted application, including signed-CSRF forgery/cross-client/session-rotation checks; JavaScript syntax validation passed. Browser inspection verified the unified search on desktop and a 390px viewport with no horizontal overflow, plus the missing-key/manual-entry fallback. See [implementation mapping](../../../IMPLEMENTATION.md) for per-story checks and live-service limits.
+## Jira evidence links (no screenshots)
 
-## Jira Evidence Links (No Screenshots)
+- [Sprint 3 burndown and commitment](https://ratemyfries.atlassian.net/jira/software/projects/FRY/boards/1/reports/burndown?source=overview) - select FRY Sprint 3 and Story points if Jira remembers another choice.
+- [Sprint 3 issue scope](https://ratemyfries.atlassian.net/issues/?jql=project%20%3D%20FRY%20AND%20sprint%20%3D%203%20ORDER%20BY%20key%20ASC).
+- [Active board and workflow](https://ratemyfries.atlassian.net/jira/software/projects/FRY/boards/1).
+- [Backlog](https://ratemyfries.atlassian.net/jira/software/projects/FRY/boards/1/backlog).
+- [Merged implementation PR #4](https://github.com/JoeBeebz/RateMyFries/pull/4), [address follow-up PR #7](https://github.com/JoeBeebz/RateMyFries/pull/7), [quality PR #10](https://github.com/JoeBeebz/RateMyFries/pull/10), [private migration PR #11](https://github.com/JoeBeebz/RateMyFries/pull/11).
 
-- [Sprint report: burndown, with FRY Sprint 3 selected](https://ratemyfries.atlassian.net/jira/software/projects/FRY/boards/1/reports/burndown?source=overview). Verified report heading: FRY Sprint 3; no scope changes and no completed issues. Select FRY Sprint 3 if Jira remembers another selection later.
-- [Project backlog](https://ratemyfries.atlassian.net/jira/software/projects/FRY/boards/1/backlog).
-- [Board routed to Sprint 3](https://ratemyfries.atlassian.net/secure/GHGoToBoard.jspa?sprintId=3).
-- [Sprint 3 scope only: issue navigator](https://ratemyfries.atlassian.net/issues/?jql=project%20%3D%20FRY%20AND%20sprint%20%3D%203%20ORDER%20BY%20key%20ASC).
-
-
-Final static-analysis evidence: [PDF folder](static-analysis/) contains the actual SonarQube dashboard/API export and converted Trivy summary. SonarQube reports 0 bugs, 0 vulnerabilities, 0 code smells, 0 security hotspots and a passing quality gate; Trivy reports 0 CRITICAL/HIGH/MEDIUM/LOW dependency vulnerabilities. The original CSRF/form findings were fixed and rescanned, without suppressions. These results do not remove the required PR approval/merge or missing Google live acceptance checks.
+The prior October 20 report is retained in Git history. This snapshot supersedes its no-Google-configuration blocker and 0 Done totals; it preserves the unresolved device-location and review distinctions.

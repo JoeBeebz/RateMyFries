@@ -1,0 +1,19 @@
+{
+  "id": "6ccd6ea7-2db8-4853-b5d2-92906b3b8370",
+  "type": "REPORT",
+  "componentId": "c1a50215-0199-42e0-918a-974175fb6cdd",
+  "componentKey": "RateMyFries-Sprint3-Final-20261103",
+  "componentName": "Rate My Fries - Sprint 3 final review",
+  "componentQualifier": "TRK",
+  "analysisId": "21e47cfa-0956-4fcf-ad95-eb5d5acfc222",
+  "status": "SUCCESS",
+  "submittedAt": "2026-11-04T04:31:23+0000",
+  "submitterLogin": "admin",
+  "startedAt": "2026-11-04T04:31:23+0000",
+  "executedAt": "2026-11-04T04:31:26+0000",
+  "executionTimeMs": 3413,
+  "hasScannerContext": true,
+  "warningCount": 0,
+  "warnings": [],
+  "infoMessages": []
+}

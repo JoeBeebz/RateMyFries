@@ -1,0 +1,9 @@
+Sanitized source construction: git archive each exact revision/path listed in scan-metadata.json.
+Python: python -m coverage run --source=app,sprint,locations,migrations,tools -m pytest -q
+Coverage: python -m coverage xml -o coverage.xml (normalize source root to /usr/src for container import)
+JavaScript: node --test tests/address-suggestions.test.cjs tests/catalogue-search.test.cjs
+Syntax: node --check static/app.js; node --check static/catalogue-search.js
+Dependencies: python -m pip freeze
+Sonar: official scanner container, SONAR_TOKEN passed by environment; sources=app.py,sprint.py,locations.py,migrations.py,schema.sql,static,templates,tools,infra,data; tests=tests; python.version=3.11; python.coverage.reportPaths=coverage.xml; scm.disabled=true; scm.revision=source-manifest SHA-256.
+Trivy: fs --scanners vuln,misconfig,secret --skip-dirs .scannerwork --skip-dirs __pycache__ --format json --output /reports/trivy.json /src
+Tool image digests, successful task/logs and unmodified tool JSON are retained. No tool findings were suppressed or remediated.
