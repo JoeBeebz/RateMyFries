@@ -12,6 +12,9 @@ import sqlite3
 import subprocess
 import sys
 import tarfile
+import time
+import urllib.error
+import urllib.request
 
 
 def check_database(path):
@@ -41,6 +44,8 @@ def main():
             assert (stage / member.name).resolve().is_relative_to(stage)
         archive.extractall(stage, filter='data')
     manifest = json.loads((stage / 'manifest.json').read_text())
+    for name in ('app.py', 'sprint.py', 'locations.py', 'migrations.py', 'schema.sql', 'requirements.txt'):
+        assert (stage / 'app' / name).is_file(), f'Missing runtime file: {name}'
     counts = check_database(stage / 'state/fries.sqlite3')
     assert counts == manifest['counts']
     commit = manifest['commit'].strip()
@@ -58,6 +63,7 @@ def main():
     Path('/etc/ratemyfries/google.env').chmod(0o600)
     subprocess.run(['python3.12', '-m', 'venv', str(release / '.venv')], check=True)
     subprocess.run([str(release / '.venv/bin/python'), '-m', 'pip', 'install', '-r', str(release / 'requirements.txt')], check=True)
+    subprocess.run([str(release / '.venv/bin/python'), '-c', 'import app'], cwd=release, check=True)
     subprocess.run(['chown', '-R', 'fryapp:fry-admins', str(release)], check=True)
     current = base / 'current'
     if current.exists() and not current.is_symlink():
@@ -70,6 +76,15 @@ def main():
     (release / 'DEPLOYED_COMMIT').write_text(commit + '\n')
     subprocess.run(['chown', 'fryapp:fry-admins', str(release / 'DEPLOYED_COMMIT')], check=True)
     subprocess.run(['systemctl', 'restart', 'ratemyfries.service'], check=True)
+    for attempt in range(20):
+        try:
+            with urllib.request.urlopen('http://127.0.0.1:8000/', timeout=5) as response:
+                assert response.status == 200
+            break
+        except (OSError, urllib.error.URLError):
+            if attempt == 19:
+                raise RuntimeError('Restored website did not become healthy within the startup window') from None
+            time.sleep(1)
     subprocess.run(['systemctl', 'is-active', '--quiet', 'ratemyfries.service'], check=True)
     assert check_database(instance / 'fries.sqlite3') == counts
     print(json.dumps({'installed': True, 'commit': commit, 'counts': counts,

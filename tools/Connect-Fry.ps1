@@ -7,6 +7,12 @@ param(
 )
 $ErrorActionPreference = 'Stop'
 if ($InstanceId -notmatch '^i-[0-9a-f]{8,17}$') { throw 'Use the instance ID from the migration outputs.' }
+if (-not $SessionManagerPluginDirectory) {
+    $userPlugin = Join-Path $env:LOCALAPPDATA 'Programs/Amazon/SessionManagerPlugin/bin'
+    if (Test-Path -LiteralPath (Join-Path $userPlugin 'session-manager-plugin.exe')) {
+        $SessionManagerPluginDirectory = $userPlugin
+    }
+}
 if ($SessionManagerPluginDirectory) {
     $pluginDirectory = (Resolve-Path -LiteralPath $SessionManagerPluginDirectory).Path
     $env:PATH = "$pluginDirectory;$env:PATH"

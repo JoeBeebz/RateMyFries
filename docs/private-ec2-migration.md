@@ -62,6 +62,8 @@ Closing the session removes that viewing path; nothing is published publicly.
    parameters. Review permissions/costs before execution.
 3. Back up the personal server with SQLite's consistent backup API; check
    integrity, foreign keys, deployment revision and core table counts.
+   Include every deployed root Python module (including `migrations.py`),
+   requirements, schema, templates and static assets in the source archive.
 4. Bootstrap a transfer key **on EC2**. Export only its public certificate.
    Encrypt the transfer archive with CMS/AES-256 to that certificate before
    uploading it. Plaintext database/signing/API secrets must not enter SSM
@@ -81,3 +83,39 @@ service, restore the previous `current` symlink and its backed-up state, then
 restart and check health. Never copy an older database over newer reviews
 without first preserving the current database. Back up EC2 before retiring the
 stack; deleting the stack deletes its root disk and releases its address.
+
+## Deployment acceptance
+
+The private development copy is deployed to `i-03fa5d0d410bf587c` in `us-east-1`
+and was left **stopped** after acceptance. Its source is the personal server's
+actual deployed revision `d094cd8e52b1dcf413ed1a36209a367abe525262`; it includes
+previously deployed feature work still pending its separate PR review. This
+migration does not merge those PRs or replace their review requirements.
+
+- SQLite integrity and foreign keys passed; the copy has 1 existing account,
+  16 restaurants, 37 fry listings, 0 reviews and 0 business requests.
+- Homepage, directories, search, catalogue options and fry details returned 200.
+  The measured application responses were 0.017–0.301 seconds. Exact restaurant
+  search returned its fries; a misspelled name returned no listings. Browser
+  acceptance confirmed six prefix suggestions and loaded restaurant/fry photos.
+- The dedicated restricted Google configuration completed a public city lookup.
+- The live listener was `127.0.0.1:8000`; external ports 22/80/443/8000 were
+  unreachable. An authenticated SSM tunnel opened the site at localhost:8002.
+- Both Linux identities successfully elevated with sudo. Thirteen IAM policy
+  cases per identity verified permitted instance connection/start/stop/reboot
+  and denied instance deletion, unrelated-instance changes, IAM administration,
+  command execution through SSM Run Command and termination of others' sessions.
+- Both console profiles require a first-sign-in password change and have no
+  permanent access keys. Password choice and each person's first sign-in remain
+  human steps; policy simulation is not a claim that those sign-ins occurred.
+- An actual EC2 reboot changed the boot identifier, automatically started the
+  service, and returned a 200 homepage. The instance was then stopped. The
+  personal-server service remained active and returned 200.
+- 52 repository tests, Python compilation, PowerShell parsing and whitespace
+  checks passed. The encrypted restore also verified runtime imports and HTTP
+  health before reporting successful installation.
+
+Temporary sign-in files and the two-PC connection toolkit were delivered outside
+Git/Jira. FRY-59 remains In Review until teammate PR approval/merge and individual
+sign-in acceptance are complete. Do not mark it Done solely because the private
+copy is deployed.
