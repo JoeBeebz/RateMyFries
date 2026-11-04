@@ -19,6 +19,11 @@ before taxes, data transfer and Google API usage. Stopping compute leaves about
 **$4.29/month** for the disk and retained address. An AWS budget alert is not a
 hard spending cap. Free-tier credits are not assumed.
 
+The owner approved keeping compute **stopped between work sessions**. Start it
+before connecting and explicitly stop it after everyone has finished. Closing
+the browser or forwarding window does not stop EC2. Migration acceptance ends
+with the instance stopped; the personal server remains available.
+
 Sources: [IPv4 pricing](https://aws.amazon.com/vpc/pricing/),
 [EBS pricing](https://aws.amazon.com/ebs/pricing/), and the signed-in EC2 console's
 instance-type quote. Prices and regional availability must be checked at launch.
