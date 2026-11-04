@@ -1,0 +1,385 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "FRY-59 private class development instance; website is available only through authenticated SSM forwarding.",
+  "Parameters": {
+    "VpcId": {
+      "Type": "AWS::EC2::VPC::Id"
+    },
+    "SubnetId": {
+      "Type": "AWS::EC2::Subnet::Id"
+    },
+    "ImageId": {
+      "Type": "AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>",
+      "Default": "/aws/service/ami-amazon-linux-latest/al2023-ami-kernel-default-arm64"
+    },
+    "AdminUserOne": {
+      "Type": "String",
+      "NoEcho": true,
+      "AllowedPattern": "[A-Za-z][A-Za-z0-9_]{1,30}"
+    },
+    "AdminUserTwo": {
+      "Type": "String",
+      "NoEcho": true,
+      "AllowedPattern": "[A-Za-z][A-Za-z0-9_]{1,30}"
+    }
+  },
+  "Resources": {
+    "ServerRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "ec2.amazonaws.com"
+              },
+              "Action": "sts:AssumeRole"
+            }
+          ]
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Sub": "arn:${AWS::Partition}:iam::aws:policy/AmazonSSMManagedInstanceCore"
+          }
+        ]
+      }
+    },
+    "ServerProfile": {
+      "Type": "AWS::IAM::InstanceProfile",
+      "Properties": {
+        "Roles": [
+          {
+            "Ref": "ServerRole"
+          }
+        ]
+      }
+    },
+    "PrivateSecurityGroup": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "Fry private development: no inbound access; authenticated SSM only",
+        "VpcId": {
+          "Ref": "VpcId"
+        },
+        "SecurityGroupIngress": [],
+        "SecurityGroupEgress": [
+          {
+            "IpProtocol": "-1",
+            "CidrIp": "0.0.0.0/0"
+          }
+        ],
+        "Tags": [
+          {
+            "Key": "Project",
+            "Value": "Fry"
+          },
+          {
+            "Key": "Name",
+            "Value": "Fry-private-no-ingress"
+          }
+        ]
+      }
+    },
+    "Server": {
+      "Type": "AWS::EC2::Instance",
+      "Properties": {
+        "ImageId": {
+          "Ref": "ImageId"
+        },
+        "InstanceType": "t4g.micro",
+        "IamInstanceProfile": {
+          "Ref": "ServerProfile"
+        },
+        "NetworkInterfaces": [
+          {
+            "DeviceIndex": "0",
+            "SubnetId": {
+              "Ref": "SubnetId"
+            },
+            "AssociatePublicIpAddress": false,
+            "GroupSet": [
+              {
+                "Ref": "PrivateSecurityGroup"
+              }
+            ]
+          }
+        ],
+        "BlockDeviceMappings": [
+          {
+            "DeviceName": "/dev/xvda",
+            "Ebs": {
+              "VolumeType": "gp3",
+              "VolumeSize": 8,
+              "Encrypted": true,
+              "DeleteOnTermination": true
+            }
+          }
+        ],
+        "CreditSpecification": {
+          "CPUCredits": "standard"
+        },
+        "MetadataOptions": {
+          "HttpEndpoint": "enabled",
+          "HttpTokens": "required",
+          "HttpPutResponseHopLimit": 1
+        },
+        "UserData": {
+          "Fn::Base64": {
+            "Fn::Sub": "#!/bin/bash\nset -euo pipefail\numask 077\n\n# The static outbound address is attached immediately after instance creation.\nfor attempt in {1..12}; do\n    if dnf install -y python3.12 python3.12-pip openssl; then break; fi\n    sleep 5\ndone\ncommand -v python3.12\nsystemctl enable --now amazon-ssm-agent\ngroupadd -f fry-admins\nfor name in '${AdminUserOne}' '${AdminUserTwo}'; do\n    id \"$name\" >/dev/null 2>&1 || useradd -m -s /bin/bash \"$name\"\n    usermod -aG fry-admins \"$name\"\ndone\nprintf '%%fry-admins ALL=(ALL) NOPASSWD: ALL\\n' > /etc/sudoers.d/fry-admins\nchmod 440 /etc/sudoers.d/fry-admins\nvisudo -cf /etc/sudoers.d/fry-admins\nid fryapp >/dev/null 2>&1 || useradd --system --home-dir /srv/ratemyfries --shell /sbin/nologin fryapp\ninstall -d -m 0750 -o fryapp -g fry-admins /srv/ratemyfries\ninstall -d -m 0700 /etc/ratemyfries /root/fry-transfer\n\n# The private key stays on this machine. Only its public certificate is exported.\nopenssl req -x509 -newkey rsa:3072 -noenc -sha256 -days 7 \\\n    -subj '/CN=Fry private migration' \\\n    -keyout /root/fry-transfer/key.pem -out /root/fry-transfer/certificate.pem\nchmod 600 /root/fry-transfer/key.pem\n\ncat > /etc/systemd/system/ratemyfries.service <<'UNIT'\n[Unit]\nDescription=Private Fry class development website\nAfter=network-online.target\nWants=network-online.target\nConditionPathExists=/srv/ratemyfries/current/.venv/bin/waitress-serve\n[Service]\nType=simple\nUser=fryapp\nGroup=fry-admins\nWorkingDirectory=/srv/ratemyfries/current\nEnvironmentFile=/etc/ratemyfries/google.env\nExecStart=/srv/ratemyfries/current/.venv/bin/waitress-serve --host=127.0.0.1 --port=8000 --call app:create_app\nRestart=on-failure\nRestartSec=5\nUMask=0077\nNoNewPrivileges=true\nPrivateTmp=true\nProtectSystem=strict\nReadWritePaths=/srv/ratemyfries\nProtectHome=true\n[Install]\nWantedBy=multi-user.target\nUNIT\nprintf 'GOOGLE_PLACES_API_KEY=\\n' > /etc/ratemyfries/google.env\nchmod 600 /etc/ratemyfries/google.env\nsystemctl daemon-reload\nsystemctl enable ratemyfries.service\nprintf 'Fry private bootstrap complete\\n' > /root/fry-transfer/ready\n"
+          }
+        },
+        "Tags": [
+          {
+            "Key": "Project",
+            "Value": "Fry"
+          },
+          {
+            "Key": "Name",
+            "Value": "Fry-private-dev"
+          }
+        ]
+      }
+    },
+    "OutboundAddress": {
+      "Type": "AWS::EC2::EIP",
+      "Properties": {
+        "Domain": "vpc",
+        "Tags": [
+          {
+            "Key": "Project",
+            "Value": "Fry"
+          },
+          {
+            "Key": "Name",
+            "Value": "Fry-Google-outbound"
+          }
+        ]
+      }
+    },
+    "OutboundAssociation": {
+      "Type": "AWS::EC2::EIPAssociation",
+      "Properties": {
+        "AllocationId": {
+          "Fn::GetAtt": [
+            "OutboundAddress",
+            "AllocationId"
+          ]
+        },
+        "InstanceId": {
+          "Ref": "Server"
+        }
+      }
+    },
+    "AdminSession": {
+      "Type": "AWS::SSM::Document",
+      "Properties": {
+        "DocumentType": "Session",
+        "DocumentFormat": "JSON",
+        "Name": "Fry-AdminShell",
+        "Content": {
+          "schemaVersion": "1.0",
+          "description": "Private Fry administrative shell using the signed-in identity",
+          "sessionType": "Standard_Stream",
+          "inputs": {
+            "s3BucketName": "",
+            "s3KeyPrefix": "",
+            "s3EncryptionEnabled": true,
+            "cloudWatchLogGroupName": "",
+            "cloudWatchEncryptionEnabled": true,
+            "cloudWatchStreamingEnabled": false,
+            "kmsKeyId": "",
+            "runAsEnabled": true,
+            "runAsDefaultUser": "",
+            "idleSessionTimeout": "20",
+            "maxSessionDuration": "60",
+            "shellProfile": {
+              "windows": "",
+              "linux": "cd /srv/ratemyfries; exec /bin/bash"
+            }
+          }
+        }
+      }
+    },
+    "Administrators": {
+      "Type": "AWS::IAM::Group",
+      "Properties": {
+        "ManagedPolicyArns": [
+          {
+            "Fn::Sub": "arn:${AWS::Partition}:iam::aws:policy/SignInLocalDevelopmentAccess"
+          }
+        ],
+        "Policies": [
+          {
+            "PolicyName": "FryServerAdministration",
+            "PolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "ec2:DescribeInstances",
+                    "ec2:DescribeInstanceStatus",
+                    "ec2:DescribeTags",
+                    "ssm:DescribeInstanceInformation",
+                    "ssm:DescribeInstanceProperties",
+                    "ssm:DescribeSessions",
+                    "ssm:GetConnectionStatus"
+                  ],
+                  "Resource": "*"
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "ec2:StartInstances",
+                    "ec2:StopInstances",
+                    "ec2:RebootInstances"
+                  ],
+                  "Resource": {
+                    "Fn::Sub": "arn:${AWS::Partition}:ec2:${AWS::Region}:${AWS::AccountId}:instance/${Server}"
+                  }
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": "ssm:StartSession",
+                  "Resource": [
+                    {
+                      "Fn::Sub": "arn:${AWS::Partition}:ec2:${AWS::Region}:${AWS::AccountId}:instance/${Server}"
+                    },
+                    {
+                      "Fn::Sub": "arn:${AWS::Partition}:ssm:${AWS::Region}:${AWS::AccountId}:document/${AdminSession}"
+                    },
+                    {
+                      "Fn::Sub": "arn:${AWS::Partition}:ssm:${AWS::Region}::document/AWS-StartPortForwardingSession"
+                    }
+                  ]
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "ssm:GetDocument",
+                    "ssm:DescribeDocument"
+                  ],
+                  "Resource": [
+                    {
+                      "Fn::Sub": "arn:${AWS::Partition}:ssm:${AWS::Region}:${AWS::AccountId}:document/${AdminSession}"
+                    },
+                    {
+                      "Fn::Sub": "arn:${AWS::Partition}:ssm:${AWS::Region}::document/AWS-StartPortForwardingSession"
+                    }
+                  ]
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "ssm:TerminateSession",
+                    "ssm:ResumeSession"
+                  ],
+                  "Resource": {
+                    "Fn::Sub": "arn:${AWS::Partition}:ssm:${AWS::Region}:${AWS::AccountId}:session/${!aws:username}-*"
+                  }
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "iam:ChangePassword",
+                    "iam:GetUser",
+                    "iam:ListMFADevices",
+                    "iam:EnableMFADevice",
+                    "iam:ResyncMFADevice"
+                  ],
+                  "Resource": {
+                    "Fn::Sub": "arn:${AWS::Partition}:iam::${AWS::AccountId}:user/${!aws:username}"
+                  }
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": "iam:CreateVirtualMFADevice",
+                  "Resource": {
+                    "Fn::Sub": "arn:${AWS::Partition}:iam::${AWS::AccountId}:mfa/${!aws:username}"
+                  }
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": "iam:GetAccountPasswordPolicy",
+                  "Resource": "*"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "AdministratorOne": {
+      "Type": "AWS::IAM::User",
+      "Properties": {
+        "UserName": {
+          "Ref": "AdminUserOne"
+        },
+        "Groups": [
+          {
+            "Ref": "Administrators"
+          }
+        ],
+        "Tags": [
+          {
+            "Key": "SSMSessionRunAs",
+            "Value": {
+              "Ref": "AdminUserOne"
+            }
+          },
+          {
+            "Key": "Project",
+            "Value": "Fry"
+          }
+        ]
+      }
+    },
+    "AdministratorTwo": {
+      "Type": "AWS::IAM::User",
+      "Properties": {
+        "UserName": {
+          "Ref": "AdminUserTwo"
+        },
+        "Groups": [
+          {
+            "Ref": "Administrators"
+          }
+        ],
+        "Tags": [
+          {
+            "Key": "SSMSessionRunAs",
+            "Value": {
+              "Ref": "AdminUserTwo"
+            }
+          },
+          {
+            "Key": "Project",
+            "Value": "Fry"
+          }
+        ]
+      }
+    }
+  },
+  "Outputs": {
+    "InstanceId": {
+      "Value": {
+        "Ref": "Server"
+      }
+    },
+    "OutboundIPv4": {
+      "Value": {
+        "Ref": "OutboundAddress"
+      }
+    },
+    "AdminSessionDocument": {
+      "Value": {
+        "Ref": "AdminSession"
+      }
+    },
+    "Connection": {
+      "Value": "Authenticated AWS Session Manager only; no public website or inbound ports"
+    }
+  }
+}
