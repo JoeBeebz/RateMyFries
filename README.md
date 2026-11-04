@@ -45,9 +45,12 @@ Without a key, ordinary browsing, accounts, admin workflows, manual business/add
 .venv\Scripts\python -m pip install -r requirements-dev.txt
 .venv\Scripts\python -m pytest -q
 node --check static/app.js
+node --test tests/address-suggestions.test.cjs
 ```
 
 Tests use isolated temporary databases. They cover role escalation attempts, CSRF, owner-only profile data, request review/duplicate decisions, migrations, combined search and mocked Google success/failure responses. Live Google behavior is a separate credential-dependent acceptance check.
+
+The JavaScript regression checks exercise autocomplete initialization, keyboard selection, independent/rotated session tokens, and device-location fallback both with and without `crypto.randomUUID`. LAN HTTP address suggestions use cryptographically random tokens through `crypto.getRandomValues`. Device geolocation still requires HTTPS (or a browser-trusted localhost origin); enter an address when it is unavailable.
 
 ## Deployment
 
@@ -63,4 +66,4 @@ Waitress binds to loopback. For public hosting, use HTTPS, a managed `SECRET_KEY
 
 ## Team workflow
 
-Develop on a feature branch, run tests, and open a PR into `main`. Have a teammate review and approve the PR before merging. Jira stories with implemented, tested code stay **In Review** until the PR is approved/merged and the acceptance check is complete. Do not bypass repository review requirements.
+Check Jira before implementation. Reuse the matching story, or create it before changing code; include the Jira key in the feature branch, commits and PR. Develop on that branch, run tests, and open a PR into `main`. Have a teammate review and approve the PR before merging. Jira stories with implemented, tested code stay **In Review** until the PR is approved/merged and the acceptance check is complete. Do not bypass repository review requirements.

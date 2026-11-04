@@ -11,7 +11,20 @@ document.querySelectorAll('form').forEach(form => {
 });
 
 const csrf = document.querySelector('meta[name="csrf-token"]').content;
+
+function addressSessionToken() {
+  if (typeof crypto.randomUUID === 'function') return crypto.randomUUID();
+  // randomUUID requires HTTPS; getRandomValues also works on the class LAN site.
+  const bytes = crypto.getRandomValues(new Uint8Array(16));
+  bytes[6] = (bytes[6] & 0x0f) | 0x40;
+  bytes[8] = (bytes[8] & 0x3f) | 0x80;
+  const hex = Array.from(bytes, byte => byte.toString(16).padStart(2, '0')).join('');
+  return `${hex.slice(0, 8)}-${hex.slice(8, 12)}-${hex.slice(12, 16)}-${hex.slice(16, 20)}-${hex.slice(20)}`;
+}
+
 document.querySelectorAll('[data-address]').forEach((input, inputNumber) => {
+  const label = input.labels?.[0]?.textContent.trim();
+  if (label) input.setAttribute('aria-label', label);
   const wrapper = document.createElement('div');
   wrapper.className = 'address-suggestions';
   const list = document.createElement('ul');
@@ -31,7 +44,7 @@ document.querySelectorAll('[data-address]').forEach((input, inputNumber) => {
   input.setAttribute('aria-expanded', 'false');
   input.setAttribute('autocomplete', 'off');
   let timer, controller, version = 0, active = -1;
-  let sessionToken = crypto.randomUUID();
+  let sessionToken = addressSessionToken();
   const close = () => {
     list.hidden = true;
     input.setAttribute('aria-expanded', 'false');
@@ -40,7 +53,7 @@ document.querySelectorAll('[data-address]').forEach((input, inputNumber) => {
   };
   const choose = option => {
     input.value = option.textContent;
-    sessionToken = crypto.randomUUID();
+    sessionToken = addressSessionToken();
     input.dispatchEvent(new Event('change', {bubbles: true}));
     close();
     status.textContent = 'Address selected.';

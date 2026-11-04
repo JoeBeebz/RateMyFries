@@ -1,0 +1,134 @@
+{
+  "retrieved_at_utc": "2026-11-04T04:57:35Z",
+  "repository": "JoeBeebz/RateMyFries",
+  "main_sha": "a5b525fa60167a9b35c6d2b14ba7cd79fd0db951",
+  "baseline_main_sha": "7ad236428b0f6cc9fce55f5fb2bac43cf2eafaa0",
+  "prs": [
+    {
+      "number": 7,
+      "url": "https://github.com/JoeBeebz/RateMyFries/pull/7",
+      "title": "FRY-56: restore Google address suggestions on the class HTTP site",
+      "state": "closed",
+      "merged": true,
+      "merged_at": "2026-11-04T04:57:20Z",
+      "base": "main",
+      "head_sha": "3068d836de5a1e3d74ded528ec9ad1fb47693b7b",
+      "merge_commit_sha": "a5b525fa60167a9b35c6d2b14ba7cd79fd0db951",
+      "reviews": [
+        {
+          "id": "PRR_kwDOUVwEW88AAAABV4aPCg",
+          "state": "APPROVED",
+          "body": "LGTM",
+          "submitted_at": "2026-11-04T04:53:47Z",
+          "author": {
+            "login": "JoeBeebz",
+            "name": "JoeBeebz",
+            "email": null,
+            "avatar_url": "https://avatars.githubusercontent.com/u/181138413?v=4",
+            "id": null
+          }
+        },
+        {
+          "id": "PRR_kwDOUVwEW88AAAABV4abkg",
+          "state": "APPROVED",
+          "body": "LGTM",
+          "submitted_at": "2026-11-04T04:54:06Z",
+          "author": {
+            "login": "JoeBeebz",
+            "name": "JoeBeebz",
+            "email": null,
+            "avatar_url": "https://avatars.githubusercontent.com/u/181138413?v=4",
+            "id": null
+          }
+        },
+        {
+          "id": "PRR_kwDOUVwEW88AAAABV4am9Q",
+          "state": "APPROVED",
+          "body": "",
+          "submitted_at": "2026-11-04T04:54:24Z",
+          "author": {
+            "login": "JoeBeebz",
+            "name": "JoeBeebz",
+            "email": null,
+            "avatar_url": "https://avatars.githubusercontent.com/u/181138413?v=4",
+            "id": null
+          }
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "url": "https://github.com/JoeBeebz/RateMyFries/pull/8",
+      "title": "FRY-57: populate verified local restaurants, fry menus and photos",
+      "state": "open",
+      "merged": false,
+      "merged_at": null,
+      "base": "main",
+      "head_sha": "bb9673abc28c0a0060d6292facdc77363a69145b",
+      "merge_commit_sha": "10c3e04b95629302fd4caa74da976563c31f21cc",
+      "reviews": []
+    },
+    {
+      "number": 9,
+      "url": "https://github.com/JoeBeebz/RateMyFries/pull/9",
+      "title": "FRY-58: autofill catalogue search with exact listed matches",
+      "state": "open",
+      "merged": false,
+      "merged_at": null,
+      "base": "main",
+      "head_sha": "be7e01b862626dbb110e193b59ffa7f2cde01ecc",
+      "merge_commit_sha": "8a452e4e7389962829de9ceaff99b205d49c07a3",
+      "reviews": []
+    },
+    {
+      "number": 10,
+      "url": "https://github.com/JoeBeebz/RateMyFries/pull/10",
+      "title": "FRY-40 FRY-44: improve mobile contrast and live discovery response time",
+      "state": "open",
+      "merged": false,
+      "merged_at": null,
+      "base": "feature/FRY-56-google-live-acceptance",
+      "head_sha": "dea72e467633af9b6c92192e5a58476b06c6c577",
+      "merge_commit_sha": "8b00a87d36e765616e570a0899b1ab1c39a173d0",
+      "reviews": []
+    },
+    {
+      "number": 11,
+      "url": "https://github.com/JoeBeebz/RateMyFries/pull/11",
+      "title": "FRY-59: migrate Fry to a private EC2 development server",
+      "state": "closed",
+      "merged": true,
+      "merged_at": "2026-11-04T04:55:59Z",
+      "base": "main",
+      "head_sha": "d7b7bf5ed9ffa6c6562f91223609e65a0635c1c9",
+      "merge_commit_sha": "5c1fff1f5a7d54950686f65ef9d714cfa50af32a",
+      "reviews": [
+        {
+          "id": "PRR_kwDOUVwEW88AAAABV4Zk9A",
+          "state": "APPROVED",
+          "body": "LGTM",
+          "submitted_at": "2026-11-04T04:52:17Z",
+          "author": {
+            "login": "JoeBeebz",
+            "name": "JoeBeebz",
+            "email": null,
+            "avatar_url": "https://avatars.githubusercontent.com/u/181138413?v=4",
+            "id": null
+          }
+        }
+      ]
+    },
+    {
+      "number": 12,
+      "url": "https://github.com/JoeBeebz/RateMyFries/pull/12",
+      "title": "Sprint 4: Jira, GitHub, SonarQube/Trivy reports and demo video",
+      "state": "open",
+      "merged": false,
+      "merged_at": null,
+      "base": "main",
+      "head_sha": "2ad9283a7fc881691a43bf18ce6ee5c3ccd18c46",
+      "merge_commit_sha": "3059bb6fb22b29fefa2e33a9a2aee468528f1ea4",
+      "reviews": []
+    }
+  ]
+}

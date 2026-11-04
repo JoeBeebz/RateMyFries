@@ -1,98 +1,70 @@
 # Sprint 4 GitHub Report - Seth Martin
 
-**Student:** Seth Martin | **Project:** Rate My Fries (FRY) | **Submission:** Sprint 4.
+**Student:** Seth Martin | **Project:** Rate My Fries (FRY) | **GitHub:** SethMart1.
 
-**Report date:** November 3, 2026. GitHub status and submitted reviews rechecked November 3, 2026, 10:55:37 p.m. CST (November 4, 04:55:37 UTC); earlier Jira evidence is retained; times use America/Chicago. October 20 was CDT (UTC-05:00); November 3 is CST (UTC-06:00).
+**Repository:** https://github.com/JoeBeebz/RateMyFries
 
-**Reporting scope:** Sprint 4 is the owner-confirmed submission label. The underlying Jira record still uses FRY Sprint 3 (ID 3), October 20-November 3, 2026. Its recorded scope and the prior merged work are retained as context; this report does not invent a separate Sprint 4 commitment or change Jira history.
+**Verified snapshot:** November 3, 2026, 10:57:35 p.m. CST (November 4, 04:57:35 UTC). PRs were being merged during this refresh; all statuses and counts below apply to this fixed snapshot.
 
-**Repository:** https://github.com/JoeBeebz/RateMyFries | **GitHub account:** SethMart1.
+**Merged-main cutoff:** `a5b525fa60167a9b35c6d2b14ba7cd79fd0db951`. **Sprint 4 baseline:** `7ad236428b0f6cc9fce55f5fb2bac43cf2eafaa0`, the final prior Sprint 3 merge. Sprint 4 is the project owner's submission label; historical Sprint 3 reports remain preserved.
 
-**Merged-main cutoff:** `7ad236428b0f6cc9fce55f5fb2bac43cf2eafaa0`. The latest main merge was October 20, 2026, 10:24:01 p.m. CDT. A fresh fetch and live GitHub PR/review responses confirm that main has not advanced. Current PR states and review timestamps are retained in github-review-refresh.json; the earlier github-snapshot.json remains preserved. The report submission PR #12 is listed separately and excluded from implementation delivery counts.
+## Sprint 4 merged delivery
 
-## Prior merged work: Sprint 3 baseline
+| PR | Work | Review | Merge time (Chicago) |
+| --- | --- | --- | --- |
+| [#11](https://github.com/JoeBeebz/RateMyFries/pull/11) | FRY-59: private EC2 development migration | JoeBeebz - Approved | Nov 3, 10:55:59 p.m. CST |
+| [#7](https://github.com/JoeBeebz/RateMyFries/pull/7) | FRY-56: Google address suggestions on class HTTP site | JoeBeebz - Approved | Nov 3, 10:57:20 p.m. CST |
 
-| PR | Title | Author | Reviewer | Merge time (Chicago) |
-| --- | --- | --- | --- | --- |
-| [#4](https://github.com/JoeBeebz/RateMyFries/pull/4) | Sprint 3: unified discovery and moderated business listings | SethMart1 | JoeBeebz - Approved | Oct 20, 2026 07:13:44 PM CDT |
-| [#5](https://github.com/JoeBeebz/RateMyFries/pull/5) | Sprint 3 demo video | SethMart1 | JoeBeebz - Approved | Oct 20, 2026 10:05:16 PM CDT |
-| [#6](https://github.com/JoeBeebz/RateMyFries/pull/6) | Replace Sprint 3 GitHub report with merged PR evidence | SethMart1 | JoeBeebz - Approved | Oct 20, 2026 10:24:01 PM CDT |
+Both PRs are closed with merged=true and have merge timestamps. Their heads are ancestors of the fetched main cutoff. PR #11 contributes three work commits; PR #7 contributes two. The two merge commits have Git author JoeBeebz. Approval is tracked separately from the actual merge event.
 
-All three PRs were approved by JoeBeebz and merged by JoeBeebz. PR #4 delivered unified discovery, Google integration code, account roles, private addresses and moderated businesses, plus tests and initial reporting. PR #5 added the demo. PR #6 refreshed the earlier GitHub report. Live Google acceptance happened later during configuration and is not inferred from merge status alone.
+PR #11's merge event is 2026-11-04T04:55:59Z; its merge commit timestamp is one second earlier. PR #7's event is 2026-11-04T04:57:20Z. The latest recorded teammate approvals were #11 at 04:52:17Z and #7 at 04:54:24Z on November 4 (both November 3 in Chicago).
 
-Exact merge-event UTC times: #4 - 2026-10-21 00:13:44Z; #5 - 2026-10-21 03:05:16Z; #6 - 2026-10-21 03:24:01Z. A merge commit's author timestamp can differ from the PR merge event by a second.
+## Commit activity
 
-## Commit activity in the prior merged baseline
+| Metric | Sprint 4 since baseline | Cumulative including prior Sprint 3 |
+| --- | --- | --- |
+| Seth-authored work commits (non-merge) | 5 | 28 |
+| Merge commits | 2 | 5 |
+| Total commits on main | 7 | 33 |
+| Verified merged PRs | 2 (#7, #11) | 5 (#4, #5, #6, #7, #11) |
 
-| Metric | Verified value |
-| --- | --- |
-| Seth-authored work commits included in the prior merged PRs | 23 |
-| PR #4 work commits | 21 |
-| PR #5 work commits | 1 |
-| PR #6 work commits | 1 |
-| Merge commits authored by JoeBeebz | 3 |
-| Prior baseline main commits including merges | 26 |
-| Direct-to-main work counted in this baseline | 0 |
-| First work commit | 644f748 - Oct 20, 2026, 01:59:54 a.m. CDT |
-| Last work commit | 388cf2c - Oct 20, 2026, 10:10:23 p.m. CDT |
-| Work-commit date range | October 20-October 20, 2026 |
+The five Sprint 4 work commits all use Git author Seth Martin, with author timestamps on November 3 from 1:53:37 a.m. to 9:49:06 p.m. CST. They are distinct commits reachable from main after the baseline. Pending PR commits and this report's submission are excluded. Shared PR ancestry is not summed twice.
 
-Counts cover `8c94203f8925febc66ce18f8ddb0fbcc1bdae245` (main before the Sprint 3 baseline) through the cutoff. The 23 work commits use the Git author names SethMart1 and Seth Martin for the same student's contribution. The three merge commits are separate. Open PR commits, local integration merges and this report submission are not added to accepted delivery.
+The previous Sprint 3 baseline contributes 23 work commits and three merge commits, delivered through #4, #5 and #6 on October 20. Their historic titles and dates remain unchanged; those 26 commits are not presented as new Sprint 4 delivery. The cumulative range starts at `8c94203f8925febc66ce18f8ddb0fbcc1bdae245`.
 
-## Current Sprint 4 delivery status
+## Work still awaiting merge at the snapshot
 
-| Metric | Verified value at refresh |
-| --- | --- |
-| Implementation PRs checked (#7-#11) | 5 |
-| Implementation PRs merged into main | 0 |
-| Implementation PRs still open | 5 |
-| Open implementation PRs with teammate approval | 2 (#7 and #11) |
-| Open implementation PRs without submitted reviews | 3 (#8, #9 and #10) |
-| Report/demo submission PR #12 | Open; no submitted reviews |
+| PR | Work | Target | Review |
+| --- | --- | --- | --- |
+| [#8](https://github.com/JoeBeebz/RateMyFries/pull/8) | FRY-57: verified restaurants, fry menus and photos | main | No submitted reviews |
+| [#9](https://github.com/JoeBeebz/RateMyFries/pull/9) | FRY-58: catalogue autofill and exact listed matches | main | No submitted reviews |
+| [#10](https://github.com/JoeBeebz/RateMyFries/pull/10) | FRY-40/44: mobile contrast and page response time | feature/FRY-56-google-live-acceptance | No submitted reviews |
+| [#12](https://github.com/JoeBeebz/RateMyFries/pull/12) | Sprint 4 reports and demo video | main | No submitted reviews |
 
-Approval and merging are separate GitHub steps. JoeBeebz has approved #7 and #11; both still have null merged_at and remain open. GitHub's merge_commit_sha field can identify a proposed test merge while a PR is open, so that field alone is not merge evidence.
+Three implementation PRs remain open and unmerged: #8, #9 and #10. The report/demo PR #12 is separately open. No later merge or review is inferred. #10 is still stacked on the now-merged #7 branch; it needs retargeting to main, reconciliation/testing with #9, and teammate approval before merge. This reporting task does not perform those implementation merges.
 
-## Implementation PRs awaiting merge
+## Deployment, validation and acceptance limits
 
-| PR | Work | Target | Head revision | Review |
-| --- | --- | --- | --- | --- |
-| [#7](https://github.com/JoeBeebz/RateMyFries/pull/7) | FRY-56: restore Google address suggestions on the class HTTP site | main | 3068d83 | JoeBeebz - Approved |
-| [#8](https://github.com/JoeBeebz/RateMyFries/pull/8) | FRY-57: populate verified local restaurants, fry menus and photos | main | bb9673a | No submitted reviews |
-| [#9](https://github.com/JoeBeebz/RateMyFries/pull/9) | FRY-58: autofill catalogue search with exact listed matches | main | be7e01b | No submitted reviews |
-| [#10](https://github.com/JoeBeebz/RateMyFries/pull/10) | FRY-40 FRY-44: improve mobile contrast and live discovery response time | feature/FRY-56-google-live-acceptance | dea72e4 | No submitted reviews |
-| [#11](https://github.com/JoeBeebz/RateMyFries/pull/11) | FRY-59: migrate Fry to a private EC2 development server | main | d7b7bf5 | JoeBeebz - Approved |
+The previously tested class runtime `d094cd8e52b1dcf413ed1a36209a367abe525262` combines #7/#9/#10 changes. The catalogue database was populated separately. The same runtime was copied to the private EC2 server; it was left stopped after acceptance, and the personal deployment was preserved. Those deployment observations are separate from the GitHub merge counts above. Only #7 and #11 are newly verified in main at this cutoff.
 
-No newer implementation merges are verified after the October 20 cutoff. All five implementation PRs remain open and unmerged. The latest approval on #7 was submitted by JoeBeebz on November 3 at 10:54:24 p.m. CST (04:54:24Z November 4); #11 was approved at 10:52:17 p.m. CST (04:52:17Z November 4). #8, #9 and #10 have no submitted reviews. #7 restores address suggestions; #8 supplies reproducible catalogue content; #9 adds generic prefix autofill and exact listed-name search; #10 covers mobile contrast, concurrency/performance and location fallback; #11 supplies private EC2 infrastructure and migration tooling.
+The earlier analysis-only source combination passed 72 Python tests and 12 JavaScript checks. It combined the deployed runtime, catalogue revision `bb9673abc28c0a0060d6292facdc77363a69145b`, and infrastructure revision `d7b7bf5ed9ffa6c6562f91223609e65a0635c1c9`. This is not a fresh test or static scan of the merged main cutoff. No application tests were rerun for this report-only edit.
 
-PR #10 is stacked on #7 and targets its feature branch. Complete the approved merge of #7 first, then retarget #10 to main and reconcile/retest it with #9 before its approved merge. PR commit lists can share ancestry, so summing their commit counts would double-count work. Pending work is visible here without being included in the 23 merged work commits.
+The existing SonarQube vulnerability and three Trivy infrastructure findings remain documented; merging does not resolve them. Device-position acceptance, initial collaborator sign-ins and Jira completion are not inferred from a GitHub merge. Jira and the static-analysis reports were not edited during this GitHub report refresh.
 
-## Report and demo submission
-
-[PR #12](https://github.com/JoeBeebz/RateMyFries/pull/12), "Sprint 4: Jira, GitHub, SonarQube/Trivy reports and demo video", remains open against main with no submitted reviews. At the refresh snapshot its head is 7859f31f9b846c86ffa0befb9a13ac0ab4c8833d. This follow-up report edit is excluded from the fixed activity counts. The Sprint 4 files and video currently exist on that PR branch; their main-branch links become available after its merge.
-
-## Deployment versus main
-
-The class test application at `d094cd8e52b1dcf413ed1a36209a367abe525262` combines pending runtime changes from #7/#9/#10. The catalogue database was populated separately. The same runtime was copied to the private EC2 test server. These deployments preserve existing data and demonstrate behavior; they do not merge the open PRs or replace teammate review. The EC2 instance was left stopped after acceptance and the personal deployment was preserved.
-
-The reporting scan uses a documented, analysis-only combination of that runtime plus catalogue source `bb9673abc28c0a0060d6292facdc77363a69145b` and infrastructure source `d7b7bf5ed9ffa6c6562f91223609e65a0635c1c9`. It is not represented as a GitHub merged revision. The source-file SHA-256 manifest is retained with the static-analysis evidence. Its 72 Python and 12 JavaScript passing checks do not automatically approve the PRs. Four scanner findings remain for review, including the pending infrastructure permissions/network settings.
-
-## Reproduce the counts
+## Reproduce the Sprint 4 counts
 
 ```powershell
 git fetch origin
-git rev-list --count --no-merges 8c94203f8925febc66ce18f8ddb0fbcc1bdae245..7ad236428b0f6cc9fce55f5fb2bac43cf2eafaa0
-git rev-list --count --merges 8c94203f8925febc66ce18f8ddb0fbcc1bdae245..7ad236428b0f6cc9fce55f5fb2bac43cf2eafaa0
-git rev-list --count 8c94203f8925febc66ce18f8ddb0fbcc1bdae245..7ad236428b0f6cc9fce55f5fb2bac43cf2eafaa0
+git rev-list --count --no-merges 7ad2364..a5b525f
+git rev-list --count --merges 7ad2364..a5b525f
+git rev-list --count 7ad2364..a5b525f
 ```
 
-Expected counts are 23, 3 and 26. Merged-only query:
-
-```text
-repo:JoeBeebz/RateMyFries is:pr is:merged author:SethMart1 merged:2026-10-20..2026-11-03
-```
+Expected counts are 5 work commits, 2 merge commits and 7 total. Use the full cutoff hashes above if a short hash becomes ambiguous. Cumulative counts from 8c94203 to a5b525f are 28, 5 and 33 respectively.
 
 ## Evidence
 
-- [Exact main comparison](https://github.com/JoeBeebz/RateMyFries/compare/8c94203f8925febc66ce18f8ddb0fbcc1bdae245...7ad236428b0f6cc9fce55f5fb2bac43cf2eafaa0).
-- [PR #4 commits](https://github.com/JoeBeebz/RateMyFries/pull/4/commits), [PR #5 commits](https://github.com/JoeBeebz/RateMyFries/pull/5/commits), [PR #6 commits](https://github.com/JoeBeebz/RateMyFries/pull/6/commits).
-- Current PR/review responses are preserved in static-analysis/raw/2026-11-03/github-review-refresh.json. The original GitHub PR and review responses, issue snapshots, source hashes, tool JSON and logs remain alongside that new snapshot. No screenshots or unverifiable reviewer/merge claims are substituted for those records.
+- [Sprint 4 main comparison](https://github.com/JoeBeebz/RateMyFries/compare/7ad236428b0f6cc9fce55f5fb2bac43cf2eafaa0...a5b525fa60167a9b35c6d2b14ba7cd79fd0db951).
+- [Merged PR #7 commits](https://github.com/JoeBeebz/RateMyFries/pull/7/commits) and [merged PR #11 commits](https://github.com/JoeBeebz/RateMyFries/pull/11/commits).
+- Current PR states, merge timestamps and approval responses: static-analysis/raw/2026-11-03/github-refresh-045735Z.json. The included review responses were fetched before the merges; their exact submission timestamps are retained.
+- Reachable commit IDs, author dates and messages: static-analysis/raw/2026-11-03/merged-main-commits-045735Z.txt. Earlier snapshots and scanner evidence remain preserved.

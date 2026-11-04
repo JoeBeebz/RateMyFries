@@ -1,0 +1,7 @@
+a5b525fa60167a9b35c6d2b14ba7cd79fd0db951 JoeBeebz 2026-11-03T22:57:20-06:00 Merge pull request #7 from JoeBeebz/feature/FRY-56-google-live-acceptance
+5c1fff1f5a7d54950686f65ef9d714cfa50af32a JoeBeebz 2026-11-03T22:55:58-06:00 Merge pull request #11 from JoeBeebz/feature/FRY-59-private-ec2-migration
+d7b7bf5ed9ffa6c6562f91223609e65a0635c1c9 Seth Martin 2026-11-03T21:49:06-06:00 fix(FRY-59): verify complete restore and record private deployment
+fb50cef3435b26a73a087781a7fd7dc8e66c34a5 Seth Martin 2026-11-03T21:24:22-06:00 docs(FRY-59): keep EC2 stopped between work sessions
+e580a5dd65e8f3606714b2dce357f360b58bbd23 Seth Martin 2026-11-03T21:19:14-06:00 FRY-59: prepare private EC2 migration with individual server administration
+3068d836de5a1e3d74ded528ec9ad1fb47693b7b Seth Martin 2026-11-03T01:56:37-06:00 FRY-56 Keep address field labels stable while suggesting locations
+01d5ec48cf27ea42cfcf0e7736370941a320352a Seth Martin 2026-11-03T01:53:37-06:00 FRY-56 Fix address autocomplete initialization on LAN HTTP
