@@ -59,6 +59,7 @@ Waitress binds to loopback. For public hosting, use HTTPS, a managed `SECRET_KEY
 - [Sprint 2 reports](docs/sprints/sprint-2/reports/) and [demo](docs/sprints/sprint-2/demos/)
 - [Sprint 3 implementation and acceptance evidence](IMPLEMENTATION.md)
 - [Sprint 3 reports](docs/sprints/sprint-3/)
+- [Sprint 4 reports and demo](docs/sprints/sprint-4/README.md)
 
 ## Team workflow
 

@@ -1,6 +1,6 @@
-# Sprint 3 Trivy Static Review - Seth Martin
+# Sprint 4 Trivy Static Review - Seth Martin
 
-**Student:** Seth Martin | **Project:** Rate My Fries (FRY) | **Sprint:** FRY Sprint 3, October 20-November 3, 2026.
+**Student:** Seth Martin | **Project:** Rate My Fries (FRY) | **Submission:** Sprint 4.
 
 **Report date:** November 3, 2026. Snapshot verified from live Jira/GitHub; times use America/Chicago. October 20 was CDT (UTC-05:00); November 3 is CST (UTC-06:00).
 
@@ -57,7 +57,7 @@ Trivy detected two Python dependency targets and one CloudFormation file. The re
 
 ## Trend and reflection
 
-The October 20 same-sprint baseline reported zero dependency vulnerabilities, zero misconfigurations and zero secrets, with no supported infrastructure target detected. Dependency findings remain zero; the current expanded scan now detects three infrastructure findings. This is broader coverage, not evidence that an unchanged prior configuration became unsafe. No Sprint 2 scan exists for a previous-sprint trend.
+The October 20 Sprint 3 baseline reported zero dependency vulnerabilities, zero misconfigurations and zero secrets, with no supported infrastructure target detected. Dependency findings remain zero; the current expanded scan now detects three infrastructure findings. This is broader coverage, not evidence that an unchanged prior configuration became unsafe. The preserved Sprint 3 scan supplies the previous-submission comparison; its scope differs from this Sprint 4 review.
 
 The main remaining risk is deployment hardening rather than a detected package CVE. Resolve or explicitly review the egress, MFA and audit-description findings before considering FRY-59 fully accepted, then rescan the reviewed source. Keep original raw evidence and distinguish future fixed results from this snapshot. The reporting task did not start the EC2 instance, publish the website or modify AWS configuration.
 

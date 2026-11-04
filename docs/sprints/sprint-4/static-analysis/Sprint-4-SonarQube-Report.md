@@ -1,6 +1,6 @@
-# Sprint 3 SonarQube Static Review - Seth Martin
+# Sprint 4 SonarQube Static Review - Seth Martin
 
-**Student:** Seth Martin | **Project:** Rate My Fries (FRY) | **Sprint:** FRY Sprint 3, October 20-November 3, 2026.
+**Student:** Seth Martin | **Project:** Rate My Fries (FRY) | **Submission:** Sprint 4.
 
 **Report date:** November 3, 2026. Snapshot verified from live Jira/GitHub; times use America/Chicago. October 20 was CDT (UTC-05:00); November 3 is CST (UTC-06:00).
 
@@ -58,7 +58,7 @@ Git history, databases, signing keys, Google/API configuration, virtual environm
 | Security hotspots | 0 | 0 |
 | Overall coverage | 82.2% | 66.1% |
 
-The baseline is the prior **same-sprint** scan at b93baae14b9fefb54077c02bad7f740cb358902b, not a previous-sprint scan. No Sprint 2 scan is available. The new finding is in newly included infrastructure. Overall coverage has fallen across the expanded production-source scope, including operational scripts not exercised by the Python suite; this is not a like-for-like application-only coverage regression measurement. The earlier CSRF/form fixes remain part of the runtime.
+The previous Sprint 3 baseline is the October 20 scan at b93baae14b9fefb54077c02bad7f740cb358902b. Its original report and raw exports remain preserved. The scanner project identifier retains its original Sprint3 label; this submission is Sprint 4. The new finding is in newly included infrastructure. Overall coverage has fallen across the expanded production-source scope, including operational scripts not exercised by the Python suite; this is not a like-for-like application-only coverage regression measurement. The earlier CSRF/form fixes remain part of the runtime.
 
 ## Reflection and next steps
 
