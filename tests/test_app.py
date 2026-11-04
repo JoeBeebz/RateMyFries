@@ -222,7 +222,8 @@ def test_search_sort_filters_distance_price(client):
     data=client.get('/search?sort=lowest').data
     assert data.index(b'Alpha Cafe')<data.index(b'Zebra Diner')
     assert b'Alpha Cafe' not in client.get('/search?min_rating=4').data
-    assert b'Zebra Diner' in client.get('/search?q=zebra').data
+    assert b'Zebra Diner' in client.get('/search?q=Zebra%20Diner').data
+    assert b'No restaurants found' in client.get('/search?q=zebra').data
     assert b'No restaurants found' in client.get('/search?q=zzzz').data
     assert b'Alpha Cafe' not in post(client,'/search',{'lat':'40','lon':'-90','radius':'10'}).data
     assert b'Waffle fries' in client.get('/search?style=waffle&min_price=4&max_price=5').data

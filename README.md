@@ -16,6 +16,12 @@ Open http://127.0.0.1:5000. Data and the generated signing key remain in ignored
 
 Public registration always creates a regular user. Users can review fries, edit their own profile, save/clear a private address, and submit business requests. Only administrators can directly add stores/fry options, access the request inbox, approve/reject submissions, or authorize another administrator. Pending requests are visible only to their submitter and administrators.
 
+## Catalogue search
+
+Homepage and directory search suggest up to six existing restaurant names, fry names and styles in total. Suggestions start with the typed text and narrow as more letters are entered. Select with a click or Arrow Up/Down and Enter, then submit the search. Full typed names also work, ignoring capitalization and extra spaces. `Wingstop` includes that restaurant's fries; `wngstop` and unselected partial names return no results. Blank search browses everything. Existing price, rating, style and nearby filters still apply. Suggestions load public names once per page and filter locally, separately from Google address suggestions.
+
+Run the search interaction checks with `node --test tests/catalogue-search.test.cjs` alongside the Python suite.
+
 After registering the intended first account, the trusted deployment operator runs this **once**:
 
 ```powershell

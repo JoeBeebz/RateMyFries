@@ -34,17 +34,48 @@ def install(app, restaurant_sql, fry_sql):
     def policies():
         return render_template('policies.html')
 
+    @app.get('/api/catalogue-choices')
+    def catalogue_choices():
+        """Only public, existing catalogue names; no Google call per keystroke."""
+        choices, seen = [], set()
+
+        def add(name, kind):
+            key = normalize(name)
+            if key and key not in seen:
+                seen.add(key)
+                choices.append({'name': name, 'kind': kind})
+
+        for record in rows('SELECT * FROM restaurants ORDER BY name_key,id'):
+            name = record['name']
+            if record['google_place_id'] and name == 'Google business':
+                try:
+                    name = resolve_restaurant(record)['name']
+                except LocationUnavailable:
+                    continue
+            add(name, 'Restaurant')
+        for record in rows('SELECT name,style FROM fries ORDER BY name,id'):
+            add(record['name'], 'Fries')
+        for record in rows('SELECT DISTINCT style FROM fries ORDER BY style'):
+            add(record['style'], 'Style')
+        response = jsonify(choices=choices)
+        # Names from the IDs-only Google importer are resolved live, not cached.
+        response.headers['Cache-Control'] = 'no-store'
+        return response
+
     @app.route('/search', methods=['GET', 'POST'])
     def search():
         values = request.form if request.method == 'POST' else request.args
         filters = {key: values.get(key, '').strip() for key in
                    ('q', 'style', 'min_price', 'max_price', 'min_rating', 'sort', 'radius')}
-        filters['q'] = filters['q'][:100]
+        query_too_long = len(filters['q']) > 240
+        filters['q'] = filters['q'][:240]
         # Private address and device location are accepted only in POST bodies.
         address = values.get('address', '').strip() if request.method == 'POST' else ''
         saved = request.method == 'POST' and values.get('use_saved') == '1'
         error, restaurants, fries = None, [], []
         try:
+            if query_too_long:
+                raise InvalidForm('Search names must be 240 characters or fewer.')
             if len(address) > 240:
                 raise InvalidForm('Address must be 240 characters or fewer.')
             origin = None
@@ -72,7 +103,13 @@ def install(app, restaurant_sql, fry_sql):
                 raise InvalidForm('Choose a listed sort order.')
             if filters['sort'] == 'nearest' and not origin:
                 raise InvalidForm('Choose a location before sorting by distance.')
-            listings = [resolve_restaurant(r) for r in rows(restaurant_sql + 'GROUP BY r.id')]
+            listings = []
+            for record in rows(restaurant_sql + 'GROUP BY r.id'):
+                item = resolve_restaurant(record)
+                item['search_names'] = {normalize(record['name']), normalize(item['name'])}
+                if record['google_place_id'] and record['name'] == 'Google business':
+                    item['search_names'].discard(normalize(record['name']))
+                listings.append(item)
             by_id = {r['id']: r for r in listings}
             options = [dict(f) for f in rows(fry_sql + 'GROUP BY f.id')]
             q = normalize(filters['q'])
@@ -80,7 +117,7 @@ def install(app, restaurant_sql, fry_sql):
             for f in options:
                 r = by_id[f['restaurant_id']]
                 f['restaurant_name'] = r['name']
-                if q and not any(q in normalize(v) for v in (r['name'], f['name'], f['style'])):
+                if q and q not in r['search_names'] and q not in (normalize(f['name']), normalize(f['style'])):
                     continue
                 if filters['style'] and f['style'] != filters['style']:
                     continue
@@ -94,7 +131,7 @@ def install(app, restaurant_sql, fry_sql):
             match_ids = {f['restaurant_id'] for f in matching}
             fry_filter = bool(filters['style'] or low is not None or high is not None)
             for r in listings:
-                if (fry_filter or q) and r['id'] not in match_ids and (fry_filter or q not in normalize(r['name'])):
+                if (fry_filter or q) and r['id'] not in match_ids and (fry_filter or q not in r['search_names']):
                     continue
                 if minimum and (r['average'] is None or r['average'] < minimum):
                     continue
