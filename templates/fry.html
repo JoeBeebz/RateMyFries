@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% from 'macros.html' import rating,artwork,reviews_list with context %}
 {% block title %}{{ fry.name }}{% endblock %}
+{% block head %}<link rel="stylesheet" href="{{ url_for('static',filename='ratings.css') }}">{% endblock %}
 {% block content %}
 <a class="back" href="{{ url_for('restaurant',restaurant_id=fry.restaurant_id) }}">← {{ fry.restaurant_name }}</a>
 <section class="detail-hero"><div><p class="eyebrow">{{ fry.style }} · {{ 'seasoned' if fry.seasoned else 'unseasoned' }}</p><h1>{{ fry.name }}</h1><p>{{ fry.description }}</p>{{ rating(fry.average,fry.rating_count) }}{% if fry.price_cents is not none %}<p class="price">${{ '%.2f'|format(fry.price_cents/100) }}</p>{% endif %}</div>{{ artwork(fry) }}</section>
