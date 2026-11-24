@@ -29,6 +29,7 @@ CREATE TABLE IF NOT EXISTS reviews (
  body TEXT CHECK(body IS NULL OR length(trim(body)) BETWEEN 1 AND 2000),
  context TEXT CHECK(context IN ('dine-in','takeout','delivery') OR context IS NULL),
  crispiness INTEGER CHECK(crispiness BETWEEN 1 AND 5), seasoning INTEGER CHECK(seasoning BETWEEN 1 AND 5),
+ taste INTEGER CHECK(taste IS NULL OR (taste BETWEEN 1 AND 5 AND typeof(taste)='integer')),
  texture INTEGER CHECK(texture BETWEEN 1 AND 5), freshness INTEGER CHECK(freshness BETWEEN 1 AND 5),
  portion INTEGER CHECK(portion BETWEEN 1 AND 5), value INTEGER CHECK(value BETWEEN 1 AND 5),
  sauce INTEGER CHECK(sauce BETWEEN 1 AND 5), created_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%d %H:%M:%f','now')),

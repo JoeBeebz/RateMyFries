@@ -20,8 +20,9 @@ from locations import GooglePlaces, LocationUnavailable
 from migrations import migrate
 
 STYLES = ('shoestring', 'steak', 'waffle', 'curly', 'crinkle-cut', 'straight-cut', 'other')
-QUALITIES = {'crispiness': 'Crispiness', 'seasoning': 'Seasoning', 'texture': 'Texture',
-             'freshness': 'Freshness', 'portion': 'Portion size', 'value': 'Value for price', 'sauce': 'Sauce selection'}
+PRIMARY_QUALITIES = {'crispiness': 'Crispiness', 'seasoning': 'Seasoning', 'freshness': 'Freshness',
+                     'taste': 'Taste', 'value': 'Value'}
+QUALITIES = {**PRIMARY_QUALITIES, 'texture': 'Texture', 'portion': 'Portion size', 'sauce': 'Sauce selection'}
 CONTEXTS = ('dine-in', 'takeout', 'delivery')
 
 
@@ -219,7 +220,7 @@ def create_app(config=None):
 
     @app.context_processor
     def context():
-        return dict(csrf_token=generate_csrf, user=g.get('user'), styles=STYLES, qualities=QUALITIES, contexts=CONTEXTS)
+        return dict(csrf_token=generate_csrf, user=g.get('user'), styles=STYLES, qualities=QUALITIES, primary_qualities=PRIMARY_QUALITIES, contexts=CONTEXTS)
 
     @app.template_filter('stars')
     def stars(value):
@@ -354,8 +355,8 @@ def create_app(config=None):
 
     restaurant_sql = ('SELECT r.*,AVG(v.rating) AS average,COUNT(v.id) AS rating_count,MAX(v.created_at) AS latest '
                       'FROM restaurants r LEFT JOIN fries f ON f.restaurant_id=r.id LEFT JOIN reviews v ON v.fry_id=f.id ')
-    fry_sql = ('SELECT f.*,r.name AS restaurant_name,AVG(v.rating) AS average,COUNT(v.id) AS rating_count, '
-               'AVG(v.crispiness) AS crispiness_average,AVG(v.seasoning) AS seasoning_average '
+    fry_sql = ('SELECT f.*,r.name AS restaurant_name,AVG(v.rating) AS average,COUNT(v.id) AS rating_count, ' +
+               ', '.join(f'AVG(v.{key}) AS {key}_average,COUNT(v.{key}) AS {key}_count' for key in QUALITIES) + ' ' +
                'FROM fries f JOIN restaurants r ON r.id=f.restaurant_id LEFT JOIN reviews v ON v.fry_id=f.id ')
 
     @app.get('/')
@@ -454,12 +455,12 @@ def create_app(config=None):
                 context = request.form.get('context') or None
                 if context is not None and context not in CONTEXTS:
                     raise InvalidForm('Choose dine-in, takeout, or delivery.')
-                values = [rating, body, context]+[score(k) for k in QUALITIES]
+                values = [rating, body, context]+[score(k) if k in request.form else (existing[k] if existing else None) for k in QUALITIES]
                 if existing:
-                    db().execute('UPDATE reviews SET rating=?,body=?,context=?,crispiness=?,seasoning=?,texture=?,freshness=?,portion=?,value=?,sauce=? WHERE id=? AND user_id=?',
+                    db().execute('UPDATE reviews SET rating=?,body=?,context=?,crispiness=?,seasoning=?,freshness=?,taste=?,value=?,texture=?,portion=?,sauce=? WHERE id=? AND user_id=?',
                                  values+[existing['id'],g.user['id']])
                 else:
-                    db().execute('INSERT INTO reviews(rating,body,context,crispiness,seasoning,texture,freshness,portion,value,sauce,user_id,fry_id) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)',
+                    db().execute('INSERT INTO reviews(rating,body,context,crispiness,seasoning,freshness,taste,value,texture,portion,sauce,user_id,fry_id) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)',
                                  values+[g.user['id'],fry_id])
                 db().commit()
                 flash('Your review was saved.' if body else 'Your rating was saved.', 'success')
