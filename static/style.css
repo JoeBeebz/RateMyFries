@@ -25,3 +25,6 @@
 .catalogue-status:empty { display:none; }
 
 @media(max-width:620px) { .search-bar > .catalogue-field { flex-basis:100%; } .search-bar > button { width:100%; } }
+
+/* Sprint 5 restaurant explorer */
+.map-heading{display:flex;align-items:center;justify-content:space-between;gap:1.5rem}.map-heading h2{margin:.3rem 0}.map-layout{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(260px,1fr);gap:1.2rem;align-items:stretch}#restaurant-map{height:480px;width:100%;border:1px solid var(--line,#ddd);border-radius:18px;background:#eee9dc;overflow:hidden;position:relative}.map-placeholder{height:100%;margin:0;display:grid;place-items:center;padding:2rem;text-align:center;color:#695338;font-size:1.5rem;font-weight:700}.map-details{max-height:480px;overflow:auto}.map-details h3{margin-top:1.5rem}.map-details ul{padding-left:1.2rem}.map-details li{margin-bottom:1rem}.map-details small{display:block;margin-top:.3rem}.gm-style a{display:block}.map-section{scroll-margin-top:1rem}@media(max-width:760px){.map-heading{display:block}.map-heading button{margin-bottom:.75rem}.map-layout{grid-template-columns:1fr}#restaurant-map{height:360px}.map-details{max-height:none}}
