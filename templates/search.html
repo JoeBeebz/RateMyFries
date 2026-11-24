@@ -1,5 +1,6 @@
 {% extends 'base.html' %}{% from 'macros.html' import restaurant_card,fry_card with context %}
 {% block title %}Find fries & restaurants{% endblock %}
+{% block head %}<style nonce="{{ g.csp_nonce }}"></style><script src="{{ url_for('static', filename='restaurant-map.js') }}" nonce="{{ g.csp_nonce }}" defer></script>{% endblock %}
 {% block content %}
 <div class="page-heading"><p class="eyebrow">YOUR NEXT GOOD BITE</p><h1>One search. All the crunch.</h1><p>Find a restaurant or your favorite fry, then narrow it down to somewhere nearby.</p>
 {% if user and user.role=='admin' %}<a class="button" href="{{ url_for('add_restaurant') }}">+ Add a restaurant</a>{% else %}<a class="button" href="{{ url_for('submit_business') }}">Submit your business</a>{% endif %}</div>
@@ -17,6 +18,14 @@
 {% if user and user.address %}<label class="check"><input type="checkbox" name="use_saved" value="1" {% if used_saved %}checked{% endif %}>Use my private profile address</label>{% endif %}
 <p id="location-status" role="status" class="muted full">Address and device location searches stay out of the page URL. Your search location is not saved.</p></div>
 <button>Find fries</button><a href="{{ url_for('search') }}">Clear filters</a></form>
+<section class="section map-section" aria-labelledby="map-heading" id="restaurant-explorer" data-map-key="{{ config.GOOGLE_MAPS_BROWSER_KEY }}">
+<div class="map-heading"><div><p class="eyebrow">EXPLORE THE NEIGHBORHOOD</p><h2 id="map-heading">Find your next fry stop.</h2><p>Markers follow your search filters. Pick a restaurant to see its fries.</p></div><button type="button" id="load-restaurant-map" class="secondary">Load interactive map</button></div>
+<p id="map-status" class="muted" role="status">The map loads from Google only when you choose. Restaurant details are always available below.</p>
+{% if location_skipped %}<p class="notice">{{ location_skipped }} restaurant(s) could not be checked for distance. Clear distance filters to browse them.</p>{% endif %}
+{% if restaurants|selectattr('location_unavailable')|list %}<p class="notice">Some live locations are unavailable. Their saved catalogue details remain available; missing locations have no marker.</p>{% endif %}
+<div class="map-layout"><div><div id="restaurant-map" role="region" aria-label="Interactive restaurant map"><p class="map-placeholder">A little exploration. A lot of crunch.</p></div></div><aside class="panel map-details" aria-label="Selected restaurant"><label>Choose a restaurant<select id="map-selection"><option value="">Select a fry stop…</option>{% for item in restaurants %}<option value="{{ item.id }}">{{ item.name }}</option>{% endfor %}</select></label><div id="map-details" aria-live="polite"><p>Select a marker or choose from the list to explore restaurant details and matching fries.</p></div></aside></div>
+<noscript><p>Turn on JavaScript for the interactive map. All restaurants and fry options are listed below.</p></noscript>
+<script type="application/json" id="restaurant-map-data" nonce="{{ g.csp_nonce }}">{{ map_items|tojson }}</script></section>
 <section class="section"><h2>Restaurants <span class="muted">({{ restaurants|length }})</span></h2><div class="grid">{% for item in restaurants %}<div>{{ restaurant_card(item) }}{% if item.miles is not none %}<p>{{ '%.1f'|format(item.miles) }} miles away</p>{% endif %}{% if item.google_place_id %}<p class="google-attribution" translate="no">Google Maps</p>{% for attribution in item.attributions %}<p>{{ attribution }}</p>{% endfor %}{% endif %}</div>{% else %}<div class="empty full"><h3>No restaurants found.</h3><p>{% if filters.q %}Choose a listed restaurant, fry name, or style. Names must match exactly; capitalization does not matter.{% else %}Try another name or clear your filters.{% endif %}</p></div>{% endfor %}</div></section>
 <section class="section"><h2>Fry options <span class="muted">({{ fries|length }})</span></h2><div class="grid">{% for item in fries %}{{ fry_card(item) }}{% else %}<div class="empty full"><h3>No fries found.</h3><p>Try another style or price range. Restaurants may still be listed before their menus are added.</p></div>{% endfor %}</div></section>
 {% endblock %}

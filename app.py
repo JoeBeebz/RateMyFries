@@ -159,6 +159,7 @@ def create_app(config=None):
                             SESSION_COOKIE_SECURE=os.environ.get('COOKIE_SECURE') == '1',
                             MAX_CONTENT_LENGTH=64*1024,
                             GOOGLE_PLACES_API_KEY=os.environ.get('GOOGLE_PLACES_API_KEY', ''),
+                            GOOGLE_MAPS_BROWSER_KEY=os.environ.get('GOOGLE_MAPS_BROWSER_KEY', ''),
                             WTF_CSRF_FIELD_NAME='csrf')
     if config:
         app.config.update(config)
@@ -179,6 +180,7 @@ def create_app(config=None):
 
     @app.before_request
     def load_identity_and_protect_forms():
+        g.csp_nonce = secrets.token_urlsafe(24)
         g.user = None
         token = session.get('auth')
         if token:
@@ -198,7 +200,19 @@ def create_app(config=None):
         response.headers['X-Content-Type-Options'] = 'nosniff'
         response.headers['X-Frame-Options'] = 'DENY'
         response.headers['Referrer-Policy'] = 'no-referrer'
-        response.headers['Content-Security-Policy'] = "default-src 'self'; img-src 'self' https:; style-src 'self'; script-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'self'"
+        policy = "default-src 'self'; img-src 'self' https:; style-src 'self'; script-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'self'"
+        if request.endpoint == 'search':
+            # Google Maps copies the response nonce onto its dynamically loaded assets.
+            nonce = g.csp_nonce
+            policy = ("default-src 'self'; img-src 'self' https: data: blob:; "
+                      f"style-src 'self' 'nonce-{nonce}' https://fonts.googleapis.com; style-src-attr 'unsafe-inline'; "
+                      f"script-src 'self' 'nonce-{nonce}' https://maps.googleapis.com https://maps.gstatic.com; "
+                      "connect-src 'self' https://*.googleapis.com https://*.gstatic.com https://*.google.com; "
+                      "font-src 'self' https://fonts.gstatic.com; worker-src blob:; "
+                      "form-action 'self'; frame-ancestors 'none'; base-uri 'self'")
+            # Referrer-restricted browser keys need the public origin, never the POST body.
+            response.headers['Referrer-Policy'] = 'strict-origin-when-cross-origin'
+        response.headers['Content-Security-Policy'] = policy
         if response.mimetype == 'text/html':
             response.headers['Cache-Control'] = 'no-store'
         return response
@@ -348,7 +362,7 @@ def create_app(config=None):
     def home():
         recent = rows(restaurant_sql+'WHERE v.body IS NOT NULL GROUP BY r.id ORDER BY latest DESC LIMIT 6')
         top = rows(fry_sql+'GROUP BY f.id HAVING COUNT(v.id)>0 ORDER BY average DESC,rating_count DESC,f.name LIMIT 6')
-        return render_template('home.html', recent=[app.extensions['resolve_restaurant'](r) for r in recent], top=top)
+        return render_template('home.html', recent=app.extensions['resolve_restaurants'](recent), top=top)
 
     @app.get('/restaurants')
     def restaurants():

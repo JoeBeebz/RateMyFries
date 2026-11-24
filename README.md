@@ -56,6 +56,10 @@ With a configured key, search/profile/business address fields suggest addresses 
 
 Without a key, ordinary browsing, accounts, admin workflows, manual business/address entry and reviews work. Suggestions and address distance searches display a useful unavailable message. Actual Google-sourced Kenosha import and live Google acceptance checks remain blocked until configuration exists. Device radius search can use listings with existing coordinates; manually entered listings without coordinates require live address lookup.
 
+## Sprint 5 restaurant map
+
+Search includes an on-demand Google map and an accessible restaurant selector with matching fry details. Configure `GOOGLE_MAPS_BROWSER_KEY` separately from the private server Places key. This browser key is intentionally public: restrict it to Maps JavaScript API and the exact HTTP referrer origins used for review. Enable Maps JavaScript API in the existing Google project. Never reuse or expose the server key. Map scripts are requested only after Load interactive map; provider failures retain catalogue browsing. Missing coordinates are omitted from markers, and live Google location data is not written to SQLite. Existing exact-name search behavior and private POST location inputs are preserved.
+
 ## Validation
 
 ```powershell

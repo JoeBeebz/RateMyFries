@@ -1,6 +1,7 @@
 """Discovery and moderated business workflows introduced in Sprint 3."""
 import re
 import sqlite3
+from concurrent.futures import ThreadPoolExecutor
 from urllib.parse import quote
 
 import click
@@ -11,6 +12,9 @@ from app import (STYLES, InvalidForm, admin_required, db, distance, login_requir
 from locations import LocationUnavailable
 
 
+_location_workers = ThreadPoolExecutor(max_workers=8, thread_name_prefix="places")
+
+
 def install(app, restaurant_sql, fry_sql):
     def places():
         return app.extensions['places']
@@ -19,7 +23,11 @@ def install(app, restaurant_sql, fry_sql):
         item = dict(record)
         item['attributions'] = []
         if item.get('google_place_id'):
-            details = places().details(item['google_place_id'])
+            try:
+                details = places().details(item['google_place_id'])
+            except LocationUnavailable:
+                item.update(latitude=None, longitude=None, location_unavailable=True)
+                return item
             item.update(name=details.get('displayName', {}).get('text', 'Google business'),
                         address=details.get('formattedAddress', ''),
                         latitude=details.get('location', {}).get('latitude'),
@@ -28,7 +36,11 @@ def install(app, restaurant_sql, fry_sql):
                         maps_url='https://www.google.com/maps/search/?api=1&query=Google&query_place_id=' + quote(item['google_place_id']))
         return item
 
+    def resolve_restaurants(records):
+        return list(_location_workers.map(resolve_restaurant, records))
+
     app.extensions['resolve_restaurant'] = resolve_restaurant
+    app.extensions['resolve_restaurants'] = resolve_restaurants
 
     @app.get('/privacy')
     def policies():
@@ -49,7 +61,10 @@ def install(app, restaurant_sql, fry_sql):
             name = record['name']
             if record['google_place_id'] and name == 'Google business':
                 try:
-                    name = resolve_restaurant(record)['name']
+                    resolved = resolve_restaurant(record)
+                    if resolved.get('location_unavailable'):
+                        continue
+                    name = resolved['name']
                 except LocationUnavailable:
                     continue
             add(name, 'Restaurant')
@@ -62,6 +77,24 @@ def install(app, restaurant_sql, fry_sql):
         response.headers['Cache-Control'] = 'no-store'
         return response
 
+    def map_items(restaurants, fries):
+        """Explicit public fields only; never serialize profile/search origins or keys."""
+        result = []
+        for r in restaurants:
+            latitude, longitude = r.get('latitude'), r.get('longitude')
+            try:
+                latitude = numeric(latitude, 'Latitude', -90, 90)
+                longitude = numeric(longitude, 'Longitude', -180, 180)
+            except InvalidForm:
+                latitude = longitude = None
+            result.append(dict(id=r['id'], name=r['name'], address=r['address'],
+                latitude=latitude, longitude=longitude, average=r['average'], count=r['rating_count'],
+                url=url_for('restaurant', restaurant_id=r['id']),
+                fries=[dict(name=f['name'], average=f['average'], count=f['rating_count'],
+                            price_cents=f['price_cents'], url=url_for('fry', fry_id=f['id']))
+                       for f in fries if f['restaurant_id'] == r['id']]))
+        return result
+
     @app.route('/search', methods=['GET', 'POST'])
     def search():
         values = request.form if request.method == 'POST' else request.args
@@ -73,6 +106,7 @@ def install(app, restaurant_sql, fry_sql):
         address = values.get('address', '').strip() if request.method == 'POST' else ''
         saved = request.method == 'POST' and values.get('use_saved') == '1'
         error, restaurants, fries = None, [], []
+        location_skipped = 0
         try:
             if query_too_long:
                 raise InvalidForm('Search names must be 240 characters or fewer.')
@@ -104,8 +138,8 @@ def install(app, restaurant_sql, fry_sql):
             if filters['sort'] == 'nearest' and not origin:
                 raise InvalidForm('Choose a location before sorting by distance.')
             listings = []
-            for record in rows(restaurant_sql + 'GROUP BY r.id'):
-                item = resolve_restaurant(record)
+            records = rows(restaurant_sql + 'GROUP BY r.id')
+            for record, item in zip(records, resolve_restaurants(records)):
                 item['search_names'] = {normalize(record['name']), normalize(item['name'])}
                 if record['google_place_id'] and record['name'] == 'Google business':
                     item['search_names'].discard(normalize(record['name']))
@@ -139,7 +173,11 @@ def install(app, restaurant_sql, fry_sql):
                 if origin:
                     coords = (r['latitude'], r['longitude'])
                     if None in coords:
-                        coords = places().geocode(r['address'])
+                        try:
+                            coords = places().geocode(r['address'])
+                        except LocationUnavailable:
+                            location_skipped += 1
+                            continue
                     r['miles'] = distance(*origin, *coords)
                     if r['miles'] > radius:
                         continue
@@ -162,7 +200,8 @@ def install(app, restaurant_sql, fry_sql):
             error = str(exc)
             restaurants, fries = [], []
         return render_template('search.html', filters=filters, restaurants=restaurants, fries=fries,
-                               error=error, used_saved=saved), 400 if error else 200
+                               error=error, used_saved=saved, location_skipped=location_skipped,
+                               map_items=map_items(restaurants, fries)), 400 if error else 200
 
     @app.post('/api/address-suggestions')
     def suggest_addresses():
