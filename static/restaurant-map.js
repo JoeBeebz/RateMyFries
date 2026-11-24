@@ -64,7 +64,7 @@
       for (const r of located) {
         const position = {lat: r.latitude, lng: r.longitude};
         const marker = new google.maps.marker.AdvancedMarkerElement({map, position, title: r.name, gmpClickable: true});
-        marker.addListener('click', () => show(r.id, true));
+        marker.addEventListener('gmp-click', () => show(r.id, true));
         markers.set(r.id, marker); bounds.extend(position);
       }
       if (located.length > 1) map.fitBounds(bounds, 48);
