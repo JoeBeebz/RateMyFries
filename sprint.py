@@ -1,6 +1,7 @@
 """Discovery and moderated business workflows introduced in Sprint 3."""
 import re
 import sqlite3
+from concurrent.futures import ThreadPoolExecutor
 from urllib.parse import quote
 
 import click
@@ -9,6 +10,9 @@ from flask import abort, flash, g, jsonify, redirect, render_template, request, 
 from app import (STYLES, InvalidForm, admin_required, db, distance, login_required,
                  normalize, numeric, one, price, rows, text_value)
 from locations import LocationUnavailable
+
+
+_location_workers = ThreadPoolExecutor(max_workers=8, thread_name_prefix="places")
 
 
 def install(app, restaurant_sql, fry_sql):
@@ -32,7 +36,11 @@ def install(app, restaurant_sql, fry_sql):
                         maps_url='https://www.google.com/maps/search/?api=1&query=Google&query_place_id=' + quote(item['google_place_id']))
         return item
 
+    def resolve_restaurants(records):
+        return list(_location_workers.map(resolve_restaurant, records))
+
     app.extensions['resolve_restaurant'] = resolve_restaurant
+    app.extensions['resolve_restaurants'] = resolve_restaurants
 
     @app.get('/privacy')
     def policies():
@@ -130,8 +138,8 @@ def install(app, restaurant_sql, fry_sql):
             if filters['sort'] == 'nearest' and not origin:
                 raise InvalidForm('Choose a location before sorting by distance.')
             listings = []
-            for record in rows(restaurant_sql + 'GROUP BY r.id'):
-                item = resolve_restaurant(record)
+            records = rows(restaurant_sql + 'GROUP BY r.id')
+            for record, item in zip(records, resolve_restaurants(records)):
                 item['search_names'] = {normalize(record['name']), normalize(item['name'])}
                 if record['google_place_id'] and record['name'] == 'Google business':
                     item['search_names'].discard(normalize(record['name']))
