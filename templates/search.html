@@ -1,6 +1,6 @@
 {% extends 'base.html' %}{% from 'macros.html' import restaurant_card,fry_card with context %}
 {% block title %}Find fries & restaurants{% endblock %}
-{% block head %}<script src="{{ url_for('static', filename='restaurant-map.js') }}" nonce="{{ g.csp_nonce }}" defer></script>{% endblock %}
+{% block head %}<style nonce="{{ g.csp_nonce }}"></style><script src="{{ url_for('static', filename='restaurant-map.js') }}" nonce="{{ g.csp_nonce }}" defer></script>{% endblock %}
 {% block content %}
 <div class="page-heading"><p class="eyebrow">YOUR NEXT GOOD BITE</p><h1>One search. All the crunch.</h1><p>Find a restaurant or your favorite fry, then narrow it down to somewhere nearby.</p>
 {% if user and user.role=='admin' %}<a class="button" href="{{ url_for('add_restaurant') }}">+ Add a restaurant</a>{% else %}<a class="button" href="{{ url_for('submit_business') }}">Submit your business</a>{% endif %}</div>
