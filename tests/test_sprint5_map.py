@@ -19,6 +19,7 @@ def test_map_uses_same_search_results_and_public_fields(app,client):
     assert records[0]['fries'][0]['url']==f'/fries/{fid}'
     assert not {'email','user_id','search_names','address_key','google_place_id'} & records[0].keys()
     assert payload(client.get('/search?q=not-listed'))==[]
+    assert b'<style nonce=' in response.data
     assert 'nonce-' in response.headers['Content-Security-Policy']
     assert response.headers['Referrer-Policy']=='strict-origin-when-cross-origin'
 

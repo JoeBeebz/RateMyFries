@@ -58,7 +58,7 @@
       canvas.replaceChildren();
       map = new google.maps.Map(canvas, {center: {lat: located[0].latitude, lng: located[0].longitude}, zoom: 12,
         mapId: 'DEMO_MAP_ID', mapTypeControl: false, streetViewControl: false, gestureHandling: 'cooperative'});
-      info = new google.maps.InfoWindow();
+      info = new google.maps.InfoWindow({minWidth: 200, maxWidth: 280});
       const bounds = new google.maps.LatLngBounds();
       markers.clear();
       for (const r of located) {
